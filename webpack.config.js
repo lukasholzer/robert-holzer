@@ -7,7 +7,7 @@ const extractCommons = new webpack.optimize.CommonsChunkPlugin({
 });
 
 const config = {
- context: path.resolve(__dirname, 'src'),
+  context: path.resolve(__dirname, 'src'),
   entry: {
     app: './main.ts',
     vendor: './vendor.ts',
@@ -21,15 +21,28 @@ const config = {
     publicPath: '/dist/',
     filename: '[name].bundle.js'
   },
+  target: 'web',
   module: {
     rules: [
-      {
+      { // Font Loader
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            //limit: 65000,
+            mimetype: 'application/font-woff',
+            name: 'fonts/[name].[ext]'
+          }
+        }]
+      },
+      { // Image Loading
         test: /\.(png|jpg)$/,
         use: [{
           loader: 'url-loader',
           options: { limit: 10000 } // Convert images < 10k to base64 strings
         }]
-      },{
+      },
+      {
         test: /\.scss$/,
         use: [
           'style-loader',
@@ -37,7 +50,7 @@ const config = {
           'sass-loader'
         ]
       },
-      {
+      { // TypeScript Loader
         test: /\.ts$/,
         use: {
           loader: 'awesome-typescript-loader',

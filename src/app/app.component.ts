@@ -1,7 +1,8 @@
 import { Component, ElementRef } from 'mojiito-core';
-import { HeaderComponent } from './overlay.component'; 
+import { HeaderComponent } from './overlay.component';
 
-import './app.component.scss';    
+import '../fonts/neutra-text/neutra-text.scss';
+import './app.component.scss';
 
 @Component({
     selector: 'body',

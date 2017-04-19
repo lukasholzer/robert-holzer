@@ -13,8 +13,9 @@
     "url": "https://github.com/lukasholzer/robert-holzer/issues"
   },
   "scripts": {
-    "start": "webpack-dev-server --inline --hot",
-    "build": "webpack -p"
+    "start": "yarn run clean && webpack-dev-server --inline --hot",
+    "build": "yarn run clean && webpack -p",
+    "clean": "rm -rf ./dist"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^3.1.2",
