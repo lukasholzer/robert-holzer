@@ -1,6 +1,6 @@
 {
-  "name": "webpack",
-  "version": "1.0.0",
+  "name": "robert-holzer",
+  "version": "0.0.1",
   "main": "index.js",
   "license": "ISC",
   "author": "Lukas Holzer <office@lukasholzer.com>",
