@@ -2,7 +2,16 @@
   "name": "webpack",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT",
+  "license": "ISC",
+  "author": "Lukas Holzer <office@lukasholzer.com>",
+  "homepage": "https://github.com/lukasholzer/robert-holzer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukasholzer/robert-holzer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lukasholzer/robert-holzer/issues"
+  },
   "scripts": {
     "start": "webpack-dev-server --inline --hot",
     "build": "webpack -p"
