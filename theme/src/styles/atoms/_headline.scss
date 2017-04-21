@@ -1,0 +1,13 @@
+.headline {
+    font-weight: bold;
+}
+
+h1.headline {
+    font-size: 3.6rem; // 72px
+    text-transform: lowercase;
+    margin-bottom: 2em;
+    &:after {
+        content: '/';
+        display: block;
+    }
+}

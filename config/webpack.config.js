@@ -30,6 +30,17 @@ module.exports = {
           }
         }
       },
+      { // Font Loader
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            //limit: 65000,
+            mimetype: 'application/font-woff',
+            name: 'fonts/[name].[ext]'
+          }
+        }]
+      },
     ]
   },
 

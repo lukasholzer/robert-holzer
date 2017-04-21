@@ -4,6 +4,9 @@
 /dist
 /tmp
 
+# should only exists in docker image not in project itself
+yarn.lock
+
 # dependencies
 /node_modules
 
