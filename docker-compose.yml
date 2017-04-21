@@ -24,6 +24,7 @@ services:
         [local]advanced-custom-fields-pro,
         acf-image-crop-add-on,
         wordpress-importer,
+        [soil]https://github.com/roots/soil/archive/3.7.1.zip,
         [WP-API]https://github.com/WP-API/WP-API/archive/master.zip
       THEMES: >-
         [local]robertholzer
