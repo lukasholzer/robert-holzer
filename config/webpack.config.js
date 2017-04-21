@@ -1,9 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-const inlineCSS = new ExtractTextPlugin('inline.css');
-const mainCSS = new ExtractTextPlugin('main.bundle.css');
 
 module.exports = {
 
@@ -34,30 +30,10 @@ module.exports = {
           }
         }
       },
-      {
-        test: /inline.scss$/,
-        exclude: path.join(__dirname, 'src', 'app'),
-        use: inlineCSS.extract({
-          fallback: 'style-loader',
-          use: ['raw-loader', 'postcss-loader', 'sass-loader'] // , 'import-glob'
-        })
-      }, {
-        test: /main.scss$/,
-        exclude: path.join(__dirname, 'src', 'app'),
-        use: mainCSS.extract({
-          fallback: 'style-loader',
-          use: ['raw-loader', 'postcss-loader', 'sass-loader'] // , 'import-glob'
-        })
-      }
     ]
   },
 
   plugins: [
-    inlineCSS,
-    mainCSS,
-
-    new webpack.NoEmitOnErrorsPlugin(),
-
     new webpack.LoaderOptionsPlugin({
       test: /\.scss$/,
       options: {
@@ -72,6 +48,8 @@ module.exports = {
         }
       }
     }),
+
+    new webpack.NoEmitOnErrorsPlugin(),
 
     // creates 3 junks, does code splitting
     new webpack.optimize.CommonsChunkPlugin({

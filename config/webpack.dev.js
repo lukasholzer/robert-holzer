@@ -27,24 +27,11 @@ module.exports = webpackMerge(commonConfig, {
 
   module: {
     rules: [
-      // {
-      //   test: /\.scss$/,
-      //   exclude: path.join(__dirname, 'src', 'app'),
-      //   use: ['style-loader', 'css-loader', {
-      //     loader: 'postcss-loader',
-      //     options: {
-      //       plugins: function () {
-      //         return [
-      //           require('postcss-ordered-values'),
-      //           require('autoprefixer')({
-      //             browsers: ['last 2 versions', 'ie >= 10']
-      //           }),
-      //           require('postcss-cssnext')
-      //         ];
-      //       }
-      //     }
-      //   }, 'sass-loader']
-      // }
+      {
+        test: /\.scss$/,
+        exclude: path.join(__dirname, 'src', 'app'),
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+      }
     ]
   },
 
