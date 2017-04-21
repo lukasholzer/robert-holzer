@@ -48,6 +48,6 @@ docker rmi $(docker images -q)
 
 
 # Thanks to 
-[vutran](https://github.com/vutran) with his [Repo](https://github.com/vutran/wpmvc)
-[visiblevc](https://github.com/visiblevc) with the [Repo](https://github.com/visiblevc/wordpress-starter)
-[Thomas Pink](https://github.com/thomaspink) with his [Repo](https://github.com/thomaspink/sls-eventservice)
+- [vutran](https://github.com/vutran) with his [Repo](https://github.com/vutran/wpmvc)
+- [visiblevc](https://github.com/visiblevc) with the [Repo](https://github.com/visiblevc/wordpress-starter)
+- [Thomas Pink](https://github.com/thomaspink) with his [Repo](https://github.com/thomaspink/sls-eventservice)
