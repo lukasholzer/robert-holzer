@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+
+  wordpress:
+    image: visiblevc/wordpress:latest
+    ports:
+      - 8080:80
+    restart: always
+    links:
+      - db:mysql
+    volumes:
+      - ./data:/data # If mysql database dump is as .sql file inside
+      - ./theme:/app/wp-content/themes/robertholzer
+    environment:
+      DB_NAME: robertholzer
+      DB_HOST: db
+      DB_PASS: root
+      SERVER_NAME: localhost
+      ADMIN_EMAIL: office@lukasholzer.com
+      WP_DEBUG: 'true'
+      WP_VERSION: latest
+      PLUGINS: >-
+        [local]advanced-custom-fields-pro,
+        acf-image-crop-add-on,
+        wordpress-importer,
+        [WP-API]https://github.com/WP-API/WP-API/archive/master.zip
+      THEMES: >-
+        [local]robertholzer
+
+  hotreload:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: hotreload
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./theme/src:/opt/hmrserver/src
+
+  db:
+    image: mysql:5.7
+    hostname: dbhost
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wordpress
+    volumes:
+      - data:/var/lib/mysql
+
+volumes:
+  data:
