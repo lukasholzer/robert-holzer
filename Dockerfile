@@ -13,10 +13,10 @@ RUN cd /tmp && yarn
 RUN mkdir -p $HOME_DIR && cp -a /tmp/node_modules $HOME_DIR/
 
 WORKDIR $HOME_DIR
+COPY $THEME_FOLDER/src $HOME_DIR/src/
+COPY config $HOME_DIR/config
 COPY package.json $HOME_DIR/
 COPY webpack.middleware.js $HOME_DIR/
-COPY config $HOME_DIR/config
-COPY $THEME_FOLDER/src $HOME_DIR/src/
 
 EXPOSE $PORT
 

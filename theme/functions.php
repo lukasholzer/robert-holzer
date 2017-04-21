@@ -21,10 +21,12 @@ add_theme_support('soil-relative-urls');
 add_action( 'wp_enqueue_scripts', 'add_theme_scripts', 0);
 
 
-
 function add_theme_scripts() {
   $version = wp_get_theme()->get( 'Version' );
   $url = (WP_ENV == 'development')? 'http://localhost:4000/': get_template_directory_uri() . '/dist/';
+
+  wp_enqueue_style( 'inline', $url . 'inline.css', array(), $version);
+  wp_enqueue_style( 'main', $url . 'main.bundle.css', array(), $version);
 
   wp_enqueue_script( 'polyfills', $url . 'polyfills.bundle.js', array(), $version, true );
   wp_enqueue_script( 'vendor', $url . 'vendor.bundle.js', array('polyfills'), $version, true );
