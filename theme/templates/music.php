@@ -3,6 +3,6 @@
 $context = Timber::get_context();
 $context['posts'] = Timber::get_posts();
 
-$templates = array( 'components/start-teaser.twig' );
+$templates = array( 'music.twig' );
 
 Timber::render( $templates, $context );

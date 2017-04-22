@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const commonConfig = require('./webpack.config.js');
 const hotMiddlewareScript = 'webpack-hot-middleware/client?path=http://localhost:4000/__webpack_hmr&timeout=2000&reload=true';
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 const entry = {};
 for (let name in commonConfig.entry) {
@@ -29,14 +30,31 @@ module.exports = webpackMerge(commonConfig, {
     rules: [
       {
         test: /\.scss$/,
-        exclude: path.join(__dirname, 'src', 'app'),
+        exclude: path.join(__dirname, 'theme', 'src', 'app'),
         use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
       }
     ]
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new BrowserSyncPlugin(
+      {
+        host: 'localhost',
+        port: 3000,
+        proxy: 'http://localhost:8080/',
+        tunnel: true,
+        cors: true,
+        notify: true,
+        files: ['./**/*.php']
+      },
+      // plugin options
+      {
+        // prevent BrowserSync from reloading the page
+        // and let Webpack Dev Server take care of this
+        reload: false
+      }
+    )
   ]
 
 });

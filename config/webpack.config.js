@@ -3,7 +3,7 @@ const webpack = require('webpack');
 
 module.exports = {
 
-  context: path.resolve(__dirname, '../', 'src'),
+  context: path.resolve(__dirname, '../', 'theme', 'src'),
   entry: {
     // Scriptss
     app: './main.ts',
@@ -26,7 +26,7 @@ module.exports = {
         use: {
           loader: 'awesome-typescript-loader',
           options: {
-            configFileName: 'src/tsconfig.json'
+            configFileName: 'theme/src/tsconfig.json'
           }
         }
       },

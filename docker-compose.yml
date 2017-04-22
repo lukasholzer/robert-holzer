@@ -5,7 +5,7 @@ services:
   wordpress:
     image: visiblevc/wordpress:latest
     ports:
-      - 8080:80
+      - "8080:80"
     restart: always
     links:
       - db:mysql
@@ -36,9 +36,20 @@ services:
       dockerfile: Dockerfile
     image: hotreload
     ports:
-      - "4000:4000"
+      - "4000:4000" # HMR Server
+      - "3000:3000" # BrowserSync
+      - "3001:3001" # BrwoserSync Admin interface
     volumes:
-      - ./theme/src:/opt/hmrserver/src
+      # - ./theme/src:/opt/hmrserver/src
+      - ./theme:/opt/hmrserver/theme
+
+  composer:
+    restart: 'no'
+    image: composer/composer:alpine
+    command: install
+    volumes:
+      - ./theme:/app
+
 
   imageservice:
     image: apsl/thumbor

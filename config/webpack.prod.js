@@ -1,3 +1,4 @@
+const path = require('path');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const commonConfig = require('./webpack.config.js');
@@ -19,14 +20,14 @@ module.exports = webpackMerge(commonConfig, {
     rules: [
       {
         test: /inline.scss$/,
-        exclude: path.join(__dirname, 'src', 'app'),
+        exclude: path.join(__dirname, 'theme', 'src', 'app'),
         use: inlineCSS.extract({
           fallback: 'style-loader',
           use: ['raw-loader', 'postcss-loader', 'sass-loader'] // , 'import-glob'
         })
       }, {
         test: /main.scss$/,
-        exclude: path.join(__dirname, 'src', 'app'),
+        exclude: path.join(__dirname, 'theme', 'src', 'app'),
         use: mainCSS.extract({
           fallback: 'style-loader',
           use: ['raw-loader', 'postcss-loader', 'sass-loader'] // , 'import-glob'
