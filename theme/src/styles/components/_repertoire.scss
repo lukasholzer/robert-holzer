@@ -106,7 +106,6 @@ $bp-medium : 765px !default;
     transition: border 0ms linear, width 400ms ease-out;
     background: $color-white;
     width: calc((100% / 3) * 2 - #{$space-around} * 2 - #{$border-size} * 2);
-    position: absolute;
     top: 0;
     left: 0;
     z-index: 500;

@@ -10,13 +10,14 @@ export class RepertoireComponent {
 
   constructor(private elementRef: ElementRef) {
 
-    const workItems = document.querySelectorAll(`.${RepertoireComponent.WORK_SELECTOR}`);
+    const workItems = elementRef.nativeElement.querySelectorAll(`.${RepertoireComponent.WORK_SELECTOR}`);
 
     for (let i = 0, max = workItems.length; i < max; i++) {
       workItems[i].addEventListener('click', (event: Event) => {
         event.preventDefault();
-        console.log(event)
-      })
+
+        workItems[i].classList.toggle(RepertoireComponent.ACTIVE_CLASS);
+      });
     }
   }
 
