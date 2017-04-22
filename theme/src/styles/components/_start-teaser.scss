@@ -1,0 +1,49 @@
+$breakpoint-large: 1200px !default;
+$dot-size: 1.4rem !default;
+.start-teaser {
+    background-image: url("http://placehold.it/1440x1200");
+    height: 100vh;
+    width: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.start-teaser__headline {
+    color: white;
+}
+
+.start-teaser__box {
+    position: absolute;
+    bottom: 5rem;
+    left: 50%;
+    width: 100%;
+    max-width: $breakpoint-large;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: flex-end;
+    flex-flow: column;
+}
+
+.start-teaser__dots {
+    display: flex;
+}
+
+.start-teaser__dot {
+    border-radius: 50%;
+    width: $dot-size;
+    height: $dot-size;
+    &+& {
+        margin-left: 0.5em;
+    }
+    &:nth-child(1) {
+        background-color: $color-red;
+    }
+    &:nth-child(2) {
+        background-color: $color-blue;
+    }
+    &:nth-child(3) {
+        background-color: $color-gold;
+    }
+}

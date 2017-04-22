@@ -1,7 +1,7 @@
 
 <!-- section #Repertoire -->
-<section>
-  <h1 class="headline">Repertoire</h1>
+<section class="section">
+  <h1 class="headline headline--section">Repertoire</h1>
 
   <?php
     $composers = get_terms( 'composer' );
