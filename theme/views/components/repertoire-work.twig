@@ -1,7 +1,7 @@
-<figure class="repertoire__work" data-rep-cat="{{category}}">
-  <h2 class="repertoire__title">{{post.title}}</h2>
+<figure class="repertoire__work" data-rep-cat="{{work.id|get_song_type}}">
+  <h2 class="repertoire__title">{{work.title}}</h2>
   <figcaption class="repertoire__description">
-    <span class="repertoire__role">{% for item in post.get_field('roles') %}{% if loop.index > 1 %}, {% endif %}{{item.role}}{% if item.language %}<i>{{item.language}}</i>{% endif %}{% endfor %}</span>
+    <span class="repertoire__role">{{work.get_field('roles')|repertoire_role}}</span>
     <span class="repertoire__text">{{ composer }}</span>
   </figcaption>
   <div class="repertoire__controlls">

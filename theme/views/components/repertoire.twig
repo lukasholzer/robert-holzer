@@ -1,0 +1,13 @@
+<div class="repertoire">
+  <aside class="repertoire__composer"><h2>{{ composer }}</h2></aside>
+
+  <article class="repertoire__row">
+
+	  {% for work in repertoire %}
+
+		  {% include 'components/repertoire-work.twig' with {composer: composer} %}
+
+	  {% endfor %}
+
+  </article>
+</div>

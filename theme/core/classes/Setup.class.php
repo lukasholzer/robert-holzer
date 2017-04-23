@@ -84,15 +84,40 @@ class Setup extends TimberSite {
 		return $context;
 	}
 
-	function myfoo( $text ) {
-		$text .= ' bar!';
-		return $text;
+	function get_song_type($id) {
+    $category = get_the_terms( $id, 'songtype');
+    $cat = '';
+
+    if ( $category && ! is_wp_error( $category ) ){
+
+      foreach ( $category as $term ) {
+        $cat .= $term->slug;
+      }
+    }
+
+    return $cat;
 	}
+
+  function repertoire_role($roles) {
+    $html = '';
+
+    for ($i = 0, $max = count($roles); $i < $max; $i++) {
+      $html .= ($i > 0)? ', ' : '';
+
+      $html .= $roles[$i]['role'];
+      if($roles[$i]['language']) {
+        $html .= sprintf('<i>%s</i>', $roles[$i]['language']);
+      }
+    }
+
+    return $html;
+  }
 
 	function add_to_twig( $twig ) {
 		/* this is where you can add your own functions to twig */
 		$twig->addExtension( new Twig_Extension_StringLoader() );
-		$twig->addFilter('myfoo', new Twig_SimpleFilter('myfoo', array($this, 'myfoo')));
+		$twig->addFilter('get_song_type', new Twig_SimpleFilter('get_song_type', array($this, 'get_song_type')));
+		$twig->addFilter('repertoire_role', new Twig_SimpleFilter('repertoire_role', array($this, 'repertoire_role')));
 		return $twig;
 	}
 }
