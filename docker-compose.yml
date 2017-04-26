@@ -30,11 +30,11 @@ services:
       THEMES: >-
         [local]robertholzer
 
-  hotreload:
+  frontend:
     build:
       context: .
       dockerfile: Dockerfile
-    image: hotreload
+    image: frontend
     ports:
       - "4000:4000" # HMR Server
       - "3000:3000" # BrowserSync
