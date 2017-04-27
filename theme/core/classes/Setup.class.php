@@ -81,15 +81,9 @@ class Setup extends TimberSite {
   function robertholzer_custom_header_setup() {
     $args = array(
       'default-image'         => $this->assets('default_header.jpg'), // Default Header Image to display
-      'header-text'           => false, // Display the header text along with the image
-      'default-text-color'    => 'fff', // Header text color default
       'width'                 => 1442, // Header image width (in pixels)
+      'flex-height'           => true,
       'height'                => 1026, // Header image height (in pixels)
-      'random-default'        => false, // Header image random rotation default
-      'uploads'               => true, // Enable upload of image file in admin
-      // 'wp-head-callback'      => 'wphead_cb', // function to be called in theme head section
-      // 'admin-head-callback'       => 'adminhead_cb', //  function to be called in preview page head section
-      // 'admin-preview-callback'    => 'adminpreview_cb', // function to produce preview markup in the admin screen
     );
 
     add_theme_support( 'custom-header', $args );

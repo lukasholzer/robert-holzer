@@ -4,7 +4,7 @@
   <h1 class="headline headline--section">Repertoire</h1>
 
   <?php
-    $composers = get_terms( 'composer' );
+    $composers = get_terms('composer', array('orderby' => 'count', 'order' => 'DESC', 'hide_empty' => 0 ));
 
     foreach ( $composers as $composer ) {
 
@@ -29,4 +29,3 @@
       Timber::render( $templates, $context );
 
    }
-
