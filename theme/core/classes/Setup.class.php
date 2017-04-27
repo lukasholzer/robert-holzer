@@ -13,6 +13,8 @@ class Setup extends TimberSite {
     add_theme_support( 'post-thumbnails' );
     add_theme_support( 'menus' );
 
+    add_action( 'after_setup_theme', array($this, 'robertholzer_custom_header_setup'));
+
     // clean up wordpress
     add_theme_support('soil-clean-up');
     add_theme_support('soil-disable-asset-versioning');
@@ -62,17 +64,35 @@ class Setup extends TimberSite {
 
   function add_theme_scripts() {
 
-    wp_enqueue_script( 'polyfills', $this->assets . 'polyfills.bundle.js', array(), $this->version, true );
-    wp_enqueue_script( 'vendor', $this->assets . 'vendor.bundle.js', array('polyfills'), $this->version, true );
-    wp_enqueue_script( 'app', $this->assets . 'app.bundle.js', array('vendor'), $this->version, true );
+
+    wp_enqueue_script( 'polyfills', $this->assets('polyfills.bundle.js'), array(), $this->version, true );
+    wp_enqueue_script( 'vendor', $this->assets('vendor.bundle.js'), array('polyfills'), $this->version, true );
+    wp_enqueue_script( 'app', $this->assets('app.bundle.js'), array('vendor'), $this->version, true );
 
     if(WP_ENV === 'development') {
-      wp_enqueue_script( 'inline', $this->assets . 'inline.bundle.js', array('app'), $this->version, true );
-      wp_enqueue_script( 'main', $this->assets . 'main.bundle.js', array('inline'), $this->version, true );
+      wp_enqueue_script( 'inline', $this->assets('inline.bundle.js'), array('app'), $this->version, true );
+      wp_enqueue_script( 'main', $this->assets('main.bundle.js'), array('inline'), $this->version, true );
     } else {
-      wp_enqueue_style( 'inline', $this->assets . 'inline.css', array(), $this->version);
-      wp_enqueue_style( 'main', $this->assets . 'main.bundle.css', array(), $this->version);
+      wp_enqueue_style( 'inline', $this->assets('inline.css'), array(), $this->version);
+      wp_enqueue_style( 'main', $this->assets('main.bundle.css'), array(), $this->version);
     }
+  }
+
+  function robertholzer_custom_header_setup() {
+    $args = array(
+      'default-image'         => $this->assets('default_header.jpg'), // Default Header Image to display
+      'header-text'           => false, // Display the header text along with the image
+      'default-text-color'    => 'fff', // Header text color default
+      'width'                 => 1442, // Header image width (in pixels)
+      'height'                => 1026, // Header image height (in pixels)
+      'random-default'        => false, // Header image random rotation default
+      'uploads'               => true, // Enable upload of image file in admin
+      // 'wp-head-callback'      => 'wphead_cb', // function to be called in theme head section
+      // 'admin-head-callback'       => 'adminhead_cb', //  function to be called in preview page head section
+      // 'admin-preview-callback'    => 'adminpreview_cb', // function to produce preview markup in the admin screen
+    );
+
+    add_theme_support( 'custom-header', $args );
   }
 
 	function add_to_context( $context ) {
@@ -83,6 +103,28 @@ class Setup extends TimberSite {
 
 		return $context;
 	}
+
+  function assets($filename) {
+    return $this->assets . $filename;
+  }
+
+  function get_header_image() {
+    $url = get_theme_mod( 'header_image', get_theme_support( 'custom-header', 'default-image' ) );
+
+    if ( 'remove-header' == $url )
+      return false;
+
+    if ( is_random_header_image() )
+      $url = get_random_header_image();
+
+    $data = array(
+      'url' => esc_url_raw(set_url_scheme($url)),
+      'width' => get_theme_support( 'custom-header', 'width' ),
+      'height' => get_theme_support( 'custom-header', 'height' )
+    );
+
+    return (object) wp_parse_args( $data);
+  }
 
 	function get_song_type($id) {
     $category = get_the_terms( $id, 'songtype');
@@ -118,6 +160,9 @@ class Setup extends TimberSite {
 		$twig->addExtension( new Twig_Extension_StringLoader() );
 		$twig->addFilter('get_song_type', new Twig_SimpleFilter('get_song_type', array($this, 'get_song_type')));
 		$twig->addFilter('repertoire_role', new Twig_SimpleFilter('repertoire_role', array($this, 'repertoire_role')));
-		return $twig;
+    $twig->addFunction(new Twig_SimpleFunction('get_header_image', array($this, 'get_header_image')));
+
+    return $twig;
+
 	}
 }
