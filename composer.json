@@ -6,6 +6,6 @@
     "timber/timber": "^1.2"
   },
   "config": {
-    "vendor-dir": "vendor"
+    "vendor-dir": "theme/vendor"
   }
 }
