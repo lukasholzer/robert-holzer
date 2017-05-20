@@ -54,12 +54,13 @@ class Setup extends TimberSite {
     $press = new CustomPostTypes('press', 'Presse Artikel', 'Presse Artikeln', 'dashicons-testimonial');
     $gallery = new CustomPostTypes('gallery', 'Gallerie', 'Gallerien', 'dashicons-format-gallery');
     $music = new CustomPostTypes('music', 'Album', 'Alben', 'dashicons-format-audio');
+    $track = new CustomPostTypes('song', 'Track', 'Tracks', 'dashicons-controls-volumeon');
   }
 
   function register_taxonomies() {
     // $slug, $name, $namePlural, $hirarchy, $registerFor = array('post'), $i18nDomain = 'robertholzer-theme'
-    $composer = new CustomTaxonomies('composer', 'Komponist', 'Komponisten', false, array('repertoire'));
-    $songtype = new CustomTaxonomies('songtype', 'Filter', 'Filter', false, array('post', 'repertoire', 'music', 'gallery', 'press'));
+    $composer = new CustomTaxonomies('composer', 'Komponist', 'Komponisten', false, array('repertoire', 'music', 'song'));
+    $songtype = new CustomTaxonomies('songtype', 'Filter', 'Filter', false, array('post', 'repertoire', 'music', 'song', 'gallery', 'press'));
   }
 
   function add_theme_scripts() {
