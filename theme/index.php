@@ -5,6 +5,7 @@
 <main class="root">
 
     <?php get_template_part( 'templates/repertoire' ); ?>
+    <?php get_template_part( 'templates/music' ); ?>
 
 </main>
 

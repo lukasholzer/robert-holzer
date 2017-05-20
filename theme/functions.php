@@ -17,4 +17,17 @@ if (class_exists('Timber')) {
 
   new Setup();
 
+
+  Routes::map('api/v1/track/:id', function($params){
+    $query = 'post_type=song&p='.$params['id'];
+    Routes::load('core/api/Track.class.php', null, $query, 200);
+  });
+
+  Routes::map('api/v1/album/:id', function($params){
+    $query = 'post_type=music&p='.$params['id'];
+    Routes::load('core/api/Album.class.php', null, $query, 200);
+  });
+
+
+
 }
