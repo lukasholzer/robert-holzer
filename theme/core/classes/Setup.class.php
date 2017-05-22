@@ -35,6 +35,9 @@ class Setup extends TimberSite {
 
     add_action('wp_enqueue_scripts',  array($this, 'add_theme_scripts'));
 
+    // $options = new OptionsPage('Allgemeine Theme Konfiguration', 'Theme Konfiguration', 'theme-options');
+    // $function = $options->addOptionsPage();
+    // var_dump($options);
 
 		parent::__construct();
 	}
@@ -121,8 +124,12 @@ class Setup extends TimberSite {
     return (object) wp_parse_args( $data);
   }
 
-	function get_song_type($id) {
-    $category = get_the_terms( $id, 'songtype');
+  /**
+   * @param   number    $id // ID of the Post
+   * @param   string    $taxonomy // Taxonomy Name
+   */
+  function get_taxonomy($id, $taxonomy) {
+    $category = get_the_terms( $id, $taxonomy);
     $cat = '';
 
     if ( $category && ! is_wp_error( $category ) ){
@@ -133,6 +140,23 @@ class Setup extends TimberSite {
     }
 
     return $cat;
+  }
+
+  /**
+   * @param   number    $id // ID of the Post
+   */
+	function get_song_type($id) {
+    return $this->get_taxonomy($id, 'songtype');
+	}
+
+  /**
+   * Returns the name of the Composer by a given Tax ID
+   *
+   * @param   number    $id // ID of the Taxonomy
+   * @return  string
+   */
+  function get_composer($id) {
+    return get_term( $id, $taxonomy = 'composer')->name;
 	}
 
   function repertoire_role($roles) {
@@ -154,6 +178,7 @@ class Setup extends TimberSite {
 		/* this is where you can add your own functions to twig */
 		$twig->addExtension( new Twig_Extension_StringLoader() );
 		$twig->addFilter('get_song_type', new Twig_SimpleFilter('get_song_type', array($this, 'get_song_type')));
+    $twig->addFilter('get_composer', new Twig_SimpleFilter('get_composer', array($this, 'get_composer')));
 		$twig->addFilter('repertoire_role', new Twig_SimpleFilter('repertoire_role', array($this, 'repertoire_role')));
     $twig->addFunction(new Twig_SimpleFunction('get_header_image', array($this, 'get_header_image')));
 
