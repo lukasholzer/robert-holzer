@@ -1,0 +1,24 @@
+.alben {
+  position: relative;
+}
+
+.album {}
+
+.album__cover {
+  width: 100%;
+  border-bottom: $spacer/2 solid transparent;
+  [data-song-cat="opera"] & { border-bottom-color: $color-red; }
+  [data-song-cat="concert"] & { border-bottom-color: $color-blue; }
+  [data-song-cat="song"] & { border-bottom-color: $color-gold; }
+}
+
+.album__title {
+  font-size: 1rem;
+}
+
+.album__detail {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+}
