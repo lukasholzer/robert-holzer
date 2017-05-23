@@ -29,7 +29,7 @@ export class StickyComponent {
     this._checkSticky();
 
     this.onScroll();
-    this.onScroll = this.onScroll.bind(this)
+    this.onScroll = this.onScroll.bind(this);
     window.addEventListener('scroll', this.onScroll, <any>{ passive: true });
   }
 
@@ -58,8 +58,8 @@ export class StickyComponent {
     const _refBounding = this._referenceElement.getBoundingClientRect();
     const _refOfTop = _refBounding.top - this._offsetTop; // if smaller then 1 fix it
     const _refOfBot = _refBounding.bottom - this._offsetBottom;
-    const _botOff = _refOfBot - _elHeight // if negative then destroy fix
-    console.log('Is fixed: ', this._fixed ,' Top Offset: ', _refOfTop, ' Bottom Offset: ', _botOff);
+    const _botOff = _refOfBot - _elHeight; // if negative then destroy fix
+    console.log('Is fixed: ', this._fixed, ' Top Offset: ', _refOfTop, ' Bottom Offset: ', _botOff);
     // is not fixed container to small
     if (_refOfTop > 0 && _botOff < 0) {
       this._fixed = false;

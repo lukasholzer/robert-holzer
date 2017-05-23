@@ -9,7 +9,7 @@ import { StickyComponent } from './sticky.component';
     components: [
       HeaderComponent,
       RepertoireComponent,
-      MusicplayerComponent,
+      // MusicplayerComponent,
       StickyComponent
     ]
 })
