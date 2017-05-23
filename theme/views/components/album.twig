@@ -1,0 +1,23 @@
+<div id="alben" class="alben grid" data-grid="left">
+	  {% for album in alben %}
+
+      {% set composer = album.get_field('composer') | get_composer %}
+      {% set image = TimberImage(album.get_field('cover')).src %}
+
+      <div class="album grid__item" data-grid="3/12" data-song-cat="{{album.id|get_song_type}}">
+        <img class="album__cover" src="{{image}}" />
+        <h3 class="album__title">{{album.title}}</h3>
+        <div class="album__composer">{{composer}}</div>
+
+        <div class="album__detail">
+          <img class="album__cover" src="{{image}}" />
+          <h2 class="album__title">{{album.title}}</h2>
+          <p class="album__description">{{album.get_field('description')}}</p>
+          <a class="album__publisher" href="{{album.get_field('publisher_url')}}">
+            {{album.get_field('publisher')}}
+          </a>
+        </div>
+      </div>
+
+    {% endfor %}
+</div>
