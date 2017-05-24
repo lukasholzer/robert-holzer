@@ -20,10 +20,10 @@ module.exports = webpackMerge(commonConfig, {
   output: {
     path: path.join(__dirname, '/dist'),
     publicPath: 'http://localhost:4000/',
-    filename: '[name].bundle.js',
-    chunkFilename: '[id].chunk.js',
-    hotUpdateChunkFilename: '[id].[hash].hot-update.js',
-    hotUpdateMainFilename: '[hash].hot-update.json'
+    filename: '[name].bundle.js'
+    // chunkFilename: '[id].chunk.js',
+    // hotUpdateChunkFilename: '[id].[hash].hot-update.js',
+    // hotUpdateMainFilename: '[hash].hot-update.json'
   },
 
   module: {
@@ -37,24 +37,24 @@ module.exports = webpackMerge(commonConfig, {
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new BrowserSyncPlugin(
-      {
-        host: 'localhost',
-        port: 3000,
-        proxy: 'http://localhost:8080/',
-        tunnel: true,
-        cors: true,
-        notify: true,
-        files: ['./**/*.php']
-      },
-      // plugin options
-      {
-        // prevent BrowserSync from reloading the page
-        // and let Webpack Dev Server take care of this
-        reload: false
-      }
-    )
+    new webpack.HotModuleReplacementPlugin()
+    // ,new BrowserSyncPlugin(
+    //   {
+    //     host: 'localhost',
+    //     port: 3000,
+    //     proxy: 'http://localhost:8080/',
+    //     tunnel: true,
+    //     cors: true,
+    //     notify: true,
+    //     files: ['./**/*.php']
+    //   },
+    //   // plugin options
+    //   {
+    //     // prevent BrowserSync from reloading the page
+    //     // and let Webpack Dev Server take care of this
+    //     reload: false
+    //   }
+    // )
   ]
 
 });

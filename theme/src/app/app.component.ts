@@ -16,6 +16,6 @@ import { StickyComponent } from './sticky.component';
 export class AppComponent {
 
   constructor(private elementRef: ElementRef) {
-
+    console.log('asdssdf');
   }
 }
