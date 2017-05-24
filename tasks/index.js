@@ -28,7 +28,7 @@ export function watch() {
 }
 
 
-export const dev = gulp.series(test);
+export const dev = gulp.series(clean,test,server);
 //export const dev = gulp.series(clean, gulp.parallel(templates, server));
 export const build = gulp.series(clean, gulp.parallel(templates,scripts));
 
