@@ -10,6 +10,21 @@ A Docker Environment for Wordpress Webpack2 with HMR MySql on top of Ubuntu with
 
 ## Run & build
 
+### Run for development
+
+run wordpress: `docker-compose up wordpress`
+run frontend for development without docker:
+
+```bash
+yarn install
+yarn run start
+```
+
+Open browser at **http://localhost:3000**
+
+
+### Run Docker environments
+
 - run everything with build: `docker-compose up` with building `docker-compose up --build`
 - frontend build: `docker-compose up frontend` with building `docker-compose up --build frontend`
 - wordpress build: `docker-compose up wordpress` with building `docker-compose up --build wordpress`
