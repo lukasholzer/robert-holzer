@@ -1704,9 +1704,9 @@ button {
   border: 8px solid transparent;
   width: calc((100% / 2) - 2rem * 2 - 8px * 2);
   padding: 2rem;
-  -webkit-transition: border 250ms ease-in, width 400ms ease-out;
-  -o-transition: border 250ms ease-in, width 400ms ease-out;
-  transition: border 250ms ease-in, width 400ms ease-out;
+  -webkit-transition: border 250ms ease-in,width 400ms ease-out;
+  -o-transition: border 250ms ease-in,width 400ms ease-out;
+  transition: border 250ms ease-in,width 400ms ease-out;
   cursor: pointer; }
   @media (min-width: 500px) {
     .repertoire__work {
@@ -1747,9 +1747,9 @@ button {
     background-color: #bfaa71; }
 
 .repertoire__work--active {
-  -webkit-transition: border 0ms linear, width 400ms ease-out;
-  -o-transition: border 0ms linear, width 400ms ease-out;
-  transition: border 0ms linear, width 400ms ease-out;
+  -webkit-transition: border 0ms linear,width 400ms ease-out;
+  -o-transition: border 0ms linear,width 400ms ease-out;
+  transition: border 0ms linear,width 400ms ease-out;
   background: white;
   width: calc((100% / 3) * 2 - 2rem * 2 - 8px * 2);
   top: 0;

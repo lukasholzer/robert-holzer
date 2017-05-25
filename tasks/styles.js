@@ -19,6 +19,7 @@ const isProduction = (process.env.NODE_ENV === 'production');
 
 
 export default function styles() {
+
   return gulp.src(src)
     .pipe(plumber({ errorHandler: notify.onError("SCSS Error: <%= error.message %>") }))
     .pipe(globbing({ extensions: ['.scss'] }))
@@ -32,10 +33,11 @@ export default function styles() {
     // PostCSS Plugins like autoprefixer and so on
     .pipe(postcss(pluginOptions.postcss.after))
     .pipe(If(!isProduction, sourcemaps.write('./maps')))
-    .pipe(If(isProduction, cssnano(), rename({
+    .pipe(If(isProduction, cssnano()))
+    .pipe(rename({
       suffix: ".min",
       extname: ".css"
-    })))
+    }))
     .pipe(gulp.dest(paths.styles.dist))
     .pipe(If(!isProduction, browser.stream({ match: '**/*.css' })));
 }

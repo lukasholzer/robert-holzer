@@ -5,8 +5,7 @@ import stylelint from 'stylelint';
 import autoprefixer from 'autoprefixer';
 import reporter from 'postcss-reporter';
 import bemLinter from 'postcss-bem-linter';
-import cssnano from 'cssnano';
-import perfectionist from 'perfectionist';
+import orderedValues from 'postcss-ordered-values';
 import precss from 'precss';
 
 
@@ -66,6 +65,7 @@ export const pluginOptions = {
     ],
     after: [
       precss(),
+      orderedValues(),
       autoprefixer({ browsers: ['last 3 versions'] })
     ]
   },
