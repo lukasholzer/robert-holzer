@@ -2,6 +2,8 @@ import path from 'path';
 import webpack from 'webpack';
 import process from 'process';
 
+import { base } from './config';
+
 const isProduction = (process.env.NODE_ENV === 'production');
 
 const pluginsProd = [
@@ -39,7 +41,7 @@ const mainEntry = ['./main.ts', 'webpack/hot/dev-server','webpack-hot-middleware
 // }
 
 export let config = {
-  context: path.resolve(__dirname, '../', 'theme', 'src'),
+  context: path.resolve(__dirname, '../', base.root , base.src),
   entry: {
     app: mainEntry,
     vendor: './vendor.ts',
@@ -68,8 +70,7 @@ export let config = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, '/dist'),
-    // publicPath: 'http://localhost:4000/',
+    path: path.resolve(__dirname, '..', base.root, base.dist),
     filename: '[name].bundle.js',
     chunkFilename: '[id].chunk.js',
     hotUpdateChunkFilename: '[id].[hash].hot-update.js',
@@ -84,9 +85,9 @@ export function scripts() {
 
     if (err) {
       console.log('Webpack', err)
+    } else {
+      console.log(stats.toString({ /* stats options */ }));
     }
-
-    console.log(stats.toString({ /* stats options */ }));
 
     resolve();
   }));

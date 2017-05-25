@@ -1,6 +1,9 @@
-import del from 'del';
+import del from 'promised-del';
+import path from 'path';
 import { base } from './config';
 
-export const clean = () => del([base.dist]);
+const dist = path.resolve(__dirname, '..', 'theme', 'dist');
 
-export default clean;
+export default function clean() {
+  return del([dist]);
+}

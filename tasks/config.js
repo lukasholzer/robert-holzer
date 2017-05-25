@@ -1,5 +1,17 @@
 import path from 'path';
 
+// PostCSS plugins
+import stylelint from 'stylelint';
+import autoprefixer from 'autoprefixer';
+import reporter from 'postcss-reporter';
+import bemLinter from 'postcss-bem-linter';
+import cssnano from 'cssnano';
+import perfectionist from 'perfectionist';
+import precss from 'precss';
+
+
+const isProduction = (process.env.NODE_ENV === 'production');
+
 export const base = {
   dist: 'dist/',
   src: 'src/',
@@ -35,10 +47,30 @@ export const paths = {
 }
 
 export const pluginOptions = {
-  posthtmlBem: {
-    elemPrefix: '__',
-    modPrefix: '--',
-    modDlmtr: '-'
+  imagemin: {
+    optimizationLevel: 7,
+    progressive: true,
+    interlaced: true,
+    multipass: true
+  },
+  base64: {
+    extensions: ['woff'],
+    maxImageSize: 8000 * 1024,
+    debug: true
+  },
+  postcss: {
+    pre: [
+      stylelint(),
+      bemLinter(),
+      reporter({ clearMessages: true })
+    ],
+    after: [
+      precss(),
+      autoprefixer({ browsers: ['last 3 versions'] })
+    ]
+  },
+  sass: {
+    errLogToConsole: true
   }
 }
 

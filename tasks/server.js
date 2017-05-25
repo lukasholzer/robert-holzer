@@ -4,6 +4,7 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import { general, paths } from './config.js';
+import watcher from './watcher';
 
 import { config as webpackConfig } from './webpack';
 
@@ -35,6 +36,8 @@ export default function server() {
   };
 
   browser.init(config);
+
+  watcher();
 
   // gulp.watch(paths.scripts.src).on('change', () => browser.reload());
 }
