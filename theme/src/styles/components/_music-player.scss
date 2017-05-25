@@ -24,7 +24,6 @@
 
 
 .music-player {
-  // position: fixed;
     bottom: 0;
     left: 0;
 
@@ -33,33 +32,33 @@
 
 .music-player,
 .music-player__controlls {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .music-player__controlls {
-  justify-content: space-around;
+    justify-content: space-around;
 }
 
 .controlls__cover {
-  height: 4rem;
+    height: 4rem;
 }
 
 .controlls__buttons {
-  button {
-    width: 2rem;
-    height: 2rem;
-    background-color: red;
-    cursor: pointer;
-  }
+    button {
+        width: 2rem;
+        height: 2rem;
+        background-color: red;
+        cursor: pointer;
+    }
 }
 
 .controlls__timeline {
-  border-top: 1px solid $color-black;
-  min-width: 400px;
-  font-size: 0.6rem;
-  display: flex;
-  justify-content: space-between;
+    border-top: 1px solid $color-black;
+    min-width: 400px;
+    font-size: 0.6rem;
+    display: flex;
+    justify-content: space-between;
 }
