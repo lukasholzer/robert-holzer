@@ -3,6 +3,7 @@ import path from 'path';
 import rename from 'gulp-rename';
 import base64 from 'gulp-base64';
 import size from 'gulp-size';
+import chalk from 'chalk';
 
 import { paths, pluginOptions } from './config';
 

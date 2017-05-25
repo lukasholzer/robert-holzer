@@ -7,7 +7,8 @@ class Setup extends TimberSite {
 	function __construct() {
 
     $this->version = wp_get_theme()->get( 'Version' );
-    $this->assets = (WP_ENV == 'development')? 'http://localhost:3000/': get_template_directory_uri() . '/dist/';
+    $this->scripts = (WP_ENV == 'development')? 'http://localhost:3000/': get_template_directory_uri() . '/dist/';
+    $this->assets = get_template_directory_uri() . '/dist/';
 
 		add_theme_support( 'post-formats' );
     add_theme_support( 'post-thumbnails' );
@@ -69,17 +70,12 @@ class Setup extends TimberSite {
   function add_theme_scripts() {
 
 
-    wp_enqueue_script( 'polyfills', $this->assets('polyfills.bundle.js'), array(), $this->version, true );
-    wp_enqueue_script( 'vendor', $this->assets('vendor.bundle.js'), array('polyfills'), $this->version, true );
-    wp_enqueue_script( 'app', $this->assets('app.bundle.js'), array('vendor'), $this->version, true );
+    wp_enqueue_script( 'polyfills', $this->scripts('polyfills.bundle.js'), array(), $this->version, true );
+    wp_enqueue_script( 'vendor', $this->scripts('vendor.bundle.js'), array('polyfills'), $this->version, true );
+    wp_enqueue_script( 'app', $this->scripts('app.bundle.js'), array('vendor'), $this->version, true );
 
-    // if(WP_ENV === 'development') {
-    //   wp_enqueue_script( 'inline', $this->assets('inline.bundle.js'), array('app'), $this->version, true );
-    //   wp_enqueue_script( 'main', $this->assets('main.bundle.js'), array('inline'), $this->version, true );
-    // } else {
-    //   wp_enqueue_style( 'inline', $this->assets('inline.css'), array(), $this->version);
-    //   wp_enqueue_style( 'main', $this->assets('main.bundle.css'), array(), $this->version);
-    // }
+    wp_enqueue_style( 'inline', $this->assets('styles/inline.min.css'), array(), $this->version);
+    wp_enqueue_style( 'main', $this->assets('styles/main.min.css'), array(), $this->version);
   }
 
   function robertholzer_custom_header_setup() {
@@ -101,6 +97,10 @@ class Setup extends TimberSite {
 
 		return $context;
 	}
+
+  function scripts($filename) {
+    return $this->scripts . $filename;
+  }
 
   function assets($filename) {
     return $this->assets . $filename;
