@@ -5,7 +5,7 @@
 /tmp
 vendor
 
-theme/dist
+./theme/dist
 
 # should only exists in docker image not in project itself
 yarn.lock
