@@ -2,14 +2,14 @@
 
 # compiled output
 dist
-/tmp
+tmp
 vendor
 
 # should only exists in docker image not in project itself
 yarn.lock
 
 # dependencies
-/node_modules
+node_modules
 
 # IDEs and editors
 /.idea
@@ -35,3 +35,5 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
+
+theme/dist/
