@@ -19,7 +19,9 @@ COPY $THEME_FOLDER $HOME_DIR/theme/
 # COPY $THEME_FOLDER/src $HOME_DIR/src/
 COPY config $HOME_DIR/config
 COPY package.json $HOME_DIR/
-COPY webpack.middleware.js $HOME_DIR/
+COPY .stylelintrc $HOME_DIR/
+COPY tslint.json $HOME_DIR/
+COPY composer.json $HOME_DIR/
 
 EXPOSE $PORT
 EXPOSE $BROWSERSYNC
