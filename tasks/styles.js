@@ -23,12 +23,15 @@ export default function styles() {
     .pipe(plumber({ errorHandler: notify.onError("SCSS Error: <%= error.message %>") }))
     .pipe(globbing({ extensions: ['.scss'] }))
     .pipe(If(!isProduction, sourcemaps.init()))
+
     // PostCSS Linting
     // .pipe(postcss(pluginOptions.postcss.pre))
+
     // SASS Processing
     .pipe(sass().on('error', (error) => {
       console.log(error);
     }))
+
     // PostCSS Plugins like autoprefixer and so on
     // .pipe(postcss(pluginOptions.postcss.after))
     .pipe(If(!isProduction, sourcemaps.write('./maps')))
@@ -38,7 +41,5 @@ export default function styles() {
       extname: ".css"
     }))
     .pipe(gulp.dest(paths.styles.dist))
-    // .pipe(browserSync.stream()); //{ match: '**/*.css' }
-    // .pipe(browserSync.stream());
-    .pipe(reload({ stream: true }))
+    .pipe(reload({ stream: true }));
 }

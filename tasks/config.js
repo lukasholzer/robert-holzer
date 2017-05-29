@@ -38,10 +38,12 @@ export const paths = {
   },
   images: {
     src: path.resolve(base.root, base.src, 'images'),
+    files: `${path.resolve(base.root, base.src, 'images')}/**/*.{jpg,jpeg,png,gif,svg,ico}`,
     dist: path.resolve(base.root, base.dist, 'images')
   },
   fonts: {
-    src: path.resolve(base.root, base.src, 'fonts')
+    src: path.resolve(base.root, base.src, 'fonts'),
+    files: `${path.resolve(base.root, base.src, 'fonts')}/**/*.{scss,woff}`
   },
   icons: {
     src: path.resolve(base.root, base.src, 'icons')

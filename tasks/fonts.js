@@ -17,12 +17,3 @@ export default function fonts() {
       pretty: true
     }));
 };
-
-export function fontsWatch() {
-  const watcher = gulp.watch(`${paths.fonts.src}/**/*.{scss,woff}`);
-
-  watcher.on('all', function (event, path, stats) {
-    console.log(chalk.green(`'File ${path} was ${event}ed ---> Running task: ${chalk.bold(' fonts ')} ...`));
-    fonts();
-  });
-}
