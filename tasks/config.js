@@ -18,6 +18,9 @@ export const base = {
 };
 
 export const general = {
+  proxy: {
+    port: 3000
+  },
   wordpress: {
     address: 'localhost:8080'
   }
@@ -26,6 +29,7 @@ export const general = {
 export const paths = {
   styles: {
     src: path.resolve(base.root, base.src, 'styles'),
+    files: `${path.resolve(base.root, base.src, 'styles')}/**/*.{sass,scss}`,
     dist: path.resolve(base.root, base.dist, 'styles')
   },
   scripts: {
@@ -42,7 +46,8 @@ export const paths = {
   icons: {
     src: path.resolve(base.root, base.src, 'icons')
   },
-  views: path.resolve(base.root, 'views'),
+  views: path.resolve(base.root, 'views')
+
 }
 
 export const pluginOptions = {

@@ -20,10 +20,9 @@ export default function images() {
 }
 
 export function imagesWatch() {
-  const watcher = gulp.watch(src);
+  const watcher = gulp.watch(src, images);
 
   watcher.on('all', function (event, path, stats) {
     console.log(chalk.green(`'File ${path} was ${event}ed ---> Running task: ${chalk.bold(' images ')} ...`));
-    images();
   });
 }

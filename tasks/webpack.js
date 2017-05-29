@@ -79,7 +79,7 @@ export let config = {
   plugins: isProduction ? pluginsProd : pluginsDev
 };
 
-export function scripts() {
+export default function scripts() {
 
   return new Promise(resolve => webpack(config, (err, stats) => {
 
@@ -92,5 +92,3 @@ export function scripts() {
     resolve();
   }));
 }
-
-export default { config, scripts };
