@@ -53,6 +53,19 @@ export const paths = {
 }
 
 export const pluginOptions = {
+  svg: {
+    mode: {
+      symbol: { // symbol mode to build the SVG
+        dest: path.resolve(__dirname, '../theme', 'dist', 'icons'), // destination folder
+        sprite: 'sprite.svg', //sprite name
+        example: true // Build sample page
+      }
+    },
+    svg: {
+      xmlDeclaration: false, // strip out the XML attribute
+      doctypeDeclaration: false // don't include the !DOCTYPE declaration
+    }
+  },
   imagemin: {
     optimizationLevel: 7,
     progressive: true,
