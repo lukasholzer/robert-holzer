@@ -3,12 +3,17 @@
 class Setup extends TimberSite {
   protected $version;
   protected $assets;
+  protected $theme_path;
+  protected $theme_uri;
 
 	function __construct() {
 
+    $this->theme_path = get_template_directory() . '/dist/';
+    $this->theme_uri = get_template_directory_uri() . '/dist/';
+
     $this->version = wp_get_theme()->get( 'Version' );
-    $this->scripts = (WP_ENV == 'development')? 'http://localhost:3000/': get_template_directory_uri() . '/dist/';
-    $this->assets = get_template_directory_uri() . '/dist/';
+    $this->scripts = (WP_ENV == 'development')? 'http://localhost:3000/': $this->theme_uri;
+    $this->assets = $this->theme_uri;
 
 		add_theme_support( 'post-formats' );
     add_theme_support( 'post-thumbnails' );
@@ -75,7 +80,12 @@ class Setup extends TimberSite {
     wp_enqueue_script( 'app', $this->scripts('app.bundle.js'), array('vendor'), $this->version, true );
 
     wp_enqueue_style( 'inline', $this->assets('styles/inline.min.css'), array(), $this->version);
+    wp_add_inline_style( 'inline', $this->file_content('styles/inline.min.css') );
     wp_enqueue_style( 'main', $this->assets('styles/main.min.css'), array(), $this->version);
+  }
+
+  function file_content($file) {
+    return @file_get_contents($this->theme_path . $file);
   }
 
   function robertholzer_custom_header_setup() {
