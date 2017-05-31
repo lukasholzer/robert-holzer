@@ -1,5 +1,7 @@
 <?php get_header(); ?>
 
+<?php echo @file_get_contents(get_template_directory() . '/dist/icons/sprite.svg'); ?>
+
 <?php get_template_part( 'templates/start-teaser' ); ?>
 
 <main class="root">
