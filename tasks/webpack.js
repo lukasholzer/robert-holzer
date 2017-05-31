@@ -3,83 +3,15 @@ import webpack from 'webpack';
 import process from 'process';
 
 import { base } from './config';
+import configProd from './webpack/prod';
+import configDev from './webpack/dev';
 
 const isProduction = (process.env.NODE_ENV === 'production');
 
-const pluginsProd = [
-  new webpack.DefinePlugin({
-    'process.env.NODE_ENV': '"production"'
-  }),
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false,
-      screw_ie8: true,
-      unused: true,
-      sequences: true,
-      dead_code: true,
-      evaluate: true,
-    },
-    output: {
-      comments: false,
-    }
-  })
-];
-
-const pluginsDev = [
-  new webpack.HotModuleReplacementPlugin(),
-  new webpack.NoEmitOnErrorsPlugin(),
-  new webpack.optimize.CommonsChunkPlugin({
-    name: ['app', 'vendor', 'polyfills']
-  })
-];
-
-const mainEntry = ['./main.ts', 'webpack/hot/dev-server','webpack-hot-middleware/client'];
-
-// if (isProduction) {
-//   mainEntry.push('webpack/hot/dev-server');
-//   mainEntry.push('webpack-hot-middleware/client');
-// }
-
-export let config = {
-  context: path.resolve(__dirname, '../', base.root , base.src),
-  entry: {
-    app: mainEntry,
-    vendor: './vendor.ts',
-    polyfills: './polyfills.ts'
-  },
-  resolve: {
-    extensions: ['.ts', '.js']
-  },
-  module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        enforce: 'pre',
-        loader: 'tslint-loader',
-        options: {
-          configuration: require('../tslint.json')
-        }
-      },
-      {
-        test: /\.ts$/,
-        loader: 'awesome-typescript-loader',
-        options: {
-          configFileName: 'theme/src/tsconfig.json'
-        }
-      }
-    ]
-  },
-  output: {
-    path: path.resolve(__dirname, '..', base.root, base.dist),
-    filename: '[name].bundle.js',
-    chunkFilename: '[id].chunk.js',
-    hotUpdateChunkFilename: '[id].[hash].hot-update.js',
-    hotUpdateMainFilename: '[hash].hot-update.json'
-  },
-  plugins: isProduction ? pluginsProd : pluginsDev
-};
+export const config = (isProduction) ? configProd : configDev;
 
 export default function scripts() {
+
 
   return new Promise(resolve => webpack(config, (err, stats) => {
 
