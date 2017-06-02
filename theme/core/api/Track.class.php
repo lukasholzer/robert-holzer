@@ -1,32 +1,22 @@
 <?php
 
-  //api/v1/track/:id
-  @header( 'Content-Type: application/json; charset=' . get_option( 'blog_charset' ) );
+require 'API.class.php';
 
-  if(get_the_ID() && is_numeric(get_the_ID())):
+class Track extends API {
 
-?>
-
-{
-  "id": <?php the_ID(); ?>,
-  "title": "<?php the_title(); ?>",
-  "track": "<?php the_field('track'); ?>",
-  "album": <?php the_field('album') ?>,
-  "cover": "<?php the_field('cover') ?>"
+  public function __construct($id) {
+    $this->id = $id;
+    $this->type = 'Track';
+  }
 }
 
-<?php
 
-  else:
-
-?>
-
-{
-  "error": "No Track with this ID is represent!"
-}
-
-<?php
-
-  endif;
-
-?>
+$album = new Track(get_the_ID());
+$album->add_field('title', get_the_title());
+$album->add_field('cover', $album->get_image('cover'));
+$album->add_field('onAlbum', get_field('has_album') === 'album');
+$album->add_field('album', get_field('album'));
+$album->add_field('track', get_field('track'));
+$album->add_field('composer', get_field('composer'));
+$album->add_field('category', get_field('category'));
+$album->render();
