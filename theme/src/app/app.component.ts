@@ -9,13 +9,12 @@ import { StickyComponent } from './sticky.component';
     components: [
       HeaderComponent,
       RepertoireComponent,
-      // MusicplayerComponent,
+      MusicplayerComponent,
       StickyComponent
     ]
 })
 export class AppComponent {
 
   constructor(private elementRef: ElementRef) {
-    console.log('test');
   }
 }
