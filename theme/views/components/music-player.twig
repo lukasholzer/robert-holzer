@@ -1,35 +1,8 @@
 <div class="is-sticky" datas-sticky="alben" data-sticky-offsetBottom="0">
   <div class="music-player">
 
-    <audio src="http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg" controlls>
-      Your browser does not support the <code>audio</code> element.
-    </audio>
-    <img class="controlls__cover" src="http://placehold.it/200x200" />
+    <img class="music-player__cover" src="http://placehold.it/200x200" />
 
-    <div class="music-player__controlls">
-
-      <div class="controlls__buttons">
-        <button class="controlls__prev">
-          <svg class="svg-music-controlls--rewind-dims">
-            <use xlink:href="#music-controlls--rewind"></use>
-          </svg>
-        </button>
-        <button class="controlls__play">
-          <svg class="svg-music-controlls--play-dims">
-            <use xlink:href="#music-controlls--play"></use>
-          </svg>
-        </button>
-        <button class="controlls__next">
-          <svg class="svg-music-controlls--forward-dims">
-            <use xlink:href="#music-controlls--forward"></use>
-          </svg>
-        </button>
-      </div>
-
-      <div class="controlls__timeline">
-        <span class="timeline__start">0:00</span>
-        <span class="timeline__end">5:45</span>
-      </div>
-    </div>
+    {% include 'components/music-player-controlls.twig' %}
   </div>
 </div>
