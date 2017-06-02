@@ -1,8 +1,10 @@
+{% set component = 'music-player' %}
+
 <div class="is-sticky" datas-sticky="alben" data-sticky-offsetBottom="0">
-  <div class="music-player">
+  <div class="{{component}}">
 
-    <img class="music-player__cover" src="http://placehold.it/200x200" />
+    <img class="{{component}}__cover" src="http://placehold.it/200x200" />
 
-    {% include 'components/music-player-controlls.twig' %}
+    {% include 'components/' ~ component ~ '-controlls.twig' with { component: component ~ '-controlls'} %}
   </div>
 </div>
