@@ -16,7 +16,7 @@ $album->add_field('title', get_the_title());
 $album->add_field('cover', $album->get_image('cover'));
 $album->add_field('onAlbum', get_field('has_album') === 'album');
 $album->add_field('album', get_field('album'));
-$album->add_field('track', get_field('track'));
+$album->add_field('files', array(get_field('track')));
 $album->add_field('composer', get_field('composer'));
 $album->add_field('category', get_field('category'));
 $album->render();
