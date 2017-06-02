@@ -1,12 +1,8 @@
-import { Injectable, Injector, ElementRef } from 'mojiito-core';
+import { Injectable } from 'mojiito-core';
 import { IRequestOptions } from '../interfaces/request.interface';
 
 @Injectable()
 export class RequestService {
-
-  constructor(private _injector: Injector) {
-  }
-
 
   public fetch(url: string, options: IRequestOptions = {}): Promise<string> {
 
