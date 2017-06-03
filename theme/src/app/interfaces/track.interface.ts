@@ -1,11 +1,20 @@
+import { IWPTaxonomy } from './wpTaxonomy.interface';
+
 export interface ITrack {
   id: number;
   album: number;
-  category: number | boolean;
-  composer: string | boolean;
+  category: IWPTaxonomy;
+  composer: IWPTaxonomy;
   onAlbum: boolean;
+  albumTitle: string | boolean;
   files: Array<string>;
   title: string;
-  cover: string;
-  howl: Howl;
+  cover: ITrackCover;
+  howl?: Howl;
+}
+
+export interface ITrackCover {
+  url: string;
+  alt: string;
+  description: string;
 }

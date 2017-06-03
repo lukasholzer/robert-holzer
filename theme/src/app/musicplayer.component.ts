@@ -21,12 +21,37 @@ export class MusicplayerComponent {
 
   constructor(private elementRef: ElementRef) {
 
-    let songs = [47];
+    let songs = [47, 82];
+
+    // this.createPlayList(songs).then((results: any) => {
+    //   console.log(results);
+    // });
 
     this.createPlayList(songs).then((playList: ITrack[]) => {
       this._playList = playList;
       this.initEventListeners();
+      this.init();
     });
+  }
+
+
+  public init() {
+    const track: ITrack = this._playList[0];
+    console.log(this._playList[this._currentSong]);
+
+    this._controlls.changeCover(track.cover);
+    this._controlls.setTitle(track.title);
+    this._controlls.setMeta(track.albumTitle, track.composer);
+
+    this.setTooltips('next');
+    this.setTooltips('prev');
+  }
+
+  private setTooltips(direction: string) {
+    const index = this.skipIndex(direction);
+    const title = this._playList[index].title;
+
+    this._controlls.setNextPrevTooltip(direction, title);
   }
 
   public initEventListeners(): void {
@@ -38,23 +63,40 @@ export class MusicplayerComponent {
       event.preventDefault();
       this.pause();
     });
+    this._controlls.getNextEl().addEventListener('click', (event: Event) => {
+      event.preventDefault();
+      this.skip('next');
+    });
+    this._controlls.getPrevEl().addEventListener('click', (event: Event) => {
+      event.preventDefault();
+      this.skip('prev');
+    });
   }
 
-  public createPlayList(songs: Array<number>): Promise<Array<ITrack>> {
-    const playList: Array<ITrack> = [];
+  public createPlayList(songs: Array<number>): Promise<any> {
+    const playList: ITrack[] = [];
+    const promises: Promise<any>[] = [];
 
-    return new Promise((resolve: (result: any) => void, reject: (reason: Error) => void) => {
+    // debugger;
+
+    // return new Promise((resolve: (result: any) => void, reject: (reason: Error) => void) => {
+
+    //   for (let i = 0, count = songs.length; i < count; i++) {
+    //     this.getSong(songs[i]).then((track: ITrack) => {
+    //       playList.push(track);
+    //     }).catch((error: Error) => {
+    //       reject(error);
+    //     });
+    //   }
 
       for (let i = 0, count = songs.length; i < count; i++) {
-        this.getSong(songs[i]).then((track: ITrack) => {
-          playList.push(track);
-        }).catch((error: Error) => {
-          reject(error);
-        });
+        promises.push(this.getSong(songs[i]));
       }
+    //   // resolve(playList);
+    // });
 
-      resolve(playList);
-    });
+
+    return Promise.all(promises);
   }
 
   public getSong(id: number): Promise<ITrack> {
@@ -70,7 +112,7 @@ export class MusicplayerComponent {
     });
   }
 
-  public play(index?: number) {
+  private play(index?: number) {
     if (this._isPlaying) {
       return;
     }
@@ -94,7 +136,10 @@ export class MusicplayerComponent {
           requestAnimationFrame(this.step.bind(this));
         },
         onload: () => { },
-        onend: () => { },
+        onend: () => {
+          this._isPlaying = false;
+          this._controlls.showPlay();
+        },
         onpause: () => { },
         onstop: () => { }
       });
@@ -108,11 +153,10 @@ export class MusicplayerComponent {
 
   }
 
-  public pause() {
+  private pause() {
 
     const track = this._playList[this._currentSong].howl;
 
-    // Puase the sound.
     track.pause();
     this._isPlaying = false;
     this._controlls.showPlay();
@@ -140,6 +184,50 @@ export class MusicplayerComponent {
     }
   }
 
+  /**
+   * Skip to a specific track based on its playlist index.
+   */
+  private skipTo(index: number): void {
+
+    const song: Howl = this._playList[this._currentSong].howl;
+
+    if (song) {
+      song.stop();
+    }
+
+    this._controlls.updateProgressBar(0);
+    this.play(index);
+  }
+
+  /**
+   * @param direction: string {'prev', 'next'}
+   */
+  private skip(direction: string) {
+    let index = this.skipIndex(direction);
+
+    this.skipTo(index);
+  }
+
+  /**
+   * @param direction: string {'prev', 'next'}
+   */
+  private skipIndex(direction: string): number {
+    let index = 0;
+
+    if (direction === 'prev') {
+      index = this._currentSong - 1;
+      if (index < 0) {
+        return this._playList.length - 1;
+      }
+    } else {
+      index = this._currentSong + 1;
+      if (index >= this._playList.length) {
+        return 0;
+      }
+    }
+
+    return index;
+  }
 
   private formatTime(secs: number): string {
     const minutes = Math.floor(secs / 60) || 0;
