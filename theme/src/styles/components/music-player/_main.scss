@@ -1,3 +1,13 @@
+$font-color: darken($color-white, 50%);
+$background-color: lighten($color-black, 5%);
+$progress-color: #666;
+$progress-background: $color-black;
+$progress-thickness: 0.23rem;
+$icon-color: darken($color-white, 40%);
+
+
+
+
 @import './player';
 @import './controlls';
 @import './timeline';

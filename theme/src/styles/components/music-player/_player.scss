@@ -1,12 +1,10 @@
 .music-player {
     bottom: 0;
     left: 0;
-
-    background-color: $color-blue;
+    background-color: $background-color;
 }
 
 .music-player,
-.music-player-controlls,
 .music-player-controlls__buttons {
     width: 100%;
     display: flex;
@@ -19,7 +17,28 @@
 }
 
 .music-player__cover {
-    height: 4rem;
+    height: 5rem;
+    width: 5rem;
 }
 
+.music-player__information {
+    width: 20%;
+    padding-left: 2rem;
+    font-weight: 300;
+    color: $font-color;
+}
 
+.music-player__title,
+.music-player__meta {
+    font-weight: 300;
+}
+
+.music-player__title {
+    font-size: 0.9rem;
+    padding-bottom: 0.5em;
+    color: darken($color-white, 10%);
+}
+
+.music-player__meta {
+    font-size: 0.6rem;
+}

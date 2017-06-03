@@ -1,13 +1,10 @@
-$progress-color: #666;
-$progress-background: $color-black;
-$progress-thickness: 0.3rem;
-
 .music-player-controlls__timeline {
     position: relative;
     min-width: 400px;
     font-size: 0.6rem;
     display: flex;
     justify-content: space-between;
+    color: $font-color;
 
     &:before {
         content: '';
@@ -26,8 +23,8 @@ $progress-thickness: 0.3rem;
 
 }
 
-
 .timeline__bar {
     width: 0%;
+    transition: width 500ms linear;
     background-color: $progress-color;
 }
