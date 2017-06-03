@@ -16,11 +16,14 @@ export class MusicplayerControlls {
   private _progress: HTMLElement;
   private _progressBar: HTMLElement;
 
+  private _heart: HTMLElement;
+
   constructor() {
 
     this._cover = document.querySelector(`.music-player__cover`) as HTMLImageElement;
     this._title = document.querySelector(`.music-player__title`) as HTMLImageElement;
     this._meta = document.querySelector(`.music-player__meta`) as HTMLImageElement;
+    this._heart = document.querySelector(`.music-player__heart`) as HTMLElement;
     const _el = document.querySelector(`.music-player-controlls`) as HTMLElement;
 
     this._controls = _el;
@@ -31,6 +34,11 @@ export class MusicplayerControlls {
     this._duration = _el.querySelector(`.timeline__end`) as HTMLElement;
     this._progress = _el.querySelector(`.timeline__start`) as HTMLElement;
     this._progressBar = _el.querySelector(`.timeline__bar`) as HTMLElement;
+
+  }
+
+  public getHeartEl(): HTMLElement {
+    return this._heart;
   }
 
   public getPlayEl(): HTMLElement {
@@ -51,6 +59,13 @@ export class MusicplayerControlls {
 
   public setTitle(title: string): void {
     this._title.innerHTML = title;
+  }
+
+  public setHeart(): void {
+    this._heart.classList.add('heart--filled');
+  }
+  public removeHeart(): void {
+    this._heart.classList.remove('heart--filled');
   }
 
   public setMeta(album: string | boolean, composer: IWPTaxonomy) {

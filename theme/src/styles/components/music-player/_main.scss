@@ -5,9 +5,6 @@ $progress-background: $color-black;
 $progress-thickness: 0.23rem;
 $icon-color: darken($color-white, 40%);
 
-
-
-
 @import './player';
 @import './controlls';
 @import './timeline';

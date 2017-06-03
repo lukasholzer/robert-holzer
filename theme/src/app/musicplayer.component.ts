@@ -3,6 +3,7 @@ import { RequestService } from './services/request.service';
 import { IRequestOptions, IRequestResponse } from './interfaces/request.interface';
 import { ITrack } from './interfaces/track.interface';
 import { MusicplayerControlls } from './classes/musicplayerControlls.class';
+import { MusicplayerFavourite } from './classes/musicplayerFavourite.class';
 import { Howl, Howler } from 'howler';
 
 declare var howler: any;
@@ -19,13 +20,11 @@ export class MusicplayerComponent {
   private _isPlaying: boolean = false;
   private _currentSong: number = 0; // ID of the Current Song in the _playList Array
 
+  private _favourites: MusicplayerFavourite = new MusicplayerFavourite();
+
   constructor(private elementRef: ElementRef) {
 
     let songs = [47, 82];
-
-    // this.createPlayList(songs).then((results: any) => {
-    //   console.log(results);
-    // });
 
     this.createPlayList(songs).then((playList: ITrack[]) => {
       this._playList = playList;
@@ -63,6 +62,11 @@ export class MusicplayerComponent {
     this._controlls.getPrevEl().addEventListener('click', (event: Event) => {
       event.preventDefault();
       this.skip('prev');
+    });
+    this._controlls.getHeartEl().addEventListener('click', (event: Event) => {
+      event.preventDefault();
+      const track: ITrack = this._playList[this._currentSong];
+      this.checkHeart(track);
     });
   }
 
@@ -210,6 +214,16 @@ export class MusicplayerComponent {
     return index;
   }
 
+  private checkHeart(track: ITrack): void {
+    if (this._favourites.isFavourite(track.id)) {
+      this._favourites.removeFavourite([track.id]);
+      this._controlls.removeHeart();
+    } else {
+      this._favourites.addFavourite(track.id);
+      this._controlls.setHeart();
+    }
+  }
+
   private setData(track: ITrack): void {
 
     this._controlls.changeCover(track.cover);
@@ -218,6 +232,12 @@ export class MusicplayerComponent {
 
     this.setTooltips('next');
     this.setTooltips('prev');
+
+    if (this._favourites.isFavourite(track.id)) {
+      this._controlls.setHeart();
+    } else {
+      this._controlls.removeHeart();
+    }
   }
 
   private formatTime(secs: number): string {

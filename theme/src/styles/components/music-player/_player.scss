@@ -2,6 +2,7 @@
     bottom: 0;
     left: 0;
     background-color: $background-color;
+    z-index: 600;
 }
 
 .music-player,
@@ -41,4 +42,14 @@
 
 .music-player__meta {
     font-size: 0.6rem;
+}
+
+
+.music-player__heart {
+    position: relative;
+
+    svg {
+        cursor: pointer;
+        position: absolute;
+    }
 }

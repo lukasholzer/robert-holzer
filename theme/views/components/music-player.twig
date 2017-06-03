@@ -8,6 +8,10 @@
     <div class="{{component}}__information">
       <h3 class="{{component}}__title"></h3>
       <h6 class="{{component}}__meta"></h6>
+      <div class="{{component}}__heart">
+        {% include 'components/icon.twig' with {type: 'heart-outlined'} %}
+        {% include 'components/icon.twig' with {type: 'heart'} %}
+      </div>
     </div>
 
     {% include 'components/' ~ component ~ '-controlls.twig' with { component: component ~ '-controlls'} %}
