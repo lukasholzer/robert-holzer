@@ -37,14 +37,7 @@ export class MusicplayerComponent {
 
   public init() {
     const track: ITrack = this._playList[0];
-    console.log(this._playList[this._currentSong]);
-
-    this._controlls.changeCover(track.cover);
-    this._controlls.setTitle(track.title);
-    this._controlls.setMeta(track.albumTitle, track.composer);
-
-    this.setTooltips('next');
-    this.setTooltips('prev');
+    this.setData(track);
   }
 
   private setTooltips(direction: string) {
@@ -77,24 +70,9 @@ export class MusicplayerComponent {
     const playList: ITrack[] = [];
     const promises: Promise<any>[] = [];
 
-    // debugger;
-
-    // return new Promise((resolve: (result: any) => void, reject: (reason: Error) => void) => {
-
-    //   for (let i = 0, count = songs.length; i < count; i++) {
-    //     this.getSong(songs[i]).then((track: ITrack) => {
-    //       playList.push(track);
-    //     }).catch((error: Error) => {
-    //       reject(error);
-    //     });
-    //   }
-
-      for (let i = 0, count = songs.length; i < count; i++) {
-        promises.push(this.getSong(songs[i]));
-      }
-    //   // resolve(playList);
-    // });
-
+    for (let i = 0, count = songs.length; i < count; i++) {
+      promises.push(this.getSong(songs[i]));
+    }
 
     return Promise.all(promises);
   }
@@ -146,10 +124,12 @@ export class MusicplayerComponent {
     }
 
     song.play();
-    this._controlls.changeCover(track.cover);
+
+
     this._controlls.showPause();
     this._isPlaying = true;
     this._currentSong = songId;
+    this.setData(track);
 
   }
 
@@ -171,7 +151,7 @@ export class MusicplayerComponent {
     const sound: Howl = this._playList[this._currentSong].howl;
 
     // Determine our current seek position.
-    const seek: number = sound.seek() as number || 0 ;
+    const seek: number = sound.seek() as number || 0;
     const time = this.formatTime(Math.round(seek));
     const progress = ((seek / sound.duration()) * 100) || 0;
 
@@ -188,8 +168,8 @@ export class MusicplayerComponent {
    * Skip to a specific track based on its playlist index.
    */
   private skipTo(index: number): void {
-
-    const song: Howl = this._playList[this._currentSong].howl;
+    const track: ITrack = this._playList[this._currentSong];
+    const song: Howl = track.howl;
 
     if (song) {
       song.stop();
@@ -204,6 +184,7 @@ export class MusicplayerComponent {
    */
   private skip(direction: string) {
     let index = this.skipIndex(direction);
+    this._isPlaying = false;
 
     this.skipTo(index);
   }
@@ -227,6 +208,16 @@ export class MusicplayerComponent {
     }
 
     return index;
+  }
+
+  private setData(track: ITrack): void {
+
+    this._controlls.changeCover(track.cover);
+    this._controlls.setTitle(track.title);
+    this._controlls.setMeta(track.albumTitle, track.composer);
+
+    this.setTooltips('next');
+    this.setTooltips('prev');
   }
 
   private formatTime(secs: number): string {

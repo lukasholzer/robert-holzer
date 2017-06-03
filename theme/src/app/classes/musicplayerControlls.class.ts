@@ -87,7 +87,9 @@ export class MusicplayerControlls {
   public changeCover(cover: ITrackCover) {
     const src = this._cover.src;
 
-    if (!cover.url || cover.url.length < 1 || src === cover.url) {
+    if (!cover.url || cover.url.length < 1) {
+      this._cover.src = '';
+      this._cover.alt = '';
       return;
     }
     this._cover.src = cover.url;
