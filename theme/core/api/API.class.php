@@ -10,8 +10,9 @@ abstract class API {
     $this->_id = $id;
   }
 
-  public function get_image($field_name = 'image') {
-    $_image = get_field($field_name);
+  public function get_image($field_name = 'image', $id = null) {
+    $_image = (!$id) ? get_field($field_name): get_field($field_name, $id);
+    // $_image = get_field($field_name);
 
     if ( !empty($_image) ) {
       $image = array(
