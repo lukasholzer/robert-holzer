@@ -3,7 +3,12 @@
 <div class="is-sticky" datas-sticky="alben" data-sticky-offsetBottom="0">
   <div class="{{component}}">
 
-    <img class="{{component}}__cover" src="http://placehold.it/200x200" />
+    <img class="{{component}}__cover" src="" />
+
+    <div class="{{component}}__information">
+      <h3 class="{{component}}__title"></h3>
+      <h6 class="{{component}}__meta"></h6>
+    </div>
 
     {% include 'components/' ~ component ~ '-controlls.twig' with { component: component ~ '-controlls'} %}
   </div>
