@@ -1,0 +1,33 @@
+$progress-color: #666;
+$progress-background: $color-black;
+$progress-thickness: 0.3rem;
+
+.music-player-controlls__timeline {
+    position: relative;
+    min-width: 400px;
+    font-size: 0.6rem;
+    display: flex;
+    justify-content: space-between;
+
+    &:before {
+        content: '';
+        width: 100%;
+        background-color: $progress-background;
+    }
+}
+
+.music-player-controlls__timeline:before,
+.timeline__bar {
+    position: absolute;
+    top: 0%;
+    left: 0;
+    height: $progress-thickness;
+    border-radius: $progress-thickness;
+
+}
+
+
+.timeline__bar {
+    width: 0%;
+    background-color: $progress-color;
+}

@@ -1,0 +1,25 @@
+.music-player {
+    bottom: 0;
+    left: 0;
+
+    background-color: $color-blue;
+}
+
+.music-player,
+.music-player-controlls,
+.music-player-controlls__buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.music-player-controlls {
+    justify-content: space-around;
+}
+
+.music-player__cover {
+    height: 4rem;
+}
+
+

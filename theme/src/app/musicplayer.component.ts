@@ -1,6 +1,8 @@
-import { Component, ElementRef, Renderer } from 'mojiito-core';
+import { Component, ElementRef, Renderer, ComponentRef } from 'mojiito-core';
 import { RequestService } from './services/request.service';
 import { IRequestOptions, IRequestResponse } from './interfaces/request.interface';
+import { ITrack } from './interfaces/track.interface';
+import { MusicplayerControlls } from './classes/musicplayerControlls.class';
 import { Howl, Howler } from 'howler';
 
 declare var howler: any;
@@ -10,61 +12,41 @@ declare var howler: any;
 })
 export class MusicplayerComponent {
 
-  static CONTROLS_CLASS: string = 'music-player-controlls';
-  static PLAY_CLASS: string = 'play';
-  static PAUS_CLASS: string = 'paus';
-  static NEXT_CLASS: string = 'next';
-  static PREV_CLASS: string = 'prev';
-
   static API_URL: string = 'api/v1/track/';
 
-  private _controls: HTMLElement;
-  private _play: HTMLElement;
-  private _paus: HTMLElement;
-  private _next: HTMLElement;
-  private _prev: HTMLElement;
-  private _duration: HTMLElement;
-
-  private _playList: Track[];
+  private _controlls: MusicplayerControlls = new MusicplayerControlls();
+  private _playList: ITrack[];
   private _isPlaying: boolean = false;
   private _currentSong: number = 0; // ID of the Current Song in the _playList Array
 
   constructor(private elementRef: ElementRef) {
-    const _el = elementRef.nativeElement;
-
-    this._controls = _el.querySelector(`.${MusicplayerComponent.CONTROLS_CLASS}`) as HTMLElement;
-    this._play = this._controls.querySelector(`.${MusicplayerComponent.CONTROLS_CLASS}__${MusicplayerComponent.PLAY_CLASS}`) as HTMLElement;
-    this._paus = this._controls.querySelector(`.${MusicplayerComponent.CONTROLS_CLASS}__${MusicplayerComponent.PAUS_CLASS}`) as HTMLElement;
-    this._next = this._controls.querySelector(`.${MusicplayerComponent.CONTROLS_CLASS}__${MusicplayerComponent.NEXT_CLASS}`) as HTMLElement;
-    this._prev = this._controls.querySelector(`.${MusicplayerComponent.CONTROLS_CLASS}__${MusicplayerComponent.PREV_CLASS}`) as HTMLElement;
-    this._duration = this._controls.querySelector(`.timeline__end`) as HTMLElement;
 
     let songs = [47];
 
-    this.createPlayList(songs).then((playList: Track[]) => {
+    this.createPlayList(songs).then((playList: ITrack[]) => {
       this._playList = playList;
       this.initEventListeners();
     });
   }
 
   public initEventListeners(): void {
-    this._play.addEventListener('click', (event: Event) => {
+    this._controlls.getPlayEl().addEventListener('click', (event: Event) => {
       event.preventDefault();
       this.play();
     });
-    this._paus.addEventListener('click', (event: Event) => {
+    this._controlls.getPlausEl().addEventListener('click', (event: Event) => {
       event.preventDefault();
       this.pause();
     });
   }
 
-  public createPlayList(songs: Array<number>): Promise<Array<Track>> {
-    const playList: Array<Track> = [];
+  public createPlayList(songs: Array<number>): Promise<Array<ITrack>> {
+    const playList: Array<ITrack> = [];
 
     return new Promise((resolve: (result: any) => void, reject: (reason: Error) => void) => {
 
       for (let i = 0, count = songs.length; i < count; i++) {
-        this.getSong(songs[i]).then((track: Track) => {
+        this.getSong(songs[i]).then((track: ITrack) => {
           playList.push(track);
         }).catch((error: Error) => {
           reject(error);
@@ -75,13 +57,13 @@ export class MusicplayerComponent {
     });
   }
 
-  public getSong(id: number): Promise<Track> {
+  public getSong(id: number): Promise<ITrack> {
     const url = `${window.location.href}${MusicplayerComponent.API_URL}${id}`;
     let x = new RequestService();
 
-    return new Promise((resolve: (result: Track) => void, reject: (reason: Error) => void) => {
+    return new Promise((resolve: (result: ITrack) => void, reject: (reason: Error) => void) => {
       x.fetchJSON(url).then((data: IRequestResponse) => {
-        resolve(data.response as Track);
+        resolve(data.response as ITrack);
       }).catch((error: Error) => {
         reject(error);
       });
@@ -94,7 +76,7 @@ export class MusicplayerComponent {
     }
 
     const songId: number = typeof index === 'number' ? index : this._currentSong;
-    const track: Track = this._playList[songId];
+    const track: ITrack = this._playList[songId];
     let song: Howl;
 
     if (track.howl) {
@@ -105,10 +87,11 @@ export class MusicplayerComponent {
         html5: true, // Force to HTML5 so that the audio can stream in (best for large files).
         onplay: () => {
           // Display the duration.
-          this._duration.innerHTML = this.formatTime(Math.round(song.duration()));
+          const time = this.formatTime(Math.round(song.duration()));
+          this._controlls.updateDuration(time);
 
           // Start upating the progress of the track.
-          // requestAnimationFrame(self.step.bind(self));
+          requestAnimationFrame(this.step.bind(this));
         },
         onload: () => { },
         onend: () => { },
@@ -118,6 +101,8 @@ export class MusicplayerComponent {
     }
 
     song.play();
+    this._controlls.changeCover(track.cover);
+    this._controlls.showPause();
     this._isPlaying = true;
     this._currentSong = songId;
 
@@ -130,7 +115,29 @@ export class MusicplayerComponent {
     // Puase the sound.
     track.pause();
     this._isPlaying = false;
-    // this.Controlls.showPlay();
+    this._controlls.showPlay();
+  }
+
+  /**
+   * The step called within requestAnimationFrame to update the playback position.
+   */
+  private step(): void {
+    var self = this;
+
+    const sound: Howl = this._playList[this._currentSong].howl;
+
+    // Determine our current seek position.
+    const seek: number = sound.seek() as number || 0 ;
+    const time = this.formatTime(Math.round(seek));
+    const progress = ((seek / sound.duration()) * 100) || 0;
+
+    this._controlls.updateProgress(time);
+    this._controlls.updateProgressBar(progress);
+
+    // If the sound is still playing, continue stepping.
+    if (sound.playing()) {
+      requestAnimationFrame(self.step.bind(self));
+    }
   }
 
 
@@ -138,21 +145,7 @@ export class MusicplayerComponent {
     const minutes = Math.floor(secs / 60) || 0;
     const seconds = (secs - minutes * 60) || 0;
 
-    return `${minutes}:${(seconds < 10 ? '0' : '')}`;
+    return `${minutes}:${(seconds < 10 ? '0' : '')}${seconds}`;
   }
 
-}
-
-
-
-interface Track {
-  id: number;
-  album: number;
-  category: number | boolean;
-  composer: string | boolean;
-  onAlbum: boolean;
-  files: Array<string>;
-  title: string;
-  cover: string;
-  howl: Howl;
 }

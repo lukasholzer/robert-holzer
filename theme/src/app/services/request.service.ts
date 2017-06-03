@@ -77,7 +77,7 @@ export class RequestService {
     if (typeof options.body === 'object') {
       for (let key in options.body) {
         if (options.body.hasOwnProperty(key)) {
-          uri += `${separator}${key}=${options.body[key]}`
+          uri += `${separator}${key}=${options.body[key]}`;
           separator = '&';
         }
       }
