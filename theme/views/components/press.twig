@@ -1,0 +1,44 @@
+<div id="{{component}}" class="{{component}} grid" data-grid="left">
+
+  {% for item in press %}
+
+    <figure class="{{component}}__item" data-rep-cat="{{item.id|get_song_type}}">
+      <h1 class="{{component}}__headline">
+        {{item.title}}
+        {% if item.stage %}<br><span class="{{component}}__stage">{{item.stage}}</span>{% endif %}
+      </h1>
+      <figcaption>
+        <p class="{{component}}__text">{{item.post_content}}</p>
+        <div class="{{component}}__newspaper"><a href="{{item.newspaper_url}}">{{item.newspaper}}</a></div>
+      </figcaption>
+    </figure>
+
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "NewsArticle",
+      "name": "{{item.title}}",
+      "text": "{{item.post_content}}",
+      "location": {
+        "@type": "Place",
+        "name": "{{item.stage}}"
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "{{item.place.address}}"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "{{item.place.lat}}",
+          "longitude": "{{item.place.lng}}"
+        },
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{item.newspaper}}",
+        "url": "{{item.newspaper_url}}"
+      }
+    }
+    </script>
+
+  {% endfor %}
+</div>
