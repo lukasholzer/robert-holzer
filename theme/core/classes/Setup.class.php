@@ -12,8 +12,7 @@ class Setup extends TimberSite {
     $this->theme_uri = get_template_directory_uri() . '/dist/';
 
     $this->version = wp_get_theme()->get( 'Version' );
-    $this->scripts = (WP_ENV == 'development')? 'http://localhost:3000/': $this->theme_uri;
-    $this->assets = $this->theme_uri;
+    $this->assets = (WP_ENV == 'development')? 'http://localhost:4000/': $this->theme_uri;
 
 		add_theme_support( 'post-formats' );
     add_theme_support( 'post-thumbnails' );
@@ -77,13 +76,17 @@ class Setup extends TimberSite {
   function add_theme_scripts() {
 
 
-    wp_enqueue_script( 'polyfills', $this->scripts('polyfills.bundle.js'), array(), $this->version, true );
-    wp_enqueue_script( 'vendor', $this->scripts('vendor.bundle.js'), array('polyfills'), $this->version, true );
-    wp_enqueue_script( 'app', $this->scripts('app.bundle.js'), array('vendor'), $this->version, true );
+    wp_enqueue_script( 'polyfills', $this->assets('polyfills.bundle.js'), array(), $this->version, true );
+    wp_enqueue_script( 'vendor', $this->assets('vendor.bundle.js'), array('polyfills'), $this->version, true );
+    wp_enqueue_script( 'app', $this->assets('app.bundle.js'), array('vendor'), $this->version, true );
 
-    wp_enqueue_style( 'inline', $this->assets('styles/inline.min.css'), array(), $this->version);
-    wp_add_inline_style( 'inline', $this->file_content('styles/inline.min.css') );
-    wp_enqueue_style( 'main', $this->assets('styles/main.min.css'), array(), $this->version);
+    if(WP_ENV === 'development') {
+      wp_enqueue_script( 'inline', $this->assets('inline.bundle.js'), array('app'), $this->version, true );
+      wp_enqueue_script( 'main', $this->assets('main.bundle.js'), array('inline'), $this->version, true );
+    } else {
+      wp_enqueue_style( 'inline', $this->assets('inline.css'), array(), $this->version);
+      wp_enqueue_style( 'main', $this->assets('main.bundle.css'), array(), $this->version);
+    }
   }
 
   function file_content($file) {
@@ -154,12 +157,35 @@ class Setup extends TimberSite {
     return $cat;
   }
 
+  function grab_menu_items($menu_name){
+    if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_name ] ) ) {
+      $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
+      $menu_items = wp_get_nav_menu_items($menu->term_id);
+      $theidlist = array();
+        foreach ( (array) $menu_items as $key => $menu_item ) {
+          $theidlist[] = $menu_item->object_id;
+        }
+      return $theidlist;
+    } else {
+        throw new Exception('menu: <b>'.$menu_name.'</b> not set or can\'t get locaction');
+    }
+  }
+
   /**
    * @param   number    $id // ID of the Post
    */
 	function get_song_type($id) {
     return $this->get_taxonomy($id, 'songtype');
 	}
+
+  /**
+   * @param   number    $id // ID of the Post
+   */
+	function get_gallery_taxonomy($id) {
+
+    return get_term( $id, $taxonomy = 'gallery')->slug;
+	}
+
 
   /**
    * Returns the name of the Composer by a given Tax ID
@@ -195,6 +221,7 @@ class Setup extends TimberSite {
 		/* this is where you can add your own functions to twig */
 		$twig->addExtension( new Twig_Extension_StringLoader() );
 		$twig->addFilter('get_song_type', new Twig_SimpleFilter('get_song_type', array($this, 'get_song_type')));
+		$twig->addFilter('get_gallery_taxonomy', new Twig_SimpleFilter('get_gallery_taxonomy', array($this, 'get_gallery_taxonomy')));
     $twig->addFilter('get_composer', new Twig_SimpleFilter('get_composer', array($this, 'get_composer')));
 		$twig->addFilter('repertoire_role', new Twig_SimpleFilter('repertoire_role', array($this, 'repertoire_role')));
     $twig->addFunction(new Twig_SimpleFunction('get_header_image', array($this, 'get_header_image')));
