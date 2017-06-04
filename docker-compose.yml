@@ -13,6 +13,7 @@ services:
       - ./data:/data # If mysql database dump is as .sql file inside
       - ./uploads:/app/wp-content/uploads
       - ./theme:/app/wp-content/themes/robertholzer
+      - ./config/php.ini:/usr/local/etc/php/conf.d/php.ini
       - ./config/plugins/advanced-custom-fields-pro:/app/wp-content/plugins/advanced-custom-fields-pro
     environment:
       DB_NAME: robertholzer
@@ -49,7 +50,6 @@ services:
     command: install
     volumes:
       - ./theme:/app
-
 
   imageservice:
     image: apsl/thumbor
