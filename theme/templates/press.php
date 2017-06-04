@@ -15,12 +15,7 @@
   $context['component'] = 'press';
 
   $press = array( 'components/press.twig' );
-?>
-  <pre>
-<? var_dump($context['press']); ?>
 
-  </pre>
-<?
   Timber::render( $press, $context );
 
   ?>

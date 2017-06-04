@@ -1,0 +1,117 @@
+.press {
+    display: flex;
+}
+
+.press__items {
+    width: auto;
+}
+
+.press__filter {
+    width: 20%;
+    padding-right: 4rem;
+}
+
+.press-filter__item {
+    cursor: pointer;
+    transition: margin 450ms ease-out;
+
+    &.is-active {
+        font-weight: bold;
+        font-style: italic;
+
+        &:after {
+            padding-left: 0.5em;
+            display: inline;
+            content: '—';
+        }
+    }
+
+    &:hover {
+        margin-left: -0.2em;
+    }
+}
+
+.press__item {
+    border: 0.5rem solid transparent;//$color-red;
+    transition: border 500ms ease-out;
+    padding: 1em;
+    margin-bottom: 2em;
+    position: relative;
+
+    &:before,
+    &:after {
+        position: absolute;
+        top: 0;
+        width: 0.5rem;
+        height: 100%;
+
+    }
+
+    &[data-rep-cat="opera"] {
+        &:before,
+        &:after {
+            background-color: $color-red;
+        }
+
+        &:hover {
+            border-color:  $color-red;
+        }
+    }
+
+    &[data-rep-cat="concert"] {
+        &:before,
+        &:after {
+            background-color: $color-blue;
+        }
+
+        &:hover {
+            border-color:  $color-blue;
+        }
+    }
+    &[data-rep-cat="song"] {
+        &:before,
+        &:after {
+            background-color: $color-gold;
+        }
+
+        &:hover {
+            border-color:  $color-gold;
+        }
+    }
+
+
+    &:nth-child(odd):after {
+        content: ' ';
+        left: -0.5rem;
+    }
+
+    &:nth-child(even):after {
+        content: ' ';
+        right: -0.5rem;
+    }
+}
+
+.press__headline {
+    font-size: 2.1rem;
+    padding-bottom: 0.7em;
+
+    .press__item:nth-child(even) & {
+        text-align: right;
+    }
+}
+
+.press__text {
+    font-size: 1rem;
+}
+
+.press__newspaper {
+    color: $color-lightgrey;
+    text-align: right;
+    font-style: italic;
+
+    &:before {
+        padding-right: 0.5em;
+        display: inline;
+        content: '—';
+    }
+}

@@ -1,4 +1,6 @@
 $color-black: rgba(030, 030, 030, 100);
+$color-lightgrey: lighten($color-black, 50%);
+$color-darkgrey: lighten($color-black, 5%);
 $color-white: rgba(255, 255, 255, 100);
 $color-red:   rgba(200, 011, 076, 100);
 $color-gold:  rgba(191, 170, 113, 100);

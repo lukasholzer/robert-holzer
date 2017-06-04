@@ -1,8 +1,11 @@
 .link,
 p a {
+    display: inline;
+    border-bottom: 1px solid $color-red;
+}
+
+
+a {
     text-decoration: none;
     color: inherit;
-    display: inline;
-    border-bottom: 1px solid white;
-    background: red;
 }
