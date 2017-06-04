@@ -4,3 +4,20 @@
     height: 1em;
     stroke-width: 0;
 }
+
+
+#icon-scroll-mouse {
+    fill: $color-white;
+
+    title + path {
+        animation: mousescroll 2s ease-out infinite;
+    }
+}
+
+
+@keyframes mousescroll {
+    0% { transform: translateY(-0.1em); opacity: 1; }
+    30% { opacity: 1;}
+    50% { transform: translateY(0.1em);opacity: 0; }
+    100% { transform: translateY(-0.1em); }
+}

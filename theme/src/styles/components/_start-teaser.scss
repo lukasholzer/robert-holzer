@@ -52,3 +52,15 @@ $dot-size: 1.4rem !default;
         background-color: $color-gold;
     }
 }
+
+.start-teaser__mouse {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+
+    svg {
+        height: 2.8rem;
+        width: 2rem;
+    }
+}
