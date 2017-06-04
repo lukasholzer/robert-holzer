@@ -11,6 +11,7 @@ services:
       - db:mysql
     volumes:
       - ./data:/data # If mysql database dump is as .sql file inside
+      - ./uploads:/app/wp-content/uploads
       - ./theme:/app/wp-content/themes/robertholzer
       - ./config/plugins/advanced-custom-fields-pro:/app/wp-content/plugins/advanced-custom-fields-pro
     environment:
