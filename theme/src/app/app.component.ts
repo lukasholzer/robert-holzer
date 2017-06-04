@@ -3,6 +3,7 @@ import { HeaderComponent } from './overlay.component';
 import { RepertoireComponent } from './repertoire.component';
 import { MusicplayerComponent } from './musicplayer.component';
 import { StickyComponent } from './sticky.component';
+import { FilterComponent } from './filter.component';
 
 @Component({
     selector: 'body',
@@ -10,11 +11,13 @@ import { StickyComponent } from './sticky.component';
       HeaderComponent,
       RepertoireComponent,
       MusicplayerComponent,
-      StickyComponent
+      StickyComponent,
+      FilterComponent
     ]
 })
 export class AppComponent {
 
   constructor(private elementRef: ElementRef) {
+
   }
 }

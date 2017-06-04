@@ -32,6 +32,7 @@ class CustomPostTypes {
 			'show_ui' 				        => true,
 			'has_archive' 			      => true,
 			'show_in_menu' 			      => true,
+      'show_in_nav_menus'       => true,
 			'exclude_from_search' 	  => false,
 			'capability_type' 		    => 'post',
 			'map_meta_cap' 			      => true,

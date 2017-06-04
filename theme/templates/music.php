@@ -1,9 +1,4 @@
-
-<!-- section #Music -->
-<section class="section">
-  <h1 class="headline headline--section">anhören</h1>
-
-  <?php
+<?php
 
   $args = array(
     'post_type' => 'music',
@@ -19,6 +14,4 @@
   Timber::render( $album, $context );
   Timber::render( $player );
 
-  ?>
-
-</section>
+?>

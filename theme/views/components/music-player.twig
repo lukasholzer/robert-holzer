@@ -2,16 +2,17 @@
 
 <div class="is-sticky" datas-sticky="alben" data-sticky-offsetBottom="0">
   <div class="{{component}}">
-
-    <img class="{{component}}__cover" src="" />
-
-    <div class="{{component}}__information">
-      <h3 class="{{component}}__title"></h3>
-      <h6 class="{{component}}__meta"></h6>
+    <div class="{{component}}__image">
+      <img class="{{component}}__cover" src="" />
       <div class="{{component}}__heart">
         {% include 'components/icon.twig' with {type: 'heart-outlined'} %}
         {% include 'components/icon.twig' with {type: 'heart'} %}
       </div>
+    </div>
+
+    <div class="{{component}}__information">
+      <h3 class="{{component}}__title"></h3>
+      <h6 class="{{component}}__meta"></h6>
     </div>
 
     {% include 'components/' ~ component ~ '-controlls.twig' with { component: component ~ '-controlls'} %}

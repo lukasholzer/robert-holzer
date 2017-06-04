@@ -1,0 +1,50 @@
+<!-- section #Gallerie -->
+{% set actual = '' %}
+<section class="section">
+
+  <div class="{{component}}"
+    data-filter='{
+      "itemSelector": ".{{component}}__item",
+      "filterSelector": ".{{component}}-nav-list__item",
+      "filterProperty": "data-filter-prop"
+    }'>
+
+    <nav class="{{component}}__nav">
+      <ul class="{{component}}-nav-list">
+        {% for item in menu %}
+
+          {% if loop.index0 == 0 %}
+            {% set actual = item.slug %}
+          {% endif %}
+
+          <li class="{{component}}-nav-list__item {% if loop.index0 == 0%}is-active{% endif %}" data-filter-prop="{{item.slug}}">{{item.name}}</li>
+        {% endfor %}
+        <li class="{{component}}-nav-list__download"><a href="">download</a></li>
+      </ul>
+    </nav>
+
+    {% for post in gallery %}
+
+      {% if actual == post.custom.category | get_gallery_taxonomy %}
+        {% set hide = false %}
+      {% else %}
+        {% set hide = true %}
+      {% endif %}
+
+      {% for image in post.get_field('images') %}
+
+          <div class="{{component}}__item {% if hide %}is-hidden{% endif %}" data-filter-prop="{{post.custom.category | get_gallery_taxonomy}}">
+            <a class="{{component}}__link" href="{{ TimberImage(image).src }}">
+              <img class="{{component}}__image" src="{{ TimberImage(image).src('medium') }}" />
+            </a>
+          </div>
+
+      {% endfor %}
+
+
+    {% endfor %}
+
+
+  </div>
+
+</section>

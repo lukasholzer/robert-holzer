@@ -16,7 +16,7 @@ if (class_exists('Timber')) {
 
   Timber::$dirname = array('templates', 'views');
 
-  new Setup();
+  $GLOBALS["theme"] = new Setup();
 
 
   Routes::map('api/v1/track/:id', function($params){

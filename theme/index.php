@@ -9,6 +9,7 @@
     <?php get_template_part( 'templates/repertoire' ); ?>
     <?php get_template_part( 'templates/press' ); ?>
     <?php get_template_part( 'templates/music' ); ?>
+    <?php get_template_part( 'templates/gallery' ); ?>
 
 </main>
 

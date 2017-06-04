@@ -1,9 +1,4 @@
-
-<!-- section #Press -->
-<section class="section">
-  <h1 class="headline headline--section">Presse</h1>
-
- <?php
+<?php
 
   $args = array(
     'post_type' => 'press',

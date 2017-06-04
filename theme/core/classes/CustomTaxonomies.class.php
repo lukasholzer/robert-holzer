@@ -34,6 +34,9 @@ class CustomTaxonomies {
       'hierarchical' => $this->hirarchy,
       'labels' => $labels,
       'show_ui' => true,
+      'public' => true,
+      'show_in_nav_menus' => true,
+      'show_tagcloud' => true,
       'show_admin_column' => false,
       'update_count_callback' => '_update_post_term_count',
       'query_var' => true

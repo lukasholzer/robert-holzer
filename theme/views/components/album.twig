@@ -1,23 +1,29 @@
-<div id="alben" class="alben grid" data-grid="left">
-	  {% for album in alben %}
+<!-- section #Music -->
+<section class="section">
+  <h1 class="headline headline--section">anhören</h1>
 
-      {% set composer = album.get_field('composer') | get_composer %}
-      {% set image = TimberImage(album.cover).src %}
+  <div id="alben" class="alben grid" data-grid="left">
+      {% for album in alben %}
 
-      <div class="album grid__item" data-grid="3/12" data-song-cat="{{album.id|get_song_type}}">
-        <img class="album__cover" src="{{image}}" />
-        <h3 class="album__title">{{album.title}}</h3>
-        <div class="album__composer">{{composer}}</div>
+        {% set composer = album.get_field('composer') | get_composer %}
+        {% set image = TimberImage(album.cover).src %}
 
-        <div class="album__detail">
+        <div class="album grid__item" data-grid="3/12" data-song-cat="{{album.id|get_song_type}}">
           <img class="album__cover" src="{{image}}" />
-          <h2 class="album__title">{{album.title}}</h2>
-          <p class="album__description">{{album.description}}</p>
-          <a class="album__publisher" href="{{album.publisher_url}}">
-            {{album.publisher}}
-          </a>
-        </div>
-      </div>
+          <h3 class="album__title">{{album.title}}</h3>
+          <div class="album__composer">{{composer}}</div>
 
-    {% endfor %}
-</div>
+          <div class="album__detail">
+            <img class="album__cover" src="{{image}}" />
+            <h2 class="album__title">{{album.title}}</h2>
+            <p class="album__description">{{album.description}}</p>
+            <a class="album__publisher" href="{{album.publisher_url}}">
+              {{album.publisher}}
+            </a>
+          </div>
+        </div>
+
+      {% endfor %}
+  </div>
+
+</section>
