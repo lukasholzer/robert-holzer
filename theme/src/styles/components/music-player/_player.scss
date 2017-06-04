@@ -17,9 +17,14 @@
     justify-content: space-around;
 }
 
-.music-player__cover {
+.music-player__image {
     height: 5rem;
     width: 5rem;
+    position: relative;
+}
+
+.music-player__cover {
+    height: 100%;
 }
 
 .music-player__information {
@@ -46,7 +51,9 @@
 
 
 .music-player__heart {
-    position: relative;
+    position: absolute;
+    right: 1.3em;
+    bottom: 1.3em;
 
     svg {
         cursor: pointer;
