@@ -53,6 +53,7 @@ class Setup extends TimberSite {
       array(
         'page-menu'     => __( 'Seiten Men&uuml;', 'robertholzer-theme' ),
         'category-menu'    => __( 'Kategorie Men&uuml;', 'robertholzer-theme' ),
+        'gallery-menu'    => __( 'Gallerie Men&uuml;', 'robertholzer-theme' ),
         'teaching-menu'    => __( 'Uni Men&uuml;', 'robertholzer-theme' )
       )
     );
@@ -70,6 +71,7 @@ class Setup extends TimberSite {
     // $slug, $name, $namePlural, $hirarchy, $registerFor = array('post'), $i18nDomain = 'robertholzer-theme'
     $composer = new CustomTaxonomies('composer', 'Komponist', 'Komponisten', false, array('repertoire', 'music', 'song'));
     $songtype = new CustomTaxonomies('songtype', 'Filter', 'Filter', false, array('post', 'repertoire', 'music', 'song', 'gallery', 'press'));
+    $gallery = new CustomTaxonomies('gallery', 'Kategorie', 'Kategorien', false, array('gallery'));
   }
 
   function add_theme_scripts() {
