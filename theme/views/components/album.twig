@@ -2,7 +2,7 @@
 	  {% for album in alben %}
 
       {% set composer = album.get_field('composer') | get_composer %}
-      {% set image = TimberImage(album.get_field('cover')).src %}
+      {% set image = TimberImage(album.cover).src %}
 
       <div class="album grid__item" data-grid="3/12" data-song-cat="{{album.id|get_song_type}}">
         <img class="album__cover" src="{{image}}" />
@@ -12,9 +12,9 @@
         <div class="album__detail">
           <img class="album__cover" src="{{image}}" />
           <h2 class="album__title">{{album.title}}</h2>
-          <p class="album__description">{{album.get_field('description')}}</p>
-          <a class="album__publisher" href="{{album.get_field('publisher_url')}}">
-            {{album.get_field('publisher')}}
+          <p class="album__description">{{album.description}}</p>
+          <a class="album__publisher" href="{{album.publisher_url}}">
+            {{album.publisher}}
           </a>
         </div>
       </div>

@@ -29,3 +29,6 @@
       Timber::render( $templates, $context );
 
    }
+
+  ?>
+</section>
