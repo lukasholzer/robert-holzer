@@ -1,0 +1,4 @@
+FROM frontend
+
+
+CMD yarn run build

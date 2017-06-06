@@ -11,7 +11,11 @@ if (class_exists('Timber')) {
   require_once __DIR__ . '/core/options.php';
   require_once __DIR__ . '/core/classes/Setup.class.php';
 
-  define('WP_ENV', 'development');
+  if($_SERVER['REMOTE_ADDR'] == '127.0.0.1' || $_SERVER['REMOTE_ADDR'] == '172.28.0.1'){
+    define('WP_ENV', 'development');
+  }else{
+    define('WP_ENV', 'production');
+  }
 
 
   Timber::$dirname = array('templates', 'views');

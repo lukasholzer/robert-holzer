@@ -5,12 +5,15 @@ services:
   wordpress:
     image: visiblevc/wordpress:latest
     ports:
-      - "8080:80"
+      - "8080:80" # Wordpress
+      - "4000:4000" # HMR Server
+      - "3000:3000" # BrowserSync
     restart: always
     links:
       - db:mysql
     volumes:
       - ./data:/data # If mysql database dump is as .sql file inside
+      - ./app:/var/www/html
       - ./uploads:/app/wp-content/uploads
       - ./theme:/app/wp-content/themes/robertholzer
       - ./config/php.ini:/usr/local/etc/php/conf.d/php.ini
@@ -30,12 +33,26 @@ services:
         [soil]https://github.com/roots/soil/archive/3.7.1.zip,
       THEMES: >-
         [local]robertholzer
+    networks:
+      - frontend
+
+  frontend-prod:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.prod
+    image: frontend-prod
+    environment:
+      NODE_ENV: production
+    networks:
+      - frontend
 
   frontend:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./Dockerfile
     image: frontend
+    environment:
+      NODE_ENV: development
     ports:
       - "4000:4000" # HMR Server
       - "3000:3000" # BrowserSync
@@ -43,6 +60,8 @@ services:
     volumes:
       # - ./theme/src:/opt/hmrserver/src
       - ./theme:/opt/hmrserver/theme
+    networks:
+      - frontend
 
   composer:
     restart: 'no'
@@ -74,8 +93,30 @@ services:
     volumes:
       - data:/var/lib/mysql
 
+  wordmove:
+    # tty: true
+    depends_on:
+      - frontend-prod
+      - wordpress
+    image: mfuezesi/wordmove
+    command: bash -c "ls -lah /var/www/html/wp-content/"
+    restart: on-failure:5
+    container_name: robertholzer_wordmove  # (+)
+    environment:
+      NODE_ENV: production
+    volumes:
+      # - ./config:/home
+      - ./app:/var/www/html
+      - ./uploads:/var/www/html/wp-content/uploads
+      - ./theme:/var/www/html/wp-content/themes/robertholzer
+      - ~/.ssh:/root/.ssh      # (!)
+
+
 volumes:
   data:
+  app:
+  theme:
+  uploads:
   images:
     driver: local
 

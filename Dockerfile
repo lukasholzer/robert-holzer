@@ -8,6 +8,8 @@ ENV THEME_FOLDER theme
 ENV PORT 4000
 ENV BROWSERSYNC 3000
 
+RUN if $BUILDENV -eq "production"; then export NODE_ENV=production; else export NODE_ENV=development; fi
+
 # install node_modules
 COPY package.json /tmp/package.json
 RUN cd /tmp && yarn
@@ -21,7 +23,6 @@ COPY config $HOME_DIR/config
 COPY package.json $HOME_DIR/
 COPY .stylelintrc $HOME_DIR/
 COPY tslint.json $HOME_DIR/
-COPY composer.json $HOME_DIR/
 
 EXPOSE $PORT
 EXPOSE $BROWSERSYNC

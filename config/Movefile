@@ -11,22 +11,22 @@ local:
     password: "password"
     host: "127.0.0.1"
 
-  # paths: # you can customize wordpress internal paths
-  #   wp_content: "wp-content"
-  #   uploads: "wp-content/uploads"
-  #   plugins: "wp-content/plugins"
-  #   themes: "wp-content/themes"
-  #   languages: "wp-content/languages"
+  paths:
+    wp_content: "wp-content"
+    uploads: "wp-content/uploads"
+    plugins: "wp-content/plugins"
+    themes: "wp-content/themes"
+    languages: "wp-content/languages"
 
 production:
-  vhost: "http://example.com"
-  wordpress_path: "/var/www/your_site" # use an absolute path here
+  vhost: https://robertholzer.typeflow.cc"
+  wordpress_path: "/home/lukasholzer/websites/robertholzer/"
 
   database:
-    name: "database_name"
-    user: "user"
+    name: "i1103854_wp3"
+    user: "i1103854_wp3"
     password: "password"
-    host: "host"
+    host: "localhost"
     # port: "3308" # Use just in case you have exotic server config
     # mysqldump_options: "--max_allowed_packet=50MB" # Only available if using SSH
 
