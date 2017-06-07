@@ -58,7 +58,6 @@ services:
       - "3000:3000" # BrowserSync
       - "3001:3001" # BrwoserSync Admin interface
     volumes:
-      # - ./theme/src:/opt/hmrserver/src
       - ./theme:/opt/hmrserver/theme
     networks:
       - frontend
@@ -94,18 +93,17 @@ services:
       - data:/var/lib/mysql
 
   wordmove:
-    # tty: true
     depends_on:
       - frontend-prod
       - wordpress
     image: mfuezesi/wordmove
-    command: bash -c "ls -lah /var/www/html/wp-content/"
+    command: bash -c "wordmove push -e production -d"
     restart: on-failure:5
     container_name: robertholzer_wordmove  # (+)
     environment:
       NODE_ENV: production
     volumes:
-      # - ./config:/home
+      - ./config:/home # from Movefile
       - ./app:/var/www/html
       - ./uploads:/var/www/html/wp-content/uploads
       - ./theme:/var/www/html/wp-content/themes/robertholzer
