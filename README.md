@@ -53,6 +53,20 @@ docker rm -v $(docker ps -a -q)
 docker rmi $(docker images -q)
 ```
 
+## Deployment
+
+The deployment is made with (wordmove)[https://github.com/welaika/wordmove].
+The configuration file is the *./config/Movefile* File.
+
+
+#### Installation
+
+```bash
+
+gem install wordmove
+
+```
+
 ## Maintainer
 
 **Lukas Holzer**
