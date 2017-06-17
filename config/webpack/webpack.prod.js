@@ -23,14 +23,14 @@ module.exports = webpackMerge(commonConfig, {
         exclude: path.join(__dirname, 'theme', 'src', 'app'),
         use: inlineCSS.extract({
           fallback: 'style-loader',
-          use: ['raw-loader', 'postcss-loader', 'sass-loader'] // , 'import-glob'
+          use: ['raw-loader', /*'postcss-loader',*/ 'sass-loader'] // , 'import-glob'
         })
       }, {
         test: /main.scss$/,
         exclude: path.join(__dirname, 'theme', 'src', 'app'),
         use: mainCSS.extract({
           fallback: 'style-loader',
-          use: ['raw-loader', 'postcss-loader', 'sass-loader'] // , 'import-glob'
+          use: ['raw-loader', /*'postcss-loader',*/ 'sass-loader'] // , 'import-glob'
         })
       }
     ]
