@@ -6,6 +6,7 @@
 
 <main class="root">
 
+    <?php get_template_part( 'templates/news' ); ?>
     <?php get_template_part( 'templates/repertoire' ); ?>
     <?php get_template_part( 'templates/press' ); ?>
     <?php get_template_part( 'templates/music' ); ?>

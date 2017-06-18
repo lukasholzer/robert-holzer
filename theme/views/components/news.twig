@@ -1,0 +1,23 @@
+<!-- section #news -->
+<section class="section">
+
+  <div class="{{component}} grid" grid>
+
+    <nav class="{{nav.name}} {{nav.class}} grid__item" data-grid="3/12">
+      <ul class="{{nav.name}}-list">
+        {% for item in nav.menu %}
+          <li class="{{nav.name}}-list__item {% if loop.index0 == 0%}is-active{% endif %}">{{item.name}}</li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+
+    {% for post in posts %}
+
+      {% include 'components/' ~ component ~ '-item.twig' %}
+
+    {% endfor %}
+
+  </div>
+
+</section>

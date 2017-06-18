@@ -1,0 +1,12 @@
+<figure class="{{component}}__item grid__item" data-grid="3/12">
+
+  {% if post.image %}
+  <img class="{{component}}__image" src="{{ TimberImage(post.get_field('image')).src }}" />
+  {% endif %}
+
+  <figcaption>
+    <h3 class="{{component}}__headline">{{post.title}}</h3>
+    <p class="{{component}}__text">{{post.content}}</p>
+  </figcaption>
+
+</figure>
