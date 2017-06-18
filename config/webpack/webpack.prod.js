@@ -10,7 +10,7 @@ const mainCSS = new ExtractTextPlugin('main.bundle.css');
 
 module.exports = webpackMerge(commonConfig, {
   output: {
-    path: path.join(__dirname, '/dist'),
+    path: path.join(__dirname, '../', '../', 'theme', '/dist'),
     publicPath: '/',
     filename: '[name].[hash].bundle.js',
     chunkFilename: '[id].[hash].chunk.js'
