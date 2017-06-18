@@ -6,6 +6,9 @@ services:
     image: visiblevc/wordpress:latest
     ports:
       - "8080:80"
+      - "4000:4000" # HMR Server
+      - "3000:3000" # BrowserSync
+      - "3001:3001" # BrwoserSync Admin interface
     restart: always
     links:
       - db:mysql
