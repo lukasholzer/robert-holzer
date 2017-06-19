@@ -1,3 +1,15 @@
 .news__image {
     width: 100%;
 }
+
+
+.news {
+    column-width: 300px;
+    column-gap: $spacer;
+}
+
+.news__item,
+.navigation {
+    width: 100%;
+    break-inside: avoid;
+}

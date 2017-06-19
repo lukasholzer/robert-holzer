@@ -1,9 +1,9 @@
 <!-- section #news -->
 <section class="section">
 
-  <div class="{{component}} grid" grid>
+  <div class="{{component}}">
 
-    <nav class="{{nav.name}} {{nav.class}} grid__item" data-grid="3/12">
+    <nav class="{{nav.name}} {{nav.class}}">
       <ul class="{{nav.name}}-list">
         {% for item in nav.menu %}
           <li class="{{nav.name}}-list__item {% if loop.index0 == 0%}is-active{% endif %}">{{item.name}}</li>
