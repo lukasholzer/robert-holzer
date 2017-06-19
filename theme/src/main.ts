@@ -6,9 +6,7 @@ import { AppComponent } from './app/app.component';
 platformBrowser().bootstrapComponent(AppComponent);
 
 
-// Start - WEBPACK HOT MODULE RELOAD STUFF
 const m = module as any;
 if (m.hot) {
   m.hot.accept();
 }
-// End - WEBPACK HOT MODULE RELOAD STUFF
