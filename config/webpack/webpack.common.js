@@ -5,7 +5,7 @@ module.exports = {
 
   context: path.resolve(__dirname, '../', '../', 'theme', 'src'),
   entry: {
-    // Scriptss
+    // Scripts
     app: './main.ts',
     vendor: './vendor.ts',
     polyfills: './polyfills.ts',
