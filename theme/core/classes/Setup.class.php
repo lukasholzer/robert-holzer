@@ -34,6 +34,8 @@ class Setup extends TimberSite {
 		add_filter('timber_context', array($this, 'add_to_context'));
 		add_filter('get_twig', array($this, 'add_to_twig'));
 
+    add_filter('acf/settings/save_json', array($this, 'save_acf_fields'));
+
 		add_action('init', array($this, 'register_post_types'));
 		add_action('init', array($this, 'register_taxonomies'));
 		add_action('init', array($this, 'register_menus'));
@@ -71,6 +73,13 @@ class Setup extends TimberSite {
     $composer = new CustomTaxonomies('composer', 'Komponist', 'Komponisten', false, array('repertoire', 'music', 'song'));
     $songtype = new CustomTaxonomies('songtype', 'Filter', 'Filter', false, array('post', 'repertoire', 'music', 'song', 'gallery', 'press'));
     $gallery = new CustomTaxonomies('gallery', 'Kategorie', 'Kategorien', false, array('gallery'));
+  }
+
+  function save_acf_fields( $path ) {
+    // update path
+    $path = get_template_directory() . '/core/acf';
+
+    return $path;
   }
 
   function add_theme_scripts() {
