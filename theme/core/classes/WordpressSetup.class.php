@@ -48,7 +48,7 @@ class WordpressSetup {
     return $this->version;
   }
 
-  private function register_menus() {
+  public function register_menus() {
     register_nav_menus(
       array(
         'page-menu'     => __( 'Seiten Men&uuml;', 'robertholzer-theme' ),
@@ -59,7 +59,7 @@ class WordpressSetup {
     );
   }
 
-  private function register_custom_post_types() {
+  public function register_custom_post_types() {
     $repertoire = new CustomPostTypes('repertoire', 'Repertoire', 'Repertoire', 'dashicons-playlist-audio');
     $press = new CustomPostTypes('press', 'Presse Artikel', 'Presse Artikeln', 'dashicons-testimonial');
     $gallery = new CustomPostTypes('gallery', 'Gallerie', 'Gallerien', 'dashicons-format-gallery');
@@ -67,20 +67,20 @@ class WordpressSetup {
     $track = new CustomPostTypes('song', 'Track', 'Tracks', 'dashicons-controls-volumeon');
   }
 
-  private function register_custom_taxonomies() {
+  public function register_custom_taxonomies() {
     // $slug, $name, $namePlural, $hirarchy, $registerFor = array('post'), $i18nDomain = 'robertholzer-theme'
     $composer = new CustomTaxonomies('composer', 'Komponist', 'Komponisten', false, array('repertoire', 'music', 'song'));
     $songtype = new CustomTaxonomies('songtype', 'Filter', 'Filter', false, array('post', 'repertoire', 'music', 'song', 'gallery', 'press'));
     $gallery = new CustomTaxonomies('gallery', 'Kategorie', 'Kategorien', false, array('gallery'));
   }
 
-  private function change_acf_path( $path ) {
+  public function change_acf_path( $path ) {
     $path = get_template_directory() . '/core/acf';
 
     return $path;
   }
 
-  private function add_theme_scripts_and_styles() {
+  public function add_theme_scripts_and_styles() {
     wp_enqueue_script( 'polyfills', $this->assets_path('polyfills.bundle.js'), array(), $this->version, true );
     wp_enqueue_script( 'vendor', $this->assets_path('vendor.bundle.js'), array('polyfills'), $this->version, true );
     wp_enqueue_script( 'app', $this->assets_path('app.bundle.js'), array('vendor'), $this->version, true );
@@ -98,7 +98,7 @@ class WordpressSetup {
     return @file_get_contents($this->theme_path . $file);
   }
 
-  private function robertholzer_custom_header_setup() {
+  public function robertholzer_custom_header_setup() {
     $args = array(
       'default-image'         => $this->assets_path('default_header.jpg'), // Default Header Image to display
       'width'                 => 1442, // Header image width (in pixels)
