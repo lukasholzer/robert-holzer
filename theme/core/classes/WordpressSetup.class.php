@@ -81,16 +81,16 @@ class WordpressSetup {
   }
 
   public function add_theme_scripts_and_styles() {
-    wp_enqueue_script( 'polyfills', $this->assets_path('polyfills.bundle.js'), array(), $this->version, true );
-    wp_enqueue_script( 'vendor', $this->assets_path('vendor.bundle.js'), array('polyfills'), $this->version, true );
-    wp_enqueue_script( 'app', $this->assets_path('app.bundle.js'), array('vendor'), $this->version, true );
+    wp_enqueue_script( 'polyfills', $this->assets('polyfills.bundle.js'), array(), $this->version, true );
+    wp_enqueue_script( 'vendor', $this->assets('vendor.bundle.js'), array('polyfills'), $this->version, true );
+    wp_enqueue_script( 'app', $this->assets('app.bundle.js'), array('vendor'), $this->version, true );
 
     if(WP_ENV === 'development') {
-      wp_enqueue_script( 'inline', $this->assets_path('inline.bundle.js'), array('app'), $this->version, true );
-      wp_enqueue_script( 'main', $this->assets_path('main.bundle.js'), array('inline'), $this->version, true );
+      wp_enqueue_script( 'inline', $this->assets('inline.bundle.js'), array('app'), $this->version, true );
+      wp_enqueue_script( 'main', $this->assets('main.bundle.js'), array('inline'), $this->version, true );
     } else {
-      wp_enqueue_style( 'inline', $this->assets_path('inline.css'), array(), $this->version);
-      wp_enqueue_style( 'main', $this->assets_path('main.bundle.css'), array(), $this->version);
+      wp_enqueue_style( 'inline', $this->assets('inline.css'), array(), $this->version);
+      wp_enqueue_style( 'main', $this->assets('main.bundle.css'), array(), $this->version);
     }
   }
 
@@ -98,9 +98,13 @@ class WordpressSetup {
     return @file_get_contents($this->theme_path . $file);
   }
 
+  private function assets($filename) {
+    return $this->assets_path . $filename;
+  }
+
   public function robertholzer_custom_header_setup() {
     $args = array(
-      'default-image'         => $this->assets_path('default_header.jpg'), // Default Header Image to display
+      'default-image'         => $this->assets('default_header.jpg'), // Default Header Image to display
       'width'                 => 1442, // Header image width (in pixels)
       'flex-height'           => true,
       'height'                => 1026, // Header image height (in pixels)
