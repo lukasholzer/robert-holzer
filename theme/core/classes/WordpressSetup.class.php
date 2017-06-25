@@ -112,5 +112,4 @@ class WordpressSetup {
 
     add_theme_support( 'custom-header', $args );
   }
-
 }
