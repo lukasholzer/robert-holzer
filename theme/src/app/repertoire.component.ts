@@ -5,7 +5,7 @@ import { Component, ElementRef } from 'mojiito-core';
 })
 export class RepertoireComponent {
 
-  static WORK_SELECTOR: string = 'repertoire__work';
+  static WORK_SELECTOR = 'repertoire__work';
   static ACTIVE_CLASS: string = RepertoireComponent.WORK_SELECTOR + '--active';
 
   constructor(private elementRef: ElementRef) {
