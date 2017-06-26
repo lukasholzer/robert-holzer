@@ -1,0 +1,205 @@
+{
+    "key": "group_5920230fab560",
+    "title": "Track",
+    "fields": [
+        {
+            "key": "field_5920241d648da",
+            "label": "Track",
+            "name": "track",
+            "type": "file",
+            "instructions": "upload .mp3 File",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "mp3"
+        },
+        {
+            "key": "field_5920332d7a018",
+            "label": "Track auf Album",
+            "name": "has_album",
+            "type": "radio",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "20",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "single": "Single",
+                "album": "Album"
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "Album",
+            "layout": "vertical",
+            "return_format": "value"
+        },
+        {
+            "key": "field_59202384000d2",
+            "label": "Album",
+            "name": "album",
+            "type": "post_object",
+            "instructions": "Album auswählen auf dem Dieser Track zu finden ist.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5920332d7a018",
+                        "operator": "==",
+                        "value": "album"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "30",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "music"
+            ],
+            "taxonomy": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "return_format": "id",
+            "ui": 1
+        },
+        {
+            "key": "field_59202323000d1",
+            "label": "Cover",
+            "name": "cover",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5920332d7a018",
+                        "operator": "==",
+                        "value": "single"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "30",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,png"
+        },
+        {
+            "key": "field_5921a5f9e5465",
+            "label": "Komponist",
+            "name": "composer",
+            "type": "taxonomy",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5920332d7a018",
+                        "operator": "==",
+                        "value": "single"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "composer",
+            "field_type": "select",
+            "allow_null": 0,
+            "add_term": 1,
+            "save_terms": 1,
+            "load_terms": 1,
+            "return_format": "id",
+            "multiple": 0
+        },
+        {
+            "key": "field_5921a61fe5466",
+            "label": "Kategorie",
+            "name": "category",
+            "type": "taxonomy",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5920332d7a018",
+                        "operator": "==",
+                        "value": "single"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "songtype",
+            "field_type": "select",
+            "allow_null": 0,
+            "add_term": 0,
+            "save_terms": 1,
+            "load_terms": 1,
+            "return_format": "id",
+            "multiple": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "song"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "permalink",
+        "the_content",
+        "excerpt",
+        "custom_fields",
+        "discussion",
+        "comments",
+        "revisions",
+        "slug",
+        "author",
+        "format",
+        "page_attributes",
+        "featured_image",
+        "categories",
+        "tags",
+        "send-trackbacks"
+    ],
+    "active": 1,
+    "description": "Einzelne Musikstücke zum Anhören",
+    "modified": 1498431398
+}

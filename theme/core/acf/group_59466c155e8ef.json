@@ -1,0 +1,104 @@
+{
+    "key": "group_59466c155e8ef",
+    "title": "News",
+    "fields": [
+        {
+            "key": "field_59466c6e9417d",
+            "label": "Bild",
+            "name": "image",
+            "type": "image_crop",
+            "instructions": "News Bild",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "60",
+                "class": "",
+                "id": ""
+            },
+            "crop_type": "hard",
+            "target_size": "custom",
+            "width": 400,
+            "height": 240,
+            "preview_size": "medium",
+            "force_crop": "yes",
+            "save_in_media_library": "no",
+            "retina_mode": "no",
+            "save_format": "url",
+            "library": "all"
+        },
+        {
+            "key": "field_59466c189417c",
+            "label": "Kategorie",
+            "name": "category",
+            "type": "taxonomy",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "40",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "songtype",
+            "field_type": "select",
+            "allow_null": 1,
+            "add_term": 0,
+            "save_terms": 1,
+            "load_terms": 1,
+            "return_format": "object",
+            "multiple": 0
+        },
+        {
+            "key": "field_59466d2843a0b",
+            "label": "Url",
+            "name": "url",
+            "type": "text",
+            "instructions": "Viedo Url für Vimeo Videos",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "permalink",
+        "excerpt",
+        "custom_fields",
+        "discussion",
+        "comments",
+        "revisions",
+        "slug",
+        "author",
+        "format",
+        "page_attributes",
+        "featured_image",
+        "categories",
+        "tags",
+        "send-trackbacks"
+    ],
+    "active": 1,
+    "description": "",
+    "modified": 1498431364
+}
