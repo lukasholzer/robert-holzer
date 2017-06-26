@@ -1,12 +1,12 @@
 $breakpoint-large: 1200px !default;
 $breakpoint-medium: 765px !default;
 $dot-size: 1.4rem !default;
+
 .start-teaser {
     background-color: lighten($color-black, 20%);
     height: 100vh;
     width: 100%;
     background-attachment: fixed;
-    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top center;
@@ -39,7 +39,7 @@ $dot-size: 1.4rem !default;
     border-radius: 50%;
     width: $dot-size;
     height: $dot-size;
-    &+& {
+    & + & {
         margin-left: 0.5em;
     }
     &:nth-child(1) {

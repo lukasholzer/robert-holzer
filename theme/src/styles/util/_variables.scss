@@ -1,57 +1,20 @@
-$color-black: rgba(030, 030, 030, 100);
-$color-lightgrey: lighten($color-black, 50%);
-$color-darkgrey: lighten($color-black, 5%);
-$color-white: rgba(255, 255, 255, 100);
-$color-red:   rgba(200, 011, 076, 100);
-$color-gold:  rgba(191, 170, 113, 100);
-$color-blue:  rgba(093, 142, 189, 100);
+$color-black                : rgba(030, 030, 030, 100);
+$color-lightgrey            : lighten($color-black, 50%);
+$color-darkgrey             : lighten($color-black, 5%);
+$color-white                : rgba(255, 255, 255, 100);
+$color-red                  : rgba(200, 011, 076, 100);
+$color-gold                 : rgba(191, 170, 113, 100);
+$color-blue                 : rgba(093, 142, 189, 100);
 
-$spacer: 1rem;
+$spacer                     : 1rem;
 
-$font-family-main: 'Neutra Text', 'Helvetica', sans-serif;
+$font-family-main           : 'Neutra Text', 'Helvetica', sans-serif;
+
+// Breakpoints
+$breakpoint-xlarge          : 1440px;
+$breakpoint-large           : 1200px;
+$breakpoint-medium          : 768px;
+$breakpoint-small           : 510px;
 
 
-$breakpoint-large: 1200px;
-
-$grid-settings: (
-    breakpoints: (
-        small: 'only screen and (min-width: 400px)',
-        medium: 'only screen and (min-width: 700px)',
-        large: 'only screen and (min-width: 1200px)',
-    ),
-    bases: ( 12 ),
-    gutters: (
-        none: 0,
-        narrow: .7em,
-        normal: 1.25em,
-        wide: 2.5em,
-    ),
-    default-gutter: 1.25em,
-    gutter-breakpoints: true,
-    vertical-gutters: true,
-    fallback: true,
-    fallback-markup-fix: false,
-    grid-modifiers: (
-        left,
-        center,
-        right,
-        top,
-        middle,
-        bottom,
-        forwards,
-        backwards,
-        between,
-        around,
-        equal,
-    ),
-    grid-modifier-breakpoints: true,
-    item-modifiers: (
-        first,
-        last,
-        reset-order,
-        push,
-        pull,
-        auto,
-    ),
-    item-modifier-breakpoints: true,
-);
+@import 'grid-settings';

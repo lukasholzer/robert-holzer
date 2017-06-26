@@ -1,11 +1,11 @@
-$color: $color-red;
-$arrow-size: 10px;
-$space-bottom: 0.5rem;
+$color: $color-red !default;
+$arrow-size: 10px !default;
+$space-bottom: 0.5rem !default;
 
 [data-tooltip] {
     position: relative;
-    &:before,
-    &:after {
+    &::before,
+    &::after {
         content: none;
         content: normal;
     }
@@ -13,22 +13,16 @@ $space-bottom: 0.5rem;
     &:active,
     &:focus {
 
-        &:before,
-        &:after {
+        &::before,
+        &::after {
             animation: 0.5s tooltip linear;
         }
-
-        &:before {
-            content: "";
-        }
-
-        &:after {
-            content: attr(data-tooltip);
-        }
+        &::before { content: ''; }
+        &::after { content: attr(data-tooltip); }
 
     }
 
-    &:before {
+    &::before {
         position: absolute;
         z-index: 1001;
         bottom: 100%;
@@ -39,7 +33,7 @@ $space-bottom: 0.5rem;
         border-top-color: $color;
     }
 
-    &:after {
+    &::after {
         position: absolute;
         bottom: 100%;
         left: 50%;

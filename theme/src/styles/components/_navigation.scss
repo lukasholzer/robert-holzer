@@ -2,6 +2,7 @@ $timing: 1s !default;
 
 .navigation {
     transform-origin: 0 0;
+    z-index: 100000;
 }
 
 .navigation-list__item {
@@ -9,10 +10,16 @@ $timing: 1s !default;
     font-weight: 700;
     line-height: 1em;
     text-overflow: hidden;
+
+    // .navigation--fixed & {
+    //     transform: initial !important;
+    // }
 }
 
 .navigation--fixed {
     position: fixed;
     top: $spacer;
-
+    right: $spacer;
+    transform: scale(1) !important;
+    width: auto !important;
 }
