@@ -101,9 +101,9 @@ class WordpressSetup {
   }
 
   public function add_theme_scripts_and_styles() {
-    wp_enqueue_script( 'polyfills-async', $this->assets('polyfills.js'), array(), $this->version, true );
-    wp_enqueue_script( 'vendor-async', $this->assets('vendor.js'), array('polyfills-async'), $this->version, true );
-    wp_enqueue_script( 'app-defer', $this->assets('app.js'), array('vendor-async'), $this->version, true );
+    wp_enqueue_script( 'polyfills-defer', $this->assets('polyfills.js'), array(), $this->version, true );
+    wp_enqueue_script( 'vendor-defer', $this->assets('vendor.js'), array('polyfills-defer'), $this->version, true );
+    wp_enqueue_script( 'app-defer', $this->assets('app.js'), array('vendor-defer'), $this->version, true );
 
     // in development use .js files for HMR reloading styles
     if(WP_ENV === 'development') {
