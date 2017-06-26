@@ -1,10 +1,12 @@
 <?php
 
-class Setup extends TimberSite {
+class TimberSetup extends TimberSite {
 
   use RepertoireRole;
   use GetTaxonomy;
   use GetComposer;
+  use GetGalleryTaxonomy;
+  use GetSongType;
 
   protected $version;
   protected $assets;
@@ -70,21 +72,6 @@ class Setup extends TimberSite {
         throw new Exception('menu: <b>'.$menu_name.'</b> not set or can\'t get locaction');
     }
   }
-
-  /**
-   * @param   number    $id // ID of the Post
-   */
-	function get_song_type($id) {
-    return $this->get_taxonomy($id, 'songtype');
-	}
-
-  /**
-   * @param   number    $id // ID of the Post
-   */
-	function get_gallery_taxonomy($id) {
-
-    return get_term( $id, $taxonomy = 'gallery')->slug;
-	}
 
 	function add_to_twig( $twig ) {
 		/* this is where you can add your own functions to twig */
