@@ -1,8 +1,17 @@
 $timing: 1s !default;
+$space-top-right: 1.5rem !default;
 
 .navigation {
     transform-origin: 0 0;
     z-index: 100000;
+    flex-shrink: 1;
+    flex-grow: 1;
+}
+
+.navigation-list {
+    .navigation--fixed & {
+        display: none;
+    }
 }
 
 .navigation-list__item {
@@ -10,16 +19,24 @@ $timing: 1s !default;
     font-weight: 700;
     line-height: 1em;
     text-overflow: hidden;
-
-    // .navigation--fixed & {
-    //     transform: initial !important;
-    // }
 }
 
 .navigation--fixed {
     position: fixed;
-    top: $spacer;
-    right: $spacer;
+    top: $space-top-right;
     transform: scale(1) !important;
     width: auto !important;
+    padding: 1rem 1rem 0.5rem;
+    background: $color-red;
+    box-shadow: 0.2rem 0.2rem 0.7rem 0 rgba($color-black, 0.2);
+    animation-name: navigation-fade-in;
+    animation-fill-mode: forwards;
+    animation-duration: 500ms;
 }
+
+@keyframes navigation-fade-in {
+    0% { right: -10%; }
+    100% { right: $space-top-right; }
+}
+
+

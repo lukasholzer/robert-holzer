@@ -3,14 +3,7 @@
 
   <div class="{{component}}">
 
-    <nav class="{{nav.name}} {{nav.class}}">
-      <ul class="{{nav.name}}-list">
-        {% for item in nav.menu %}
-          <li class="{{nav.name}}-list__item {% if loop.index0 == 0%}is-active{% endif %}">{{item.name}}</li>
-        {% endfor %}
-      </ul>
-    </nav>
-
+    {% include 'components/navigation.twig' %}
 
     {% for post in posts %}
 
