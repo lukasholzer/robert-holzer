@@ -7,7 +7,9 @@ $timber = new \Timber\Timber();
 if (class_exists('Timber')) {
 
 
-  require_once __DIR__ . '/core/helper/RepertoireRole.php';
+  require_once __DIR__ . '/core/helper/getComposer.php';
+  require_once __DIR__ . '/core/helper/getTaxonomy.php';
+  require_once __DIR__ . '/core/helper/repertoireRole.php';
 
   require_once __DIR__ . '/core/classes/CustomPostTypes.class.php';
   require_once __DIR__ . '/core/classes/CustomTaxonomies.class.php';

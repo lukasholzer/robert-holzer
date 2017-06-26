@@ -3,6 +3,8 @@
 class Setup extends TimberSite {
 
   use RepertoireRole;
+  use GetTaxonomy;
+  use GetComposer;
 
   protected $version;
   protected $assets;
@@ -55,24 +57,6 @@ class Setup extends TimberSite {
     return (object) wp_parse_args( $data);
   }
 
-  /**
-   * @param   number    $id // ID of the Post
-   * @param   string    $taxonomy // Taxonomy Name
-   */
-  function get_taxonomy($id, $taxonomy) {
-    $category = get_the_terms( $id, $taxonomy);
-    $cat = '';
-
-    if ( $category && ! is_wp_error( $category ) ){
-
-      foreach ( $category as $term ) {
-        $cat .= $term->slug;
-      }
-    }
-
-    return $cat;
-  }
-
   function grab_menu_items($menu_name){
     if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_name ] ) ) {
       $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
@@ -100,17 +84,6 @@ class Setup extends TimberSite {
 	function get_gallery_taxonomy($id) {
 
     return get_term( $id, $taxonomy = 'gallery')->slug;
-	}
-
-
-  /**
-   * Returns the name of the Composer by a given Tax ID
-   *
-   * @param   number    $id // ID of the Taxonomy
-   * @return  string
-   */
-  function get_composer($id) {
-    return get_term( $id, $taxonomy = 'composer')->name;
 	}
 
 	function add_to_twig( $twig ) {
