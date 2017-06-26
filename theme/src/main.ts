@@ -6,7 +6,7 @@ import { AppComponent } from './app/app.component';
 platformBrowser().bootstrapComponent(AppComponent);
 
 
-const m = module as any;
-if (m.hot) {
-  m.hot.accept();
-}
+// const m = module as any;
+// if (m.hot) {
+//   m.hot.accept();
+// }

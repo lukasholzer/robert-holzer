@@ -4,9 +4,13 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackConfig = require('./config/webpack/webpack.dev.js');
 const compiler = webpack(webpackConfig);
+const cors = require('cors');
 
 // Create the express app
 const app = express();
+
+// Cross Origin Requests
+app.use(cors());
 
 // Attach webpack-dev-middleware and webpack-hot-middleware
 app.use(webpackDevMiddleware(compiler, {
