@@ -3,17 +3,20 @@ const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const commonConfig = require('./webpack.common.js');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 const inlineCSS = new ExtractTextPlugin('inline.css');
 const mainCSS = new ExtractTextPlugin('main.bundle.css');
 
+const dist_path = path.join(__dirname, '../', '../', 'theme', '/dist');
+
 
 module.exports = webpackMerge(commonConfig, {
   output: {
-    path: path.join(__dirname, '../', '../', 'theme', '/dist'),
+    path: dist_path,
     publicPath: '/',
-    filename: '[name].[hash].bundle.js',
-    chunkFilename: '[id].[hash].chunk.js'
+    filename: '[name].[chunkhash].js',
+    // chunkFilename: '[id].[hash].chunk.js'
   },
 
   module: {
@@ -37,8 +40,17 @@ module.exports = webpackMerge(commonConfig, {
   },
 
   plugins: [
-    inlineCSS,
-    mainCSS,
+
+    // new HashAssetsPlugin({
+    //   filename: 'hash-map.json',
+    //   keyTemplate : '[name].js',
+    //   path : dist_path,
+    //   prettyPrint: true,
+    // }),
+    new ManifestPlugin({
+      fileName: 'build-manifest.json',
+      prettyPrint: true
+    }),
 
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
@@ -48,6 +60,9 @@ module.exports = webpackMerge(commonConfig, {
       compressor: {
         warnings: false,
       },
-    })
+    }),
+
+    inlineCSS,
+    mainCSS
   ]
 });

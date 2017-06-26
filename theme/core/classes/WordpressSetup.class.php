@@ -5,21 +5,31 @@ class WordpressSetup {
   protected $assets_path;
   protected $theme_path;
   protected $theme_uri;
+  protected $assets_manifest;
 
   private static $ACF_PATH = '/core/acf';
 
   function __construct() {
     $this->theme_path = get_template_directory() . '/dist/';
     $this->theme_uri = get_template_directory_uri() . '/dist/';
+    $this->assets_manifest = $this->getHashes();
 
     $this->version = wp_get_theme()->get( 'Version' );
-    $this->assets_path = (WP_ENV == 'development')? 'http://localhost:4000/': $this->theme_uri;
+    $this->assets_path = (WP_ENV === 'development')? 'http://localhost:4000/': $this->theme_uri;
 
 		add_theme_support( 'post-formats' );
     add_theme_support( 'post-thumbnails' );
     add_theme_support( 'menus' );
 
+
+		add_action('init', array($this, 'register_custom_post_types'));
+		add_action('init', array($this, 'register_custom_taxonomies'));
+		add_action('init', array($this, 'register_menus'));
+
     add_action( 'after_setup_theme', array($this, 'robertholzer_custom_header_setup'));
+
+    add_action('wp_enqueue_scripts',  array($this, 'add_theme_scripts_and_styles'));
+
 
     // clean up wordpress
     add_theme_support('soil-clean-up');
@@ -36,11 +46,10 @@ class WordpressSetup {
     add_filter('acf/settings/save_json', array($this, 'change_acf_path'));
     add_filter('acf/settings/load_json',  array($this, 'sync_acf_settings'));
 
-		add_action('init', array($this, 'register_custom_post_types'));
-		add_action('init', array($this, 'register_custom_taxonomies'));
-		add_action('init', array($this, 'register_menus'));
-
-    add_action('wp_enqueue_scripts',  array($this, 'add_theme_scripts_and_styles'));
+    if(!is_admin()) {
+      add_filter('script_loader_tag', array($this, 'async_defer_scripts'), 10, 3);
+      add_filter('style_loader_tag', array($this, 'inline_styles'), 10, 4);
+    }
 
     // $options = new OptionsPage('Allgemeine Theme Konfiguration', 'Theme Konfiguration', 'theme-options');
     // $function = $options->addOptionsPage();
@@ -92,30 +101,64 @@ class WordpressSetup {
   }
 
   public function add_theme_scripts_and_styles() {
-    wp_enqueue_script( 'polyfills', $this->assets('polyfills.bundle.js'), array(), $this->version, true );
-    wp_enqueue_script( 'vendor', $this->assets('vendor.bundle.js'), array('polyfills'), $this->version, true );
-    wp_enqueue_script( 'app', $this->assets('app.bundle.js'), array('vendor'), $this->version, true );
+    wp_enqueue_script( 'polyfills-async', $this->assets('polyfills.js'), array(), $this->version, true );
+    wp_enqueue_script( 'vendor-async', $this->assets('vendor.js'), array('polyfills-async'), $this->version, true );
+    wp_enqueue_script( 'app-defer', $this->assets('app.js'), array('vendor-async'), $this->version, true );
 
+    // in development use .js files for HMR reloading styles
     if(WP_ENV === 'development') {
-      wp_enqueue_script( 'inline', $this->assets('inline.bundle.js'), array('app'), $this->version, true );
-      wp_enqueue_script( 'main', $this->assets('main.bundle.js'), array('inline'), $this->version, true );
+      wp_enqueue_script( 'inline', $this->assets('inline.js'), array('app-defer'), $this->version, true );
+      wp_enqueue_script( 'main', $this->assets('main.js'), array('inline'), $this->version, true );
     } else {
       wp_enqueue_style( 'inline', $this->assets('inline.css'), array(), $this->version);
-      wp_enqueue_style( 'main', $this->assets('main.bundle.css'), array(), $this->version);
+      wp_enqueue_style( 'main', $this->assets('main.css'), array(), $this->version);
     }
   }
 
-  protected function file_content($file) {
-    return @file_get_contents($this->theme_path . $file);
+  public function async_defer_scripts($tag, $handle, $src) {
+    $param = '';
+
+    if ( strpos($handle, '-async') !== false ) $param = 'async ';
+    if ( strpos($handle, '-defer') !== false ) $param .= 'defer ';
+
+    if ( $param ) {
+        $tag = sprintf("<script %s type=\"text/javascript\" src=\"%s\"></script>\n", $param, $src);
+    }
+
+    return $tag;
+  }
+
+  public function inline_styles($html, $handle, $href, $media) {
+
+    if(WP_ENV === 'production') {
+      if($handle === 'inline') {
+        $inline = file_get_contents($this->theme_path . $this->assets_manifest['inline.css']);
+        $html = sprintf("\n<style type=\"text/css\">\n%s\n</style>\n", $inline);
+      }
+    }
+
+    return $html;
+  }
+
+  private function getHashes() {
+
+    $hashstring = file_get_contents( get_template_directory() . '/dist/build-manifest.json');
+    $hashfile = json_decode($hashstring, true);
+
+    return $hashfile;
   }
 
   private function assets($filename) {
-    return $this->assets_path . $filename;
+    if(WP_ENV === 'development') {
+      return $this->assets_path . $filename;
+    } else {
+      return $this->assets_path . $this->assets_manifest[$filename];
+    }
   }
 
   public function robertholzer_custom_header_setup() {
     $args = array(
-      'default-image'         => $this->assets('default_header.jpg'), // Default Header Image to display
+     // 'default-image'         => $this->assets('default_header.jpg'), // Default Header Image to display
       'width'                 => 1442, // Header image width (in pixels)
       'flex-height'           => true,
       'height'                => 1026, // Header image height (in pixels)
