@@ -20,7 +20,7 @@ module.exports = webpackMerge(commonConfig, {
   output: {
     path: path.join(__dirname, '/dist'),
     publicPath: 'http://localhost:4000/',
-    filename: '[name].bundle.js',
+    filename: '[name].js',
     chunkFilename: '[id].chunk.js',
     hotUpdateChunkFilename: '[id].[hash].hot-update.js',
     hotUpdateMainFilename: '[hash].hot-update.json'

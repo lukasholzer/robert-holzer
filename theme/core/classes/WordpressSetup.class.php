@@ -116,6 +116,11 @@ class WordpressSetup {
   }
 
   public function async_defer_scripts($tag, $handle, $src) {
+
+    if(WP_ENV === 'development') {
+      return $tag;
+    }
+
     $param = '';
 
     if ( strpos($handle, '-async') !== false ) $param = 'async ';
@@ -130,11 +135,13 @@ class WordpressSetup {
 
   public function inline_styles($html, $handle, $href, $media) {
 
-    if(WP_ENV === 'production') {
-      if($handle === 'inline') {
-        $inline = file_get_contents($this->theme_path . $this->assets_manifest['inline.css']);
-        $html = sprintf("\n<style type=\"text/css\">\n%s\n</style>\n", $inline);
-      }
+    if(WP_ENV === 'development') {
+      return $html;
+    }
+
+    if($handle === 'inline') {
+      $inline = file_get_contents($this->theme_path . $this->assets_manifest['inline.css']);
+      $html = sprintf("\n<style type=\"text/css\">\n%s\n</style>\n", $inline);
     }
 
     return $html;
