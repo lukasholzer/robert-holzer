@@ -4,6 +4,7 @@ import { RepertoireComponent } from './repertoire.component';
 import { MusicplayerComponent } from './musicplayer.component';
 import { StickyComponent } from './sticky.component';
 import { FilterComponent } from './filter.component';
+import { NavigationComponent } from './navigation.component';
 
 @Component({
     selector: 'body',
@@ -12,7 +13,8 @@ import { FilterComponent } from './filter.component';
       RepertoireComponent,
       MusicplayerComponent,
       StickyComponent,
-      FilterComponent
+      FilterComponent,
+      NavigationComponent
     ]
 })
 export class AppComponent {

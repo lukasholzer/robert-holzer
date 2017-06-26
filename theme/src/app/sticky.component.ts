@@ -5,15 +5,15 @@ import { Component, ElementRef } from 'mojiito-core';
 })
 export class StickyComponent {
 
-  static NAVIGATION_OFFSET_TOP: number = 100;
-  static NAVIGATION_OFFSET_BOTTOM: number = 0;
-  static STICKY_CLASS: string = 'is-sticky';
+  static NAVIGATION_OFFSET_TOP = 100;
+  static NAVIGATION_OFFSET_BOTTOM = 0;
+  static STICKY_CLASS = 'is-sticky';
 
   private _referenceElement: HTMLElement;
   private _offsetTop: number;
   private _offsetBottom: number;
 
-  private _fixed: boolean = false;
+  private _fixed = false;
 
   private _element: Element;
 
@@ -44,7 +44,7 @@ export class StickyComponent {
 
   onScroll(): void {
     requestAnimationFrame(() => {
-      // this._checkSticky();
+      this._checkSticky();
 
       if (this._fixed && this._checkSticky()) {
         this._element.classList.add(StickyComponent.STICKY_CLASS);
@@ -59,7 +59,9 @@ export class StickyComponent {
     const _refOfTop = _refBounding.top - this._offsetTop; // if smaller then 1 fix it
     const _refOfBot = _refBounding.bottom - this._offsetBottom;
     const _botOff = _refOfBot - _elHeight; // if negative then destroy fix
-    console.log('Is fixed: ', this._fixed, ' Top Offset: ', _refOfTop, ' Bottom Offset: ', _botOff);
+
+    // console.log(`is fixed: ${this._fixed}`);
+
     // is not fixed container to small
     if (_refOfTop > 0 && _botOff < 0) {
       this._fixed = false;

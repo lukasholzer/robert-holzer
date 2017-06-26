@@ -4,12 +4,22 @@
 
 
 .news {
-    column-width: 300px;
-    column-gap: $spacer;
+    // column-width: 300px;
+    // column-gap: $spacer;
+    display: flex;
+    // flex-wrap: wrap;
+    width: 100%;
 }
 
-.news__item,
+.news__item {
+    width: 30%;
+    flex-shrink: 1;
+    flex-grow: 1;
+    margin-left: $spacer;
+    // break-inside: avoid;
+}
+
 .navigation {
-    width: 100%;
-    break-inside: avoid;
+    flex-shrink: 1;
+    flex-grow: 1;
 }

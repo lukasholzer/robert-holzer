@@ -1,21 +1,18 @@
+$timing: 1s !default;
+
+.navigation {
+    transform-origin: 0 0;
+}
+
 .navigation-list__item {
     font-size: 3rem;
     font-weight: 700;
     line-height: 1em;
     text-overflow: hidden;
-    animation-name: navigation-to-hamburger;
-    animation-iteration-count: infinite;
-    animation-duration: 1s;
-    // animation: navigation-to-hamburger 5s infinite;
 }
 
+.navigation--fixed {
+    position: fixed;
+    top: $spacer;
 
-@keyframes navigation-to-hamburger {
-    0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0.5;
-    }
 }
