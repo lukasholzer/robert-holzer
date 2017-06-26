@@ -6,6 +6,8 @@ class WordpressSetup {
   protected $theme_path;
   protected $theme_uri;
 
+  private static $ACF_PATH = '/core/acf';
+
   function __construct() {
     $this->theme_path = get_template_directory() . '/dist/';
     $this->theme_uri = get_template_directory_uri() . '/dist/';
@@ -32,6 +34,7 @@ class WordpressSetup {
 
 
     add_filter('acf/settings/save_json', array($this, 'change_acf_path'));
+    add_filter('acf/settings/load_json',  array($this, 'sync_acf_settings'));
 
 		add_action('init', array($this, 'register_custom_post_types'));
 		add_action('init', array($this, 'register_custom_taxonomies'));
@@ -75,7 +78,15 @@ class WordpressSetup {
   }
 
   public function change_acf_path( $path ) {
-    $path = get_template_directory() . '/core/acf';
+    $path = get_template_directory() . self::$ACF_PATH;
+
+    return $path;
+  }
+
+  public function sync_acf_settings( $path ) {
+    unset($path[0]);
+
+    $path[] = get_template_directory() . self::$ACF_PATH;
 
     return $path;
   }
