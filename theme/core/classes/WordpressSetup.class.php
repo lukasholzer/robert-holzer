@@ -163,6 +163,21 @@ class WordpressSetup {
     }
   }
 
+  function get_menu_items($menu_name){
+    if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_name ] ) ) {
+      $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
+      $menu_items = wp_get_nav_menu_items($menu->term_id);
+      $theidlist = array();
+
+      foreach ( (array) $menu_items as $key => $menu_item ) {
+        $theidlist[] = $menu_item->object_id;
+      }
+      return $theidlist;
+    } else {
+      throw new \Exception('Menu: <b>'.$menu_name.'</b> not set or can\'t get locaction');
+    }
+  }
+
   public function robertholzer_custom_header_setup() {
     $args = array(
      // 'default-image'         => $this->assets('default_header.jpg'), // Default Header Image to display
