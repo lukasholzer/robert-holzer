@@ -1,4 +1,7 @@
 <?php
+  /*
+   * Template Name: Musik
+   */
 
   $args = array(
     'post_type' => 'music',

@@ -1,4 +1,8 @@
 <?php
+  /*
+   * Template Name: Presse
+   */
+
 
   $args = array(
     'post_type' => 'press',

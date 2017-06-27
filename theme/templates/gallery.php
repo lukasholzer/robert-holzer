@@ -1,4 +1,8 @@
 <?php
+  /*
+   * Template Name: Gallerie
+   */
+
 
   $args = array(
     'post_type' => 'gallery',

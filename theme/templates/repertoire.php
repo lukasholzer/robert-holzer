@@ -1,4 +1,8 @@
 <?php
+  /*
+   * Template Name: Repertoire
+   */
+
   $composers = get_terms('composer', array('orderby' => 'count', 'order' => 'DESC', 'hide_empty' => 0 ));
 
   $context = Timber::get_context();
