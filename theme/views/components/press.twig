@@ -16,54 +16,7 @@
     <div class="{{component}}__items">
 
     {% for item in press %}
-
-      <figure class="{{component}}__item" data-rep-cat="{{item.id|get_song_type}}">
-        <h2 class="{{component}}__headline">
-          {{item.title}}
-          {% if item.stage %}<br><span class="{{component}}__stage">{{item.stage}}</span>{% endif %}
-        </h2>
-        <figcaption>
-          <p class="{{component}}__text">{{item.post_content}}</p>
-          <div class="{{component}}__newspaper"><a href="{{item.newspaper_url}}">{{item.newspaper}}</a></div>
-        </figcaption>
-
-        <script type="application/ld+json">
-        {
-          "@context": "http://schema.org",
-          "@type": "NewsArticle",
-          "name": "{{item.title}}",
-          "text": "{{item.post_content}}",
-          "author": "{{item.newspaper}}",
-          "logo": "",
-          "image": "",
-          "datePublished": "{{item.post_date}}",
-          "headline": "{{item.title}}",
-          "publisher": [
-            {
-              "@type": "Organization",
-              "name": "{{item.newspaper}}",
-              "url": "{{item.newspaper_url}}"
-            }
-          ],
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https://robertholzer.com/"
-          },
-          "locationCreated": [
-            {
-              "@type": "Place",
-              "name": "{{item.stage}}",
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": "{{item.place.lat}}",
-                "longitude": "{{item.place.lng}}"
-              }
-            }
-          ]
-        }
-        </script>
-      </figure>
-
+      {% include 'components/press-item.twig' %}
     {% endfor %}
 
     </div>

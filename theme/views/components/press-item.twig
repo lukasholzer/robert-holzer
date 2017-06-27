@@ -1,0 +1,14 @@
+{# press-item.twig #}
+
+<figure class="{{component}}__item" data-rep-cat="{{item.id|get_song_type}}">
+  <h2 class="{{component}}__headline">
+    {{item.title}}
+    {% if item.stage %}<br><span class="{{component}}__stage">{{item.stage}}</span>{% endif %}
+  </h2>
+  <figcaption>
+    <p class="{{component}}__text">{{item.post_content}}</p>
+    <div class="{{component}}__newspaper"><a href="{{item.newspaper_url}}">{{item.newspaper}}</a></div>
+  </figcaption>
+
+  {% include 'components/press-shema-org.twig' %}
+</figure>

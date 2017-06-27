@@ -1,0 +1,35 @@
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "name": "{{item.title}}",
+  "text": "{{item.post_content}}",
+  "author": "{{item.newspaper}}",
+  "logo": "",
+  "image": "",
+  "datePublished": "{{item.post_date}}",
+  "headline": "{{item.title}}",
+  "publisher": [
+    {
+      "@type": "Organization",
+      "name": "{{item.newspaper}}",
+      "url": "{{item.newspaper_url}}"
+    }
+  ],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://robertholzer.com/"
+  },
+  "locationCreated": [
+    {
+      "@type": "Place",
+      "name": "{{item.stage}}",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "{{item.place.lat}}",
+        "longitude": "{{item.place.lng}}"
+      }
+    }
+  ]
+}
+</script>

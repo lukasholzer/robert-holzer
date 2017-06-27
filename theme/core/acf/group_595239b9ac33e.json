@@ -24,7 +24,7 @@
                 {
                     "key": "field_59523a10a08f4",
                     "label": "Titel",
-                    "name": "titel",
+                    "name": "title",
                     "type": "text",
                     "instructions": "Bezeichnung des Paragraphen",
                     "required": 0,
@@ -95,5 +95,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1498561355
+    "modified": 1498572933
 }
