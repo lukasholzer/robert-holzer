@@ -150,7 +150,7 @@ class WordpressSetup {
     }
   }
 
-  function get_menu_items($menu_name){
+  public function get_menu_items($menu_name){
     if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_name ] ) ) {
       $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
       $menu_items = wp_get_nav_menu_items($menu->term_id);
@@ -162,6 +162,17 @@ class WordpressSetup {
     } else {
       throw new \Exception('Menu: <b>'.$menu_name.'</b> not set or can\'t get locaction');
     }
+  }
+
+  public function extract_component_name_from_template_file() {
+    $template_file = get_page_template();
+    $from = '/';
+    $to = '.';
+    $string = substr($template_file, strrpos($template_file, $from) + strlen($from));
+    if (strstr ($string, $to, true) !== false) {
+        $string = strstr($string, $to, true);
+    }
+    return $string;
   }
 
   public function robertholzer_custom_header_setup() {
