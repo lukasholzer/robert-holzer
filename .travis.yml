@@ -15,11 +15,11 @@ before_install:
   - sudo apt-get -qq update
   - sudo apt-get install sshpass
 install:
-  - yarn install
+  - npm install
   - composer update
   - composer install
 script:
-  - yarn run build
+  - npm run build
 after_success:
   - echo $TRAVIS_BRANCH
   - if [[ "$TRAVIS_BRANCH" == "develop" ]]; then sshpass -e rsync -r --delete-after ./theme lukasholzer@23.229.240.9:/home/lukasholzer/websites/robertholzer/; fi
