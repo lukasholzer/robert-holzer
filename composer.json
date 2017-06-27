@@ -2,7 +2,6 @@
   "name": "lukasholzer/wordpress-theme",
   "description": "Wordpress theme with composer",
   "require": {
-    "advanced-custom-fields/advanced-custom-fields-pro": "*",
     "timber/timber": "^1.2"
   },
   "config": {
