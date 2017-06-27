@@ -5,7 +5,6 @@ dist
 tmp
 vendor
 uploads
-app/
 # should only exists in docker image not in project itself
 yarn.lock
 
