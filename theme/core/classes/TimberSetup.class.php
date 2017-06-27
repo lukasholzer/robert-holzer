@@ -12,11 +12,12 @@ class TimberSetup extends TimberSite {
   protected $assets;
   protected $theme_path;
   protected $theme_uri;
+  public $wordpress;
 
 	function __construct() {
 
-    $wordpress = new WordpressSetup();
-    $this->version = $wordpress->get_version();
+    $this->wordpress = new WordpressSetup();
+    $this->version = $this->wordpress->get_version();
 
 		add_filter('timber_context', array($this, 'add_to_context'));
 		add_filter('get_twig', array($this, 'add_to_twig'));

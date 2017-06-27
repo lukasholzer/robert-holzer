@@ -1,8 +1,10 @@
 <!-- section #Music -->
 <section class="section" id="alben" >
-  <h1 class="headline headline--section">anhören</h1>
+  <h1 class="headline headline--section">{{ component.title }}</h1>
 
   <div class="alben grid" data-grid="left">
+
+
       {% for album in alben %}
 
         {% set composer = album.get_field('composer') | get_composer %}

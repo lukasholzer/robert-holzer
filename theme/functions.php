@@ -15,6 +15,8 @@ if (class_exists('Timber')) {
   require_once __DIR__ . '/core/classes/WordpressSetup.class.php';
   require_once __DIR__ . '/core/classes/TimberSetup.class.php';
 
+  includeDir(  __DIR__ . '/core/classes/Timber/' );
+
   define('WP_ENV', 'development');
 
   Timber::$dirname = array('templates', 'views');
