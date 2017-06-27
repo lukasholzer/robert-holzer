@@ -21,7 +21,6 @@ class WordpressSetup {
     add_theme_support( 'post-thumbnails' );
     add_theme_support( 'menus' );
 
-
 		add_action('init', array($this, 'register_custom_post_types'));
 		add_action('init', array($this, 'register_custom_taxonomies'));
 		add_action('init', array($this, 'register_menus'));
@@ -41,7 +40,6 @@ class WordpressSetup {
     add_theme_support('soil-nav-walker');
     add_theme_support('soil-nice-search');
     add_theme_support('soil-relative-urls');
-
 
     add_filter('acf/settings/save_json', array($this, 'change_acf_path'));
     add_filter('acf/settings/load_json',  array($this, 'sync_acf_settings'));
@@ -88,15 +86,12 @@ class WordpressSetup {
 
   public function change_acf_path( $path ) {
     $path = get_template_directory() . self::$ACF_PATH;
-
     return $path;
   }
 
   public function sync_acf_settings( $path ) {
     unset($path[0]);
-
     $path[] = get_template_directory() . self::$ACF_PATH;
-
     return $path;
   }
 
@@ -116,34 +111,26 @@ class WordpressSetup {
   }
 
   public function async_defer_scripts($tag, $handle, $src) {
-
     if(WP_ENV === 'development') {
       return $tag;
     }
-
     $param = '';
-
     if ( strpos($handle, '-async') !== false ) $param = 'async ';
     if ( strpos($handle, '-defer') !== false ) $param .= 'defer ';
-
     if ( $param ) {
         $tag = sprintf("<script %s type=\"text/javascript\" src=\"%s\"></script>\n", $param, $src);
     }
-
     return $tag;
   }
 
   public function inline_styles($html, $handle, $href, $media) {
-
     if(WP_ENV === 'development') {
       return $html;
     }
-
     if($handle === 'inline') {
       $inline = file_get_contents($this->theme_path . $this->assets_manifest['inline.css']);
       $html = sprintf("\n<style type=\"text/css\">\n%s\n</style>\n", $inline);
     }
-
     return $html;
   }
 
@@ -168,7 +155,6 @@ class WordpressSetup {
       $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
       $menu_items = wp_get_nav_menu_items($menu->term_id);
       $theidlist = array();
-
       foreach ( (array) $menu_items as $key => $menu_item ) {
         $theidlist[] = $menu_item->object_id;
       }
@@ -185,7 +171,6 @@ class WordpressSetup {
       'flex-height'           => true,
       'height'                => 1026, // Header image height (in pixels)
     );
-
     add_theme_support( 'custom-header', $args );
   }
 }
