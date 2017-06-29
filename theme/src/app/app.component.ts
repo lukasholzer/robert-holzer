@@ -5,6 +5,7 @@ import { MusicplayerComponent } from './musicplayer.component';
 import { StickyComponent } from './sticky.component';
 import { FilterComponent } from './filter.component';
 import { NavigationComponent } from './navigation.component';
+import { NavigationOverlayComponent } from './navigationOverlay.component';
 
 @Component({
     selector: 'body',
@@ -14,7 +15,8 @@ import { NavigationComponent } from './navigation.component';
       MusicplayerComponent,
       StickyComponent,
       FilterComponent,
-      NavigationComponent
+      NavigationComponent,
+      NavigationOverlayComponent
     ]
 })
 export class AppComponent {
