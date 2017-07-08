@@ -2,15 +2,10 @@
 {% set actual = '' %}
 <section class="section">
 
-  <div class="{{component}}"
-    data-filter='{
-      "itemSelector": ".{{component}}__item",
-      "filterSelector": ".{{component}}-nav-list__item",
-      "filterProperty": "data-filter-prop"
-    }'>
+  <div class="{{component}}" data-filter>
 
     <nav class="{{component}}__nav">
-      <ul class="{{component}}-nav-list">
+      <ul class="{{component}}-nav-list" data-filter-nav>
         {% for item in menu %}
 
           {% if loop.index0 == 0 %}
@@ -25,15 +20,9 @@
 
     {% for post in gallery %}
 
-      {% if actual == post.custom.category | get_gallery_taxonomy %}
-        {% set hide = false %}
-      {% else %}
-        {% set hide = true %}
-      {% endif %}
-
       {% for image in post.get_field('images') %}
 
-          <div class="{{component}}__item {% if hide %}is-hidden{% endif %}" data-filter-prop="{{post.custom.category | get_gallery_taxonomy}}">
+          <div class="{{component}}__item {% if hide %}is-hidden{% endif %}" data-filter-item="{{post.custom.category | get_gallery_taxonomy}}">
             <a class="{{component}}__link" href="{{ TimberImage(image).src }}">
               <img class="{{component}}__image" src="{{ TimberImage(image).src('medium') }}" />
             </a>

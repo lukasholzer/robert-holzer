@@ -18,6 +18,8 @@
   },
   "devDependencies": {
     "@types/howler": "^2.0.2",
+    "@types/isotope-layout": "^3.0.2",
+    "@types/masonry-layout": "^4.0.5",
     "@types/node": "^7.0.5",
     "@types/spotify-web-api-js": "^0.21.0",
     "@types/swiper": "^3.4.2",
@@ -58,6 +60,8 @@
     "cors": "^2.8.3",
     "gridilydidily": "^3.0.1",
     "howler": "^2.0.3",
+    "isotope-layout": "^3.0.4",
+    "masonry-layout": "^4.2.0",
     "mojiito-core": "^2.0.0-alpha.3-d6db997",
     "mojiito-platform-browser": "^2.0.0-alpha.3-d6db997",
     "spotify-web-api-js": "^0.22.0",

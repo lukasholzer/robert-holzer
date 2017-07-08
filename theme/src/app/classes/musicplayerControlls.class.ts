@@ -69,6 +69,9 @@ export class MusicplayerControlls {
   }
 
   public setMeta(album: string | boolean, composer: IWPTaxonomy) {
+    if (!composer) {
+      return;
+    }
     if (!album) {
       this._meta.innerHTML = composer.name;
       return;

@@ -8,10 +8,12 @@
       {% for album in alben %}
 
         {% set composer = album.get_field('composer') | get_composer %}
-        {% set image = TimberImage(album.cover).src %}
+        {% set image = TimberImage(album.cover) %}
 
         <div class="album grid__item" data-grid="3/12" data-song-cat="{{album.id|get_song_type}}">
-          <img class="album__cover" src="{{image}}" />
+          <div class="album__cover has--gradient has--gradient-hover-out">
+            <img class="album__image" src="{{image.src}}" alt="{{image.caption}}"/>
+          </div>
           <h3 class="album__title">{{album.title}}</h3>
           <div class="album__composer">{{composer}}</div>
 

@@ -1,4 +1,6 @@
 import 'mojiito-platform-browser';
 import 'mojiito-core';
 import 'howler';
-import 'spotify-web-api-js';
+import 'isotope-layout';
+
+// import 'spotify-web-api-js';
