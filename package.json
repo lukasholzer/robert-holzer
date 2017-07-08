@@ -61,6 +61,7 @@
     "gridilydidily": "^3.0.1",
     "howler": "^2.0.3",
     "isotope-layout": "^3.0.4",
+    "lazysizes": "^4.0.0-rc3",
     "masonry-layout": "^4.2.0",
     "mojiito-core": "^2.0.0-alpha.3-d6db997",
     "mojiito-platform-browser": "^2.0.0-alpha.3-d6db997",
