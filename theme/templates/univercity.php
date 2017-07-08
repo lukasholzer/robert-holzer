@@ -10,7 +10,11 @@
 
   $context = Timber::get_context();
   $context['posts'] = Timber::get_posts($args);
-  $context['component'] = 'univercity';
+
+  $context['component'] = array(
+    'name' => 'univercity',
+    'title' => get_the_title()
+  );
 
   $uni = array( 'components/univercity.twig' );
 
