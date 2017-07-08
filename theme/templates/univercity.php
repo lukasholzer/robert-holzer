@@ -10,7 +10,7 @@
 
   $context = Timber::get_context();
   $context['posts'] = Timber::get_posts($args);
-
+  $context['curriculum'] = get_field('curriculum');
   $context['component'] = array(
     'name' => 'univercity',
     'title' => get_the_title()
