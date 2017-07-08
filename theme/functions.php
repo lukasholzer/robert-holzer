@@ -17,7 +17,12 @@ if (class_exists('Timber')) {
 
   includeDir(  __DIR__ . '/core/classes/Timber/' );
 
-  define('WP_ENV', 'development');
+  // Setting Environments
+  if($_SERVER['SERVER_NAME'] === 'localhost') {
+    define('WP_ENV', 'development');
+  } else {
+    define('WP_ENV', 'production');
+  }
 
   Timber::$dirname = array('templates', 'views');
 
