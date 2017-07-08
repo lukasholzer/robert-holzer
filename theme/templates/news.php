@@ -2,7 +2,15 @@
 
   $args = array(
     'post_type' => 'post',
-    'per_page' => '-1'
+    'per_page' => '-1',
+    'tax_query' => array(
+		  array(
+			  'taxonomy' => 'univercity',
+        'field'    => 'slug',
+        'terms'    => array( 'jury', 'teaching', 'mastercourses', 'operastudio' ),
+        'operator' => 'NOT IN'
+      )
+    )
   );
 
   $context = Timber::get_context();
