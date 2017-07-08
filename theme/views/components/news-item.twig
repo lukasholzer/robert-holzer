@@ -1,12 +1,12 @@
-<figure class="{{component}}__item">
+<figure class="news__item">
 
   {% if post.image %}
     {% include 'components/image.twig' with { image: TimberImage(post.get_field('image')) } %}
   {% endif %}
 
-  <figcaption>
-    <h3 class="{{component}}__headline">{{post.title}}</h3>
-    <p class="{{component}}__text">{{post.content}}</p>
+  <figcaption class="news__caption">
+    <h3 class="news__headline">{{post.title}}</h3>
+    <p class="news__text">{{post.content}}</p>
   </figcaption>
 
 </figure>

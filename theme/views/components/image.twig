@@ -1,8 +1,9 @@
 
-<img class="image lazyload blur-up" alt="{{ image.caption }}"
-    src="{{ image.src | resize(10) }}"
-    data-sizes="auto"
-    data-srcset="
-    {{ image.src | resize(400) }} 400w,
-    {{ image.src | resize(700) }} 700w"/>
-
+<div class="image has--gradient">
+  <img class="image__src lazyload blur-up" alt="{{ image.caption }}"
+      src="{{ image.src | resize(10) }}"
+      data-sizes="auto"
+      data-srcset="
+      {{ image.src | resize(400) }} 400w,
+      {{ image.src | resize(700) }} 700w"/>
+</div>
