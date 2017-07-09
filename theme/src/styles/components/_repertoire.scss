@@ -5,7 +5,7 @@ $bp-medium : 765px !default;
 .repertoire {
     display: flex;
     align-items: stretch;
-    &+& {
+    & + & {
         margin-top: $spacer*5;
     }
 }
@@ -43,10 +43,11 @@ $bp-medium : 765px !default;
 .repertoire__work {
     position: relative;
     border: $border-size solid transparent;
-    width: calc((100% / 2) - #{$space-around} * 2 - #{$border-size} * 2);
+    width: calc((100%) - #{$space-around} * 2 - #{$border-size} * 2);
     padding: $space-around;
     transition: border 250ms ease-in, width 400ms ease-out;
     cursor: pointer;
+
     @media (min-width: $bp-small) {
         width: calc((100% / 3) - #{$space-around} * 2 - #{$border-size} * 2);
     }
