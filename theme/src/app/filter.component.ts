@@ -1,28 +1,73 @@
 import { Component, ElementRef } from 'mojiito-core';
-import 'isotope-layout';
+const isotope = require('isotope-layout');
 
-declare var Isotope: {
-  prototype: IsotopeLibrary.Isotope;
-  new (selector: string, options: IsotopeLibrary.IsotopeOptions) : IsotopeLibrary.Isotope;
-  new (element: HTMLElement, options: IsotopeLibrary.IsotopeOptions): IsotopeLibrary.Isotope;
-  data(element: HTMLElement | string): IsotopeLibrary.Isotope;
-};
 
+interface IFilterOptions {
+  holder: string;
+  item: string;
+}
 
 @Component({
-  selector: '[data-filter]'
+selector : '[data-filter]'
 })
 export class FilterComponent {
+
+  private element: HTMLElement;
+  private content: HTMLElement;
+  private nav: NodeListOf<Element>;
+  private navActive: HTMLElement;
+
+  private _iso: any;
 
   constructor(private elementRef: ElementRef) {
 
     const element = this.elementRef.nativeElement as HTMLElement;
-    const isotope = new Isotope(element, {
-      itemSelector: '[data-filter-item]',
-      layoutMode: 'fitRows',
+    const options = JSON.parse(element.getAttribute('data-filter')) as IFilterOptions;
+    this.content = element.querySelector(options.holder) as HTMLElement;
+    this.nav = element.querySelectorAll('[data-filter-nav]') as NodeListOf<Element>;
+
+    this._iso = new isotope(this.content, {
+      itemSelector : options.item,
+      percentPosition : true,
+      masonry : {
+        columnWidth: options.item
+      },
       filter: '*'
     });
 
+    for (let i = 0, max = this.nav.length; i < max; i++) {
+      const navItem = this.nav[i] as HTMLElement;
+
+      if (navItem.classList.contains('is-active')) {
+        this.navActive = navItem;
+      }
+
+      navItem.addEventListener('click', (event: Event) => {
+        event.preventDefault();
+        const active = event.target as HTMLElement;
+        const prop = active.getAttribute('data-filter-nav');
+        this.toggleActiveNavigationElement(active);
+        this.filterItems(prop);
+      });
+    }
   }
+
+  private toggleActiveNavigationElement(active: HTMLElement) {
+    this.navActive.classList.remove('is-active');
+    this.navActive = active;
+    this.navActive.classList.add('is-active');
+  }
+
+  private filterItems(filterProp: string) {
+    this._iso
+        .arrange({
+          filter: function (item: HTMLElement) {
+            const cmp = item.getAttribute('data-filter-item');
+            return (cmp === filterProp);
+          }
+        });
+  }
+
+
 
 }
