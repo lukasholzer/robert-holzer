@@ -17,13 +17,20 @@
           <h3 class="album__title">{{album.title}}</h3>
           <div class="album__composer">{{composer}}</div>
 
-          <script class="album__detail" type="text/html">
-            <img class="album__cover" src="{{image}}" />
-            <h2 class="album__title">{{album.title}}</h2>
-            <p class="album__description">{{album.description}}</p>
-            <a class="album__publisher" href="{{album.publisher_url}}">
-              {{album.publisher}}
-            </a>
+          <script class="album__overlay" type="text/html">
+            <div class="album__detail" data-song-cat="{{album.id|get_song_type}}">
+              <div class="album__cover has--gradient">
+                <img class="album__image" src="{{image}}" />
+              </div>
+              <div class="album__detailText">
+                <h2 class="album__title">{{album.title}}</h2>
+                <h3 class="album__composer">{{composer}}</h3>
+                <p class="album__description">{{album.description}}</p>
+                <a class="album__publisher" href="{{album.publisher_url}}">
+                  {{album.publisher}}
+                </a>
+              </div>
+            </div>
           </script>
         </div>
 

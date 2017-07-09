@@ -11,8 +11,7 @@ export class AlbumComponent {
     const _el = this.elementRef.nativeElement as HTMLElement;
 
     _el.addEventListener('click', (event: Event) => {
-      const content = _el.querySelector('.album__detail').innerHTML;
-      console.log(content);
+      const content = _el.querySelector('.album__overlay').innerHTML;
       this._overlay.open(content);
     });
   }

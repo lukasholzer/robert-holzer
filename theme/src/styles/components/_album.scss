@@ -21,10 +21,6 @@
             transform: perspective(600px) rotateY(-10deg);
         }
     }
-
-    .overlay & {
-        width: 200px;
-    }
 }
 
 .album__image {
@@ -38,4 +34,51 @@
 
 .album__detail {
     display: none;
+    align-items: flex-start;
+    max-width: $breakpoint-large;
+    width: 90vw;
+    max-height: 80vh;
+    flex-flow: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    @media(min-width: $breakpoint-medium) {
+        flex-flow: row;
+        border: $spacer/2 solid transparent;
+        &[data-song-cat='opera'] { border-color: $color-red; }
+        &[data-song-cat='concert'] { border-color: $color-blue; }
+        &[data-song-cat='song'] { border-color: $color-gold; }
+    }
+
+    .overlay & {
+        display: flex;
+    }
+
+    .album__cover {
+        @media(min-width: $breakpoint-medium) {
+            width: 40%;
+        }
+    }
+
+    .album__detailText {
+        padding: $spacer * 2;
+        width: calc(100% - #{$spacer * 4});
+
+        @media(min-width: $breakpoint-medium) {
+            width: calc(60% - #{$spacer * 4});
+        }
+    }
+
+    .album__title {
+        font-size: 2.4rem; //48px
+    }
+
+    .album__composer {
+        font-size: 1rem;
+        font-weight: normal;
+        padding: $spacer 0 $spacer * 1.5;
+    }
+
 }
+
+
