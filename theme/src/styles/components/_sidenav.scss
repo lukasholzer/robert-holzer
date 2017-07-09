@@ -1,0 +1,19 @@
+.sidenav-list__item {
+    cursor: pointer;
+    transition: margin-left 450ms ease-out;
+
+    &.is-active {
+        font-weight: bold;
+        font-style: italic;
+
+        &::after {
+            padding-left: 0.5em;
+            display: inline;
+            content: '—';
+        }
+    }
+
+    &:hover {
+        margin-left: -0.2em;
+    }
+}
