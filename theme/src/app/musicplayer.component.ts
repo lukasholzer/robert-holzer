@@ -13,12 +13,12 @@ declare var howler: any;
 })
 export class MusicplayerComponent {
 
-  static API_URL: string = 'api/v1/track/';
+  static API_URL = 'api/v1/track/';
 
   private _controlls: MusicplayerControlls = new MusicplayerControlls();
   private _playList: ITrack[];
-  private _isPlaying: boolean = false;
-  private _currentSong: number = 0; // ID of the Current Song in the _playList Array
+  private _isPlaying = false;
+  private _currentSong = 0; // ID of the Current Song in the _playList Array
 
   private _favourites: MusicplayerFavourite = new MusicplayerFavourite();
 

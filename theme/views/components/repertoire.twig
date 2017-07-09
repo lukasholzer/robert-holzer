@@ -14,7 +14,7 @@
 
           {% for work in item.repertoire %}
 
-            {% include 'components/repertoire-work.twig' with {composer: item.composer} %}
+            {% include 'components/repertoire-work.twig' with {composer: item.composer_slug} %}
 
           {% endfor %}
 

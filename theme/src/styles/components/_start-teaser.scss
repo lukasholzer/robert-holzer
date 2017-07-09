@@ -20,15 +20,16 @@ $dot-size: 1.4rem !default;
 }
 
 .start-teaser__box {
-    position: absolute;
-    bottom: 5rem;
-    left: 50%;
-    width: 100%;
-    max-width: $breakpoint-large;
-    transform: translateX(-50%);
-    display: flex;
     align-items: flex-end;
+    bottom: 5rem;
+    display: flex;
     flex-flow: column;
+    left: 50%;
+    max-width: $breakpoint-large;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 3;
 }
 
 .start-teaser__dots {
@@ -54,10 +55,11 @@ $dot-size: 1.4rem !default;
 }
 
 .start-teaser__mouse {
-    position: absolute;
     bottom: 2rem;
     left: 50%;
+    position: absolute;
     transform: translateX(-50%);
+    z-index: 2;
 
     svg {
         height: 2.8rem;

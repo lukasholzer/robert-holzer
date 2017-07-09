@@ -2,14 +2,30 @@
     position: relative;
 }
 
-.album {}
+.album {
+    margin-bottom: $spacer*2;
+}
 
 .album__cover {
+
+    .album > & {
+        margin-bottom: $spacer;
+        border-bottom: $spacer/2 solid transparent;
+        [data-song-cat='opera'] & { border-bottom-color: $color-red; }
+        [data-song-cat='concert'] & { border-bottom-color: $color-blue; }
+        [data-song-cat='song'] & { border-bottom-color: $color-gold; }
+        transform-origin: 30% 50%;
+        transition: transform 400ms ease-out;
+
+        .album:hover & {
+            transform: perspective(600px) rotateY(-10deg);
+        }
+    }
+}
+
+.album__image {
     width: 100%;
-    border-bottom: $spacer/2 solid transparent;
-    [data-song-cat="opera"] & { border-bottom-color: $color-red; }
-    [data-song-cat="concert"] & { border-bottom-color: $color-blue; }
-    [data-song-cat="song"] & { border-bottom-color: $color-gold; }
+    margin-bottom: 0;
 }
 
 .album__title {
@@ -18,7 +34,12 @@
 
 .album__detail {
     position: absolute;
+    background: $color-white;
+    width: 100%;
     top: 0;
     right: 0;
-    display: none;
+    z-index: 1000000;
+    // display: nosne;
+
+    .album__cover { width: 200px; }
 }

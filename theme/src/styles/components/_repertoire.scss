@@ -53,7 +53,7 @@ $bp-medium : 765px !default;
     &:hover {
         border-color: $color-black;
     }
-    &:before {
+    &::before {
         content: '';
         display: block;
         width: 1rem;
@@ -63,7 +63,7 @@ $bp-medium : 765px !default;
         top: 3.5rem;
         left: 1.6rem;
     }
-    &:after {
+    &::after {
         content: '';
         position: absolute;
         bottom: -$border-size;
@@ -73,30 +73,30 @@ $bp-medium : 765px !default;
         transition: width 250ms ease-out;
         background: $color-red;
     }
-    &[data-rep-cat="opera"] {
+    &[data-rep-cat='opera'] {
         &:hover {
             border-color: $color-red;
         }
-        &:before,
-        &:after {
+        &::before,
+        &::after {
             background-color: $color-red;
         }
     }
-    &[data-rep-cat="concert"] {
+    &[data-rep-cat='concert'] {
         &:hover {
             border-color: $color-blue;
         }
-        &:before,
-        &:after {
+        &::before,
+        &::after {
             background-color: $color-blue;
         }
     }
-    &[data-rep-cat="song"] {
+    &[data-rep-cat='song'] {
         &:hover {
             border-color: $color-gold;
         }
-        &:before,
-        &:after {
+        &::before,
+        &::after {
             background-color: $color-gold;
         }
     }
@@ -111,7 +111,7 @@ $bp-medium : 765px !default;
     z-index: 500;
     border-color: $color-white !important;
     padding-bottom: $space-around * 2;
-    &:after {
+    &::after {
         width: 100%;
     }
 }

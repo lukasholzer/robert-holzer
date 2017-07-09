@@ -1,0 +1,25 @@
+.univercity {
+    display: flex;
+}
+
+
+.university-content {
+    width: auto;
+}
+
+
+.univercity-filter {
+    width: 15rem;
+    margin-right: $spacer * 4;
+}
+
+
+.univercity-posts,
+.univercity-curriculum {
+    margin-bottom: $spacer * 4;
+}
+
+
+.univercity-posts__item {
+    width: 20%;
+}

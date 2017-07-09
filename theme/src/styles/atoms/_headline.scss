@@ -19,7 +19,7 @@ h1.headline {
 
 .headline--section {
     margin-bottom: 2em;
-    &:after {
+    &::after {
         content: '/';
         display: block;
     }

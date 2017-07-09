@@ -18,4 +18,3 @@
   Timber::render( $press, $context );
 
   ?>
-</section>

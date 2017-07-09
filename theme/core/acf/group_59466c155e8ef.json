@@ -27,13 +27,40 @@
             "library": "all"
         },
         {
+            "key": "field_5960a71c81d32",
+            "label": "Universität",
+            "name": "is_uni",
+            "type": "true_false",
+            "instructions": "Auswählen ob es sich um einen Universitäts Post handelt",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "60",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Universität",
+            "ui_off_text": "News"
+        },
+        {
             "key": "field_59466c189417c",
             "label": "Kategorie",
             "name": "category",
             "type": "taxonomy",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5960a71c81d32",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "40",
                 "class": "",
@@ -46,6 +73,36 @@
             "save_terms": 1,
             "load_terms": 1,
             "return_format": "object",
+            "multiple": 0
+        },
+        {
+            "key": "field_5960a78c81d33",
+            "label": "Kategorie",
+            "name": "category_uni",
+            "type": "taxonomy",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5960a71c81d32",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "40",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "univercity",
+            "field_type": "select",
+            "allow_null": 0,
+            "add_term": 0,
+            "save_terms": 1,
+            "load_terms": 1,
+            "return_format": "id",
             "multiple": 0
         },
         {
@@ -100,5 +157,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1498431364
+    "modified": 1499510803
 }

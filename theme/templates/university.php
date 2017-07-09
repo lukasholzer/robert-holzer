@@ -1,4 +1,0 @@
-<?php
-  /*
-  Template Name: Universität
-  */
