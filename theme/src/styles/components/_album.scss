@@ -3,6 +3,7 @@
 }
 
 .album {
+    position: relative;
     margin-bottom: $spacer*2;
 }
 
@@ -12,6 +13,12 @@
     [data-song-cat='opera'] & { border-bottom-color: $color-red; }
     [data-song-cat='concert'] & { border-bottom-color: $color-blue; }
     [data-song-cat='song'] & { border-bottom-color: $color-gold; }
+    transform-origin: 30% 50%;
+    transition: transform 400ms ease-out;
+
+    .album:hover & {
+        transform: perspective(600px) rotateY(-10deg);
+    }
 }
 
 .album__image {
