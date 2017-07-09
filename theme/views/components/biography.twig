@@ -4,8 +4,8 @@
   <div class="biography grid" data-grid="left">
 
     {% for row in post.get_field('curriculum') %}
-      <h4 class="grid__item" data-grid="2/12">{{ row.title }}</h4>
-      <p class="grid__item" data-grid="10/12">{{ row.text }}</p>
+      <h4 class="grid__item" data-grid="12/12" data-grid--medium="2/12">{{ row.title }}</h4>
+      <p class="grid__item" data-grid="12/12" data-grid--medium="10/12">{{ row.text }}</p>
     {% endfor %}
 
   </div>
