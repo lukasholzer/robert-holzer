@@ -1,16 +1,29 @@
 .music-player {
-    bottom: 0;
-    left: 0;
     background-color: $background-color;
+    bottom: 0;
+    flex-direction: column;
+    left: 0;
+    margin-left: -1rem;
+    padding: 1rem;
     z-index: 600;
+    @media(min-width: $breakpoint-medium) {
+        flex-direction: row;
+    }
 }
 
 .music-player,
 .music-player-controlls__buttons {
-    width: 100%;
+    align-items: flex-start;
     display: flex;
-    flex-direction: row;
+    width: 100%;
+    @media(min-width: $breakpoint-medium) {
+        align-items: center;
+    }
+}
+
+.music-player-controlls__buttons {
     align-items: center;
+    flex-direction: row;
 }
 
 .music-player-controlls {
@@ -18,9 +31,14 @@
 }
 
 .music-player__image {
+    display: none;
     height: 5rem;
-    width: 5rem;
     position: relative;
+    width: 5rem;
+
+    @media(min-width: $breakpoint-medium) {
+        display: block;
+    }
 }
 
 .music-player__cover {
@@ -28,10 +46,15 @@
 }
 
 .music-player__information {
-    width: 20%;
-    padding-left: 2rem;
-    font-weight: 300;
     color: $font-color;
+    font-weight: 300;
+    padding-bottom: $spacer;
+
+    @media(min-width: $breakpoint-medium) {
+        padding-bottom: 0;
+        width: 20%;
+        padding-left: 2rem;
+    }
 }
 
 .music-player__title,
@@ -40,9 +63,9 @@
 }
 
 .music-player__title {
+    color: darken($color-white, 10%);
     font-size: 0.9rem;
     padding-bottom: 0.5em;
-    color: darken($color-white, 10%);
 }
 
 .music-player__meta {
@@ -51,9 +74,9 @@
 
 
 .music-player__heart {
+    bottom: 1.3em;
     position: absolute;
     right: 1.3em;
-    bottom: 1.3em;
 
     svg {
         cursor: pointer;

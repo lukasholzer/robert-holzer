@@ -1,8 +1,12 @@
 .music-player-controlls {
-    padding-left: 4rem;
     display: flex;
     flex-flow: column;
+    width: 100%;
     align-items: center;
+
+    @media(min-width: $breakpoint-medium) {
+        padding-left: 4rem;
+    }
 }
 
 .music-player-controlls__buttons {
@@ -29,8 +33,6 @@
     }
 }
 
-
-
 .music-player-controlls__playPause {
     padding: 0.2em;
     border-radius: 50%;
@@ -41,8 +43,7 @@
 
 
 .music-player-controlls__play,
-.music-player-controlls__paus
- {
+.music-player-controlls__paus {
     position: relative;
 
     svg {
