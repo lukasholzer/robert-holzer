@@ -7,10 +7,20 @@
     top: 0;
     transition: opacity 400ms ease-out;
     width: 100vw;
-    z-index: 10000;
+    z-index: 1100;
 
-    .is-active {
+    &[aria-hidden='false'] {
         left: 0;
         opacity: 1;
     }
+}
+
+
+.overlay__content {
+    background: $color-white;
+    display: block;
+    margin-left: 50%;
+    margin-top: 45%;
+    padding: 2rem;
+    transform: translate(-50%, -50%);
 }

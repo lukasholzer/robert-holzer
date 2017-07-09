@@ -1,22 +1,29 @@
 import { Component, ElementRef } from 'mojiito-core';
-import { HeaderComponent } from './overlay.component';
+import { OverlayComponent } from './overlay.component';
 import { RepertoireComponent } from './repertoire.component';
 import { MusicplayerComponent } from './musicplayer.component';
 import { StickyComponent } from './sticky.component';
 import { FilterComponent } from './filter.component';
 import { NavigationComponent } from './navigation.component';
 import { NavigationOverlayComponent } from './navigationOverlay.component';
+import { AlbumComponent } from './album.component';
+
+import { Overlay, OVERLAY_PROVIDERS } from './services/overlay.service';
 
 @Component({
     selector: 'body',
     components: [
-      HeaderComponent,
+      OverlayComponent,
       RepertoireComponent,
       MusicplayerComponent,
+      AlbumComponent,
       StickyComponent,
       FilterComponent,
       NavigationComponent,
       NavigationOverlayComponent
+    ],
+    providers: [
+      OVERLAY_PROVIDERS
     ]
 })
 export class AppComponent {

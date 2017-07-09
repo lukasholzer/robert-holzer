@@ -21,6 +21,10 @@
             transform: perspective(600px) rotateY(-10deg);
         }
     }
+
+    .overlay & {
+        width: 200px;
+    }
 }
 
 .album__image {
@@ -33,13 +37,5 @@
 }
 
 .album__detail {
-    position: absolute;
-    background: $color-white;
-    width: 100%;
-    top: 0;
-    right: 0;
-    z-index: 1000000;
-    // display: nosne;
-
-    .album__cover { width: 200px; }
+    display: none;
 }

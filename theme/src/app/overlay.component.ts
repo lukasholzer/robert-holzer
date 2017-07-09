@@ -1,9 +1,9 @@
 import { Component, ElementRef, Renderer } from 'mojiito-core';
 
 @Component({
-    selector: 'header'
+    selector: '.overlay'
 })
-export class HeaderComponent {
+export class OverlayComponent {
 
     constructor(private elementRef: ElementRef, private renderer: Renderer) {
         // const btn: Element = renderer.selectRootElement('.toggle-drawer');
@@ -11,7 +11,7 @@ export class HeaderComponent {
         //     console.log('clicked');
         // });
 
-        console.log('header Component init');
+        console.log('overlay Component init');
     }
 
 }
