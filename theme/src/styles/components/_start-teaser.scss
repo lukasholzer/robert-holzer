@@ -3,13 +3,14 @@ $breakpoint-medium: 765px !default;
 $dot-size: 1.4rem !default;
 
 .start-teaser {
-    background-color: lighten($color-black, 20%);
-    height: 100vh;
-    width: 100%;
     background-attachment: fixed;
+    background-color: lighten($color-black, 20%);
+    background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: top center;
+    height: 100vh;
+    width: 100%;
+
     @media(min-width: $breakpoint-medium) {
         background-position: top right;
     }
@@ -20,16 +21,21 @@ $dot-size: 1.4rem !default;
 }
 
 .start-teaser__box {
-    align-items: flex-end;
-    bottom: 5rem;
+    align-items: flex-start;
+    bottom: 9rem;
     display: flex;
     flex-flow: column;
     left: 50%;
     max-width: $breakpoint-large;
     position: absolute;
     transform: translateX(-50%);
-    width: 100%;
+    width: calc(100% - #{$spacer * 2});
     z-index: 3;
+
+    @media(min-width: $breakpoint-medium) {
+        align-items: flex-end;
+        bottom: 5rem;
+    }
 }
 
 .start-teaser__dots {
@@ -38,17 +44,26 @@ $dot-size: 1.4rem !default;
 
 .start-teaser__dot {
     border-radius: 50%;
-    width: $dot-size;
-    height: $dot-size;
+    width: $dot-size/2;
+    height: $dot-size/2;
+
+    @media(min-width: $breakpoint-medium) {
+        width: $dot-size;
+        height: $dot-size;
+    }
+
     & + & {
         margin-left: 0.5em;
     }
+
     &:nth-child(1) {
         background-color: $color-red;
     }
+
     &:nth-child(2) {
         background-color: $color-blue;
     }
+
     &:nth-child(3) {
         background-color: $color-gold;
     }
