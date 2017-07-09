@@ -1,0 +1,6 @@
+<div class="gallery__item {% if hide %}is-hidden{% endif %}"
+     data-filter-item="{{post.custom.category | get_gallery_taxonomy}}">
+  <a class="gallery__link" href="{{ TimberImage(image).src }}">
+    <img class="gallery__image" src="{{ TimberImage(image).src('medium') }}" />
+  </a>
+</div>

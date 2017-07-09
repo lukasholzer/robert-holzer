@@ -6,17 +6,17 @@
     margin-bottom: $spacer*2;
 }
 
-// .album__cover {
-//     margin-bottom: $spacer;
-// }
+.album__cover {
+    margin-bottom: $spacer;
+    border-bottom: $spacer/2 solid transparent;
+    [data-song-cat='opera'] & { border-bottom-color: $color-red; }
+    [data-song-cat='concert'] & { border-bottom-color: $color-blue; }
+    [data-song-cat='song'] & { border-bottom-color: $color-gold; }
+}
 
 .album__image {
     width: 100%;
-    // margin-bottom: 0;
-    // border-bottom: $spacer/2 solid transparent;
-    // [data-song-cat='opera'] & { border-bottom-color: $color-red; }
-    // [data-song-cat='concert'] & { border-bottom-color: $color-blue; }
-    // [data-song-cat='song'] & { border-bottom-color: $color-gold; }
+    margin-bottom: 0;
 }
 
 .album__title {

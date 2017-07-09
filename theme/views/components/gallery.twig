@@ -2,37 +2,31 @@
 {% set actual = '' %}
 <section class="section">
 
-  <div class="{{component}}" data-filter>
+  <div class="gallery" data-filter='{"holder":".gallery__content", "item":".gallery__item"}'>
 
-    <nav class="{{component}}__nav">
-      <ul class="{{component}}-nav-list" data-filter-nav>
+    <nav class="sidenav">
+      <ul class="sidenav-list">
         {% for item in menu %}
 
           {% if loop.index0 == 0 %}
             {% set actual = item.slug %}
           {% endif %}
 
-          <li class="{{component}}-nav-list__item {% if loop.index0 == 0%}is-active{% endif %}" data-filter-prop="{{item.slug}}">{{item.name}}</li>
+          <li class="sidenav-list__item {% if loop.index0 == 0%}is-active{% endif %}" data-filter-nav="{{item.slug}}">{{item.name}}</li>
         {% endfor %}
-        <li class="{{component}}-nav-list__download"><a href="">download</a></li>
+        <li class="sidenav-list__item"><a href="">download</a></li>
       </ul>
     </nav>
 
+    <article class="gallery__content">
     {% for post in gallery %}
 
       {% for image in post.get_field('images') %}
-
-          <div class="{{component}}__item {% if hide %}is-hidden{% endif %}" data-filter-item="{{post.custom.category | get_gallery_taxonomy}}">
-            <a class="{{component}}__link" href="{{ TimberImage(image).src }}">
-              <img class="{{component}}__image" src="{{ TimberImage(image).src('medium') }}" />
-            </a>
-          </div>
-
+        {% include 'components/gallery-item.twig' %}
       {% endfor %}
 
-
     {% endfor %}
-
+    </article>
 
   </div>
 
