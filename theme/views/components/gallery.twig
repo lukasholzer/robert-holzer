@@ -2,30 +2,29 @@
 {% set actual = '' %}
 <section class="section">
 
-  <div class="gallery" data-filter='{"holder":".gallery__content", "item":".gallery__item"}'>
+  <div class="gallery" data-filter='{"holder":".gallery__content", "item":".gallery__item", "column": ".gallery__grid-sizer", "gutter": ".gallery__gutter-sizer"}'>
 
     <nav class="sidenav">
       <ul class="sidenav-list">
+        <li class="sidenav-list__item is-active" data-filter-nav="*">Alle</li>
         {% for item in menu %}
-
-          {% if loop.index0 == 0 %}
-            {% set actual = item.slug %}
-          {% endif %}
-
-          <li class="sidenav-list__item {% if loop.index0 == 0%}is-active{% endif %}" data-filter-nav="{{item.slug}}">{{item.name}}</li>
+        <li class="sidenav-list__item" data-filter-nav="{{item.slug}}">{{item.name}}</li>
         {% endfor %}
-        <li class="sidenav-list__item"><a href="">download</a></li>
+        <li class="sidenav-list__item">download</li>
       </ul>
     </nav>
 
     <article class="gallery__content">
-    {% for post in gallery %}
+      <div class="gallery__grid-sizer"></div>
+      <div class="gallery__gutter-sizer"></div>
 
-      {% for image in post.get_field('images') %}
-        {% include 'components/gallery-item.twig' %}
+      {% for post in gallery %}
+
+        {% for image in post.get_field('images') %}
+          {% include 'components/gallery-item.twig' %}
+        {% endfor %}
+
       {% endfor %}
-
-    {% endfor %}
     </article>
 
   </div>

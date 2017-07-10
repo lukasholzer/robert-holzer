@@ -1,10 +1,12 @@
 import { Component, ElementRef } from 'mojiito-core';
+const imagesLoaded = require('imagesloaded');
 const isotope = require('isotope-layout');
-
 
 interface IFilterOptions {
   holder: string;
   item: string;
+  column?: string;
+  gutter?: string;
 }
 
 @Component({
@@ -30,9 +32,16 @@ export class FilterComponent {
       itemSelector : options.item,
       percentPosition : true,
       masonry : {
-        columnWidth: options.item
+        columnWidth : options.column,
+        gutter : options.gutter
       },
       filter: '*'
+    });
+
+    const imgLoaded = imagesLoaded(this.content);
+
+    imgLoaded.on('progress', (instance: any, image: any) => {
+      this._iso.layout();
     });
 
     for (let i = 0, max = this.nav.length; i < max; i++) {
@@ -59,13 +68,17 @@ export class FilterComponent {
   }
 
   private filterItems(filterProp: string) {
-    this._iso
-        .arrange({
-          filter: function (item: HTMLElement) {
-            const cmp = item.getAttribute('data-filter-item');
-            return (cmp === filterProp);
-          }
-        });
+    if (filterProp === '*') {
+      this._iso.arrange({ filter: '*' });
+      return;
+    }
+
+    this._iso.arrange({
+      filter: function (item: HTMLElement) {
+        const cmp = item.getAttribute('data-filter-item');
+        return (cmp === filterProp);
+      }
+    });
   }
 
 
