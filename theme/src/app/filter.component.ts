@@ -30,10 +30,11 @@ export class FilterComponent {
 
     this._iso = new isotope(this.content, {
       itemSelector : options.item,
-      percentPosition : true,
+      percentPosition: true,
+      stamp: '.sidenav',
       masonry : {
         columnWidth : options.column,
-        gutter : options.gutter
+        gutter: options.gutter,
       },
       filter: '*'
     });

@@ -4,17 +4,18 @@
 
   <div class="gallery" data-filter='{"holder":".gallery__content", "item":".gallery__item", "column": ".gallery__grid-sizer", "gutter": ".gallery__gutter-sizer"}'>
 
-    <nav class="sidenav">
-      <ul class="sidenav-list">
-        <li class="sidenav-list__item is-active" data-filter-nav="*">Alle</li>
-        {% for item in menu %}
-        <li class="sidenav-list__item" data-filter-nav="{{item.slug}}">{{item.name}}</li>
-        {% endfor %}
-        <li class="sidenav-list__item">download</li>
-      </ul>
-    </nav>
-
     <article class="gallery__content">
+
+      <nav class="sidenav gallery__item">
+        <ul class="sidenav-list">
+          {% for item in menu %}
+          <li class="sidenav-list__item" data-filter-nav="{{item.slug}}">{{item.name}}</li>
+          {% endfor %}
+          <li class="sidenav-list__item is-active" data-filter-nav="*">Alle</li>
+          <li class="sidenav-list__item">download</li>
+        </ul>
+      </nav>
+
       <div class="gallery__grid-sizer"></div>
       <div class="gallery__gutter-sizer"></div>
 
