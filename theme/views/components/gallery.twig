@@ -9,9 +9,13 @@
       <nav class="sidenav gallery__item">
         <ul class="sidenav-list">
           {% for item in menu %}
-          <li class="sidenav-list__item" data-filter-nav="{{item.slug}}">{{item.name}}</li>
+          <li class="sidenav-list__item" data-filter-nav="{{item.slug}}">
+            <span data-color="blue"></span>{{item.name}}
+          </li>
           {% endfor %}
-          <li class="sidenav-list__item is-active" data-filter-nav="*">Alle</li>
+          <li class="sidenav-list__item is-active" data-filter-nav="*">
+            <span data-color="all"></span>Alle
+          </li>
           {# <li class="sidenav-list__item">download</li> #}
         </ul>
       </nav>

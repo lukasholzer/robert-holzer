@@ -1,6 +1,15 @@
+$bubble-size: 0.7rem !default;
+$spacer: 1rem !default;
+$color-red : rgba(200, 011, 076, 100) !default;
+$color-gold : rgba(191, 170, 113, 100) !default;
+$color-blue : rgba(093, 142, 189, 100) !default;
+
 .sidenav-list__item {
     cursor: pointer;
-    transition: margin-left 450ms ease-out;
+    transition: padding 300ms ease-out;
+    position: relative;
+    padding-left: $bubble-size*2;
+    line-height: 1.3em;
 
     &.is-active {
         font-weight: bold;
@@ -13,7 +22,50 @@
         }
     }
 
-    &:hover {
-        margin-left: -0.2em;
+    span {
+        @extend %bubble;
+        margin-left: -$spacer;
+        margin-right: $spacer;
+        position: relative;
+        transform: will-change;
+
+        &[data-color='all'] {
+            background-color: $color-blue;
+            left: -$spacer/3.5;
+
+            &::before,
+            &::after {
+                @extend %bubble;
+                position: absolute;
+            }
+
+            &::before {
+                left: -$spacer/3.5;
+                background-color: $color-gold;
+            }
+
+            &::after {
+                left: $spacer/3.5;
+                background-color: $color-red;
+                z-index: -1;
+            }
+        }
+
+        &[data-color='blue'] { background-color: $color-blue; }
+        &[data-color='gold'] { background-color: $color-gold; }
+        &[data-color='red'] { background-color: $color-red; }
     }
+
+    &:hover {
+        padding-left: $bubble-size*1.7;
+    }
+}
+
+
+%bubble {
+    content: '';
+    display: inline-block;
+    width: $bubble-size;
+    height: $bubble-size;
+    border-radius: $bubble-size;
 }
