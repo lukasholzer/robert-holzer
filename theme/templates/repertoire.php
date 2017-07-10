@@ -25,6 +25,7 @@
 
     $context['items'][] = array(
       'composer' => $composer->name,
+      'composer_slug' => $composer->description,
       'repertoire' => Timber::get_posts($args)
     );
 

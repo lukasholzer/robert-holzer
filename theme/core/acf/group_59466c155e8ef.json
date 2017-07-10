@@ -96,8 +96,8 @@
                 "class": "",
                 "id": ""
             },
-            "taxonomy": "category",
-            "field_type": "checkbox",
+            "taxonomy": "univercity",
+            "field_type": "select",
             "allow_null": 0,
             "add_term": 0,
             "save_terms": 1,
@@ -157,5 +157,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1499507027
+    "modified": 1499510803
 }

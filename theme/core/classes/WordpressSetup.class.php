@@ -29,6 +29,9 @@ class WordpressSetup {
 
     add_action('wp_enqueue_scripts',  array($this, 'add_theme_scripts_and_styles'));
 
+    add_action( 'admin_menu', array($this, 'remove_menus'));
+    add_action( 'admin_menu', array($this, 'remove_unused_menu_pages'));
+
 
     // clean up wordpress
     add_theme_support('soil-clean-up');
@@ -68,6 +71,17 @@ class WordpressSetup {
       )
     );
   }
+  // Remove menus from the admin page
+  public function remove_menus(){
+      remove_menu_page('edit-tags.php?taxonomy=post_tag'); // Post tags
+      remove_menu_page('edit-tags.php?taxonomy=category'); // categories
+  }
+
+  public function remove_unused_menu_pages() {
+    remove_menu_page('link-manager.php');
+    remove_menu_page('tools.php');
+    remove_menu_page('edit-comments.php');
+  }
 
   public function register_custom_post_types() {
     $repertoire = new CustomPostTypes('repertoire', 'Repertoire', 'Repertoire', 'dashicons-playlist-audio');
@@ -82,6 +96,7 @@ class WordpressSetup {
     $composer = new CustomTaxonomies('composer', 'Komponist', 'Komponisten', false, array('repertoire', 'music', 'song'));
     $songtype = new CustomTaxonomies('songtype', 'Filter', 'Filter', false, array('post', 'repertoire', 'music', 'song', 'gallery', 'press'));
     $gallery = new CustomTaxonomies('gallery', 'Kategorie', 'Kategorien', false, array('gallery'));
+    $uni = new CustomTaxonomies('univercity', 'Univercity', 'Univercities', false, array('post'));
   }
 
   public function change_acf_path( $path ) {

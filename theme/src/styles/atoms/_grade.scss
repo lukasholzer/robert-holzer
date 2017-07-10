@@ -1,0 +1,41 @@
+.has--gradient {
+    position: relative;
+
+    &::before {
+        background:
+            linear-gradient(
+                135deg,rgba($color-red, 0.4) 0,
+                transparent 50%,
+                transparent 100%
+            ),
+            linear-gradient(
+                45deg, transparent 0,
+                transparent 50%,
+                rgba($color-blue, 0.4) 100%
+            ),
+            linear-gradient( transparent 5%, rgba($color-black, 0.8) 100%);
+        bottom: 0;
+        content: '';
+        font-size: 0;
+        left: 0;
+        line-height: 0;
+        opacity: 1;
+        overflow: hidden;
+        position: absolute;
+        right: 0;
+        text-indent: -9999rem;
+        top: 0;
+        transition: opacity 400ms ease-out;
+        z-index: 1;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    &.has--gradient-hover-out:hover {
+        &::before {
+            opacity: 0;
+        }
+    }
+}

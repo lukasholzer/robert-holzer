@@ -7,10 +7,15 @@
 @import 'atoms/link';
 @import 'atoms/icons';
 @import 'atoms/heart';
+@import 'atoms/image';
 
 @import 'base/footer';
 
 @import 'components/section';
+
+
+@import 'components/sidenav';
+
 
 @import 'components/navigation';
 @import 'components/hamburger';
@@ -20,9 +25,11 @@
 @import 'components/press';
 @import 'components/gallery';
 @import 'components/news-text';
+@import 'components/univercity';
 
 @import 'components/tooltip';
 
+@import 'components/overlay/overlay';
 
 @import 'components/music-player/main';
 

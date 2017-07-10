@@ -18,3 +18,13 @@ $breakpoint-small           : 510px;
 
 
 @import './grid-settings';
+
+
+/** z-indexes **
+ * 1100: Overlay
+ * 1000: navigation
+ * 1000: tooltip
+ * 900: sticky
+ * 600: player
+ * 500: repertoire
+ */

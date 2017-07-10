@@ -1,19 +1,19 @@
 .music-player-controlls__timeline {
     position: relative;
-    min-width: 400px;
+    width: 100%;
     font-size: 0.6rem;
     display: flex;
     justify-content: space-between;
     color: $font-color;
 
-    &:before {
+    &::before {
         content: '';
         width: 100%;
         background-color: $progress-background;
     }
 }
 
-.music-player-controlls__timeline:before,
+.music-player-controlls__timeline::before,
 .timeline__bar {
     position: absolute;
     top: 0%;

@@ -4,6 +4,35 @@
 
   <div class="univercity">
 
+    {% include 'components/univercity-filter.twig' %}
+
+    <article class="university-content">
+
+      <div class="univercity-posts">
+
+      {% for post in posts %}
+
+        {% include 'components/univercity-post.twig' %}
+
+      {% endfor %}
+
+      </div>
+
+      <div class="univercity-curriculum grid" data-grid="left">
+
+      {% for row in curriculum %}
+        <div class="grid__item" data-grid="2/12">
+          <h4>{{ row.year }}</h4>
+        </div>
+        <div class="grid__item" data-grid="10/12">
+          {{ row.text }}
+        </div>
+      {% endfor %}
+
+      </div>
+
+    </article>
+
 
   </div>
 </section>

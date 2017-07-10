@@ -1,65 +1,87 @@
 import { Component, ElementRef } from 'mojiito-core';
+const imagesLoaded = require('imagesloaded');
+const isotope = require('isotope-layout');
 
-export interface IFilterOptions {
-  itemSelector: string;
-  filterSelector: string;
-  filterProperty: string;
+interface IFilterOptions {
+  holder: string;
+  item: string;
+  column?: string;
+  gutter?: string;
 }
 
 @Component({
-  selector: '[data-filter]'
+selector : '[data-filter]'
 })
 export class FilterComponent {
 
-  static ACTIVE_CLASS: string = 'is-active';
-  static HIDDEN_CLASS: string = 'is-hidden';
+  private element: HTMLElement;
+  private content: HTMLElement;
+  private nav: NodeListOf<Element>;
+  private navActive: HTMLElement;
 
-  private _options: IFilterOptions;
-
-  private _filters: NodeListOf<HTMLElement>;
-  private _elements: NodeListOf<HTMLElement>;
-  private _active: HTMLElement;
+  private _iso: any;
 
   constructor(private elementRef: ElementRef) {
 
-    const _el = elementRef.nativeElement;
-    this._options = JSON.parse(_el.getAttribute('data-filter')) as IFilterOptions;
+    const element = this.elementRef.nativeElement as HTMLElement;
+    const options = JSON.parse(element.getAttribute('data-filter')) as IFilterOptions;
+    this.content = element.querySelector(options.holder) as HTMLElement;
+    this.nav = element.querySelectorAll('[data-filter-nav]') as NodeListOf<Element>;
 
+    this._iso = new isotope(this.content, {
+      itemSelector : options.item,
+      percentPosition: true,
+      stamp: '.sidenav',
+      masonry : {
+        columnWidth : options.column,
+        gutter: options.gutter,
+      },
+      filter: '*'
+    });
 
-    this._filters = _el.querySelectorAll(this._options.filterSelector);
-    this._elements = _el.querySelectorAll(this._options.itemSelector);
+    const imgLoaded = imagesLoaded(this.content);
 
-    for (let i = 0, max = this._filters.length; i < max; i++) {
-      const filter = this._filters[i] as HTMLElement;
-      if (filter.classList.contains(FilterComponent.ACTIVE_CLASS)) {
-        this._active = filter;
+    imgLoaded.on('progress', (instance: any, image: any) => {
+      this._iso.layout();
+    });
+
+    for (let i = 0, max = this.nav.length; i < max; i++) {
+      const navItem = this.nav[i] as HTMLElement;
+
+      if (navItem.classList.contains('is-active')) {
+        this.navActive = navItem;
       }
 
-      filter.addEventListener('click', (event: Event) => {
+      navItem.addEventListener('click', (event: Event) => {
         event.preventDefault();
-        this.setActive(filter);
-        this.filter();
+        const active = event.target as HTMLElement;
+        const prop = active.getAttribute('data-filter-nav');
+        this.toggleActiveNavigationElement(active);
+        this.filterItems(prop);
       });
     }
   }
 
-  setActive(neues: HTMLElement): void {
-    this._active.classList.remove(FilterComponent.ACTIVE_CLASS);
-    this._active = neues;
-    neues.classList.add(FilterComponent.ACTIVE_CLASS);
+  private toggleActiveNavigationElement(active: HTMLElement) {
+    this.navActive.classList.remove('is-active');
+    this.navActive = active;
+    this.navActive.classList.add('is-active');
   }
 
-  filter(): void {
-    for (let i = 0, max = this._elements.length; i < max; i++) {
-      const el = this._elements[i] as HTMLElement;
-
-      if (el.getAttribute(this._options.filterProperty) === this._active.getAttribute(this._options.filterProperty)) {
-        el.classList.remove(FilterComponent.HIDDEN_CLASS);
-      } else {
-        el.classList.add(FilterComponent.HIDDEN_CLASS);
-      }
+  private filterItems(filterProp: string) {
+    if (filterProp === '*') {
+      this._iso.arrange({ filter: '*' });
+      return;
     }
 
+    this._iso.arrange({
+      filter: function (item: HTMLElement) {
+        const cmp = item.getAttribute('data-filter-item');
+        return (cmp === filterProp);
+      }
+    });
   }
+
+
 
 }

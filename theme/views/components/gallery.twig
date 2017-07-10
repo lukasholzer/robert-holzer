@@ -2,48 +2,31 @@
 {% set actual = '' %}
 <section class="section">
 
-  <div class="{{component}}"
-    data-filter='{
-      "itemSelector": ".{{component}}__item",
-      "filterSelector": ".{{component}}-nav-list__item",
-      "filterProperty": "data-filter-prop"
-    }'>
+  <div class="gallery" data-filter='{"holder":".gallery__content", "item":".gallery__item", "column": ".gallery__grid-sizer", "gutter": ".gallery__gutter-sizer"}'>
 
-    <nav class="{{component}}__nav">
-      <ul class="{{component}}-nav-list">
-        {% for item in menu %}
+    <article class="gallery__content">
 
-          {% if loop.index0 == 0 %}
-            {% set actual = item.slug %}
-          {% endif %}
+      <nav class="sidenav gallery__item">
+        <ul class="sidenav-list">
+          {% for item in menu %}
+          <li class="sidenav-list__item" data-filter-nav="{{item.slug}}">{{item.name}}</li>
+          {% endfor %}
+          <li class="sidenav-list__item is-active" data-filter-nav="*">Alle</li>
+          {# <li class="sidenav-list__item">download</li> #}
+        </ul>
+      </nav>
 
-          <li class="{{component}}-nav-list__item {% if loop.index0 == 0%}is-active{% endif %}" data-filter-prop="{{item.slug}}">{{item.name}}</li>
+      <div class="gallery__grid-sizer"></div>
+      <div class="gallery__gutter-sizer"></div>
+
+      {% for post in gallery %}
+
+        {% for image in post.get_field('images') %}
+          {% include 'components/gallery-item.twig' %}
         {% endfor %}
-        <li class="{{component}}-nav-list__download"><a href="">download</a></li>
-      </ul>
-    </nav>
-
-    {% for post in gallery %}
-
-      {% if actual == post.custom.category | get_gallery_taxonomy %}
-        {% set hide = false %}
-      {% else %}
-        {% set hide = true %}
-      {% endif %}
-
-      {% for image in post.get_field('images') %}
-
-          <div class="{{component}}__item {% if hide %}is-hidden{% endif %}" data-filter-prop="{{post.custom.category | get_gallery_taxonomy}}">
-            <a class="{{component}}__link" href="{{ TimberImage(image).src }}">
-              <img class="{{component}}__image" src="{{ TimberImage(image).src('medium') }}" />
-            </a>
-          </div>
 
       {% endfor %}
-
-
-    {% endfor %}
-
+    </article>
 
   </div>
 

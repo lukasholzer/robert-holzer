@@ -1,0 +1,17 @@
+{% set image = TimberImage(image) %}
+
+<div class="gallery__item has--gradient" data-filter-item="{{post.custom.category | get_gallery_taxonomy}}">
+  <a class="gallery__link" href="{{ image.src }}">
+    <img class="gallery__image lazyload blur-up"
+      alt="{{ image.caption }}"
+      src="{{ image.src | resize(10) }}"
+      width="{{image.sizes['medium-width']}}"
+      height="{{image.sizes['medium-height']}}"
+      data-sizes="auto"
+      data-srcset="
+      {{ image.src | resize(529) }} 200w,
+      {{ image.src | resize(480) }} 768w,
+      {{ image.src | resize(376) }} 1200w"/>
+
+  </a>
+</div>
