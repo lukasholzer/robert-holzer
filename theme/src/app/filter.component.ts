@@ -7,6 +7,19 @@ interface IFilterOptions {
   item: string;
   column?: string;
   gutter?: string;
+  stamp?: string;
+  filter?: string;
+}
+
+interface IIsotopeOptions {
+  itemSelector: string;
+  percentPosition: boolean;
+  stamp?: string;
+  masonry?: {
+    columnWidth: string | number;
+    gutter: string | number;
+  };
+  filter?: string;
 }
 
 @Component({
@@ -28,20 +41,12 @@ export class FilterComponent {
     this.content = element.querySelector(options.holder) as HTMLElement;
     this.nav = element.querySelectorAll('[data-filter-nav]') as NodeListOf<Element>;
 
-    this._iso = new isotope(this.content, {
-      itemSelector : options.item,
-      percentPosition: true,
-      stamp: '.sidenav',
-      masonry : {
-        columnWidth : options.column,
-        gutter: options.gutter,
-      },
-      filter: '*'
-    });
+    this._iso = new isotope(this.content, this.configureOptions(options));
 
     const imgLoaded = imagesLoaded(this.content);
 
     imgLoaded.on('progress', (instance: any, image: any) => {
+      console.log('loaded');
       this._iso.layout();
     });
 
@@ -60,6 +65,22 @@ export class FilterComponent {
         this.filterItems(prop);
       });
     }
+  }
+
+  private configureOptions(_options: IFilterOptions): IIsotopeOptions {
+    const options: IIsotopeOptions = {
+      itemSelector : _options.item,
+      percentPosition: true,
+      masonry : {
+        columnWidth : _options.column,
+        gutter: _options.gutter,
+      }
+    };
+
+    if (_options.stamp) { options.stamp = _options.stamp; }
+    if (_options.filter) { options.filter = _options.filter; }
+
+    return options;
   }
 
   private toggleActiveNavigationElement(active: HTMLElement) {

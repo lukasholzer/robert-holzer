@@ -2,7 +2,15 @@
 {% set actual = '' %}
 <section class="section">
 
-  <div class="gallery" data-filter='{"holder":".gallery__content", "item":".gallery__item", "column": ".gallery__grid-sizer", "gutter": ".gallery__gutter-sizer"}'>
+  <div class="gallery" data-filter='
+    {
+      "holder":".gallery__content",
+      "item":".gallery__item",
+      "column": ".gallery__grid-sizer",
+      "gutter": ".gallery__gutter-sizer",
+      "filter": "*",
+      "stamp": ".sidenav"
+    }'>
 
     <article class="gallery__content">
 
