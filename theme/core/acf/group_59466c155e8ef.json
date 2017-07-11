@@ -9,7 +9,15 @@
             "type": "image_crop",
             "instructions": "News Bild",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5960a71c81d32",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "60",
                 "class": "",
@@ -112,7 +120,15 @@
             "type": "text",
             "instructions": "Viedo Url für Vimeo Videos",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5960a71c81d32",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -157,5 +173,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1499510803
+    "modified": 1499766476
 }
