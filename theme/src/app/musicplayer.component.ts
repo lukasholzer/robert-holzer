@@ -24,7 +24,7 @@ export class MusicplayerComponent {
 
   private _favourites: MusicplayerFavourite = new MusicplayerFavourite();
 
-  constructor(private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef, private request: RequestService) {
 
     this.previewEventListeners(); // init for generating playlist
 
@@ -49,7 +49,6 @@ export class MusicplayerComponent {
       els[i].addEventListener('click', (event: Event) => {
         event.preventDefault();
         const index = this._playList.map(element => { return element.id; }).indexOf(id);
-        this.pause();
         this.skipTo(index);
       });
     }
@@ -105,12 +104,12 @@ export class MusicplayerComponent {
 
   public getSong(id: number): Promise<ITrack> {
     const url = `${window.location.href}${MusicplayerComponent.API_URL}${id}`;
-    let x = new RequestService();
 
     return new Promise((resolve: (result: ITrack) => void, reject: (reason: Error) => void) => {
-      x.fetchJSON(url).then((data: IRequestResponse) => {
+      this.request.fetchJSON(url).then((data: IRequestResponse) => {
         resolve(data.response as ITrack);
       }).catch((error: Error) => {
+        console.error(error);
         reject(error);
       });
     });

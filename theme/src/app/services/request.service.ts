@@ -86,7 +86,10 @@ export class RequestService {
       return url + (url.indexOf('?') === - 1 ? '?' : '&') + uri;
     } else {
       // Body is not an object => not allowed
-      Promise.reject(new TypeError('Non object like body not allowed for GET requests. The body has to be an object so the properties will be appended as a GET parameter to the url.'));
+      Promise.reject(new TypeError(`
+        Non object like body not allowed for GET requests.
+        The body has to be an object so the properties will be appended as a GET parameter to the url.
+      `));
       return;
     }
   }
@@ -100,7 +103,14 @@ export class RequestService {
       options.headers['Content-Type'] = 'application/json';
     }
     return this.fetch(url, options).then(result => {
-      return JSON.parse(result);
+      try {
+        const json = JSON.parse(result);
+        return json;
+      } catch (error) {
+        console.error(error);
+        console.error(result);
+        return {};
+      }
     });
   }
 

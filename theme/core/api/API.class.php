@@ -12,7 +12,6 @@ abstract class API {
 
   public function get_image($field_name = 'image', $id = null) {
     $_image = (!$id) ? get_field($field_name): get_field($field_name, $id);
-    // $_image = get_field($field_name);
 
     if ( !empty($_image) ) {
       $image = array(
@@ -21,7 +20,11 @@ abstract class API {
         "description" => $_image['description']
       );
     } else {
-      $image = "";
+      $image = array(
+        "url" => "",
+        "alt"=> "",
+        "description" => ""
+      );
     }
 
     return $image;

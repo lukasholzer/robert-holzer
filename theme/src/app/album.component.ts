@@ -18,16 +18,29 @@ export class AlbumComponent {
 
 
     var swiper = new Swiper('.album-swiper', {
-      slidesPerView: 'auto',
-      centeredSlides: true,
+      slidesPerView: 6,
+      spaceBetween: 20,
       nextButton : '.album-swiper__next',
       prevButton : '.album-swiper__prev',
-      loop: true,
-      spaceBetween: 0,
+      // loop: true,
       // Disable preloading of all images
       preloadImages : false,
       // Enable lazy loading
-      lazyLoading : true
+      lazyLoading: true,
+      breakpoints: {
+        1024: {
+          slidesPerView: 5
+        },
+        768: {
+          slidesPerView: 4
+        },
+        640: {
+          slidesPerView: 3
+        },
+        320: {
+          slidesPerView: 2
+        }
+      }
     });
   }
 }

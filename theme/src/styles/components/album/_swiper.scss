@@ -9,7 +9,15 @@
     flex-flow: column;
     margin: 0 $spacer/2;
     position: relative;
-    width: 20%;
+    // width: calc(50% - $spacer);
+
+    // @media(min-width: $breakpoint-small) {
+    //     width: calc(30% - $spacer);
+    // }
+
+    // @media(min-width: $breakpoint-large) {
+    //     width: calc(20% - $spacer);
+    // }
 
     &::after {
         background-color: rgba($color-black, 0.8);
@@ -109,9 +117,9 @@
 }
 
 .album-swiper__next {
-    left: 0;
+    right: 0;
 }
 
 .album-swiper__prev {
-    right: 0;
+    left: 0;
 }

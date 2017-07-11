@@ -8,6 +8,7 @@ import { NavigationComponent } from './navigation.component';
 import { NavigationOverlayComponent } from './navigationOverlay.component';
 import { AlbumComponent } from './album.component';
 
+import { RequestService } from './services/request.service';
 import { Overlay, OVERLAY_PROVIDERS } from './services/overlay.service';
 
 @Component({
@@ -23,7 +24,8 @@ import { Overlay, OVERLAY_PROVIDERS } from './services/overlay.service';
       NavigationOverlayComponent
     ],
     providers: [
-      OVERLAY_PROVIDERS
+      OVERLAY_PROVIDERS,
+      RequestService
     ]
 })
 export class AppComponent {
