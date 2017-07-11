@@ -12,7 +12,7 @@ class WordpressSetup {
   function __construct() {
     $this->theme_path = get_template_directory() . '/dist/';
     $this->theme_uri = get_template_directory_uri() . '/dist/';
-    $this->assets_manifest = $this->getHashes();
+    $this->assets_manifest = (WP_ENV === 'development')? '' : $this->getHashes();
 
     $this->version = wp_get_theme()->get( 'Version' );
     $this->assets_path = (WP_ENV === 'development')? 'http://localhost:4000/': $this->theme_uri;
