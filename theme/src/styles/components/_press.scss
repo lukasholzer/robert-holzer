@@ -6,30 +6,11 @@
     width: auto;
 }
 
-.press__filter {
+.press__nav {
     width: 20%;
     padding-right: 4rem;
 }
 
-.press-filter__item {
-    cursor: pointer;
-    transition: margin 450ms ease-out;
-
-    &.is-active {
-        font-weight: bold;
-        font-style: italic;
-
-        &:after {
-            padding-left: 0.5em;
-            display: inline;
-            content: '—';
-        }
-    }
-
-    &:hover {
-        margin-left: -0.2em;
-    }
-}
 
 .press__item {
     border: 0.5rem solid transparent;//$color-red;

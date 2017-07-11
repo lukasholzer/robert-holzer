@@ -2,18 +2,18 @@
 <section class="section">
   <h1 class="headline headline--section">Presse</h1>
 
-  <div class="{{component}}">
+  <div class="press">
 
-    <nav class="{{component}}__filter">
-      <ul>
-        <li class="{{component}}-filter__item is-active">Oper</li>
-        <li class="{{component}}-filter__item">Lied</li>
-        <li class="{{component}}-filter__item">Oratorium</li>
-        <li class="{{component}}-filter__item">Alle</li>
+    <nav class="sidenav press__nav">
+      <ul class="sidenav-list">
+        <li class="sidenav-list__item is-active" data-filter-nav="opera"><span data-color="red"></span>Oper</li>
+        <li class="sidenav-list__item" data-filter-nav="song"><span data-color="gold"></span>Lied</li>
+        <li class="sidenav-list__item" data-filter-nav="oratory"><span data-color="blue"></span>Oratorium</li>
+        <li class="sidenav-list__item" data-filter-nav="*"><span data-color="all"></span>Alle</li>
       </ul>
     </nav>
 
-    <div class="{{component}}__items">
+    <div class="press__items">
 
     {% for item in press %}
       {% include 'components/press-item.twig' %}
