@@ -1,0 +1,58 @@
+$breakpoint-large : 1200px !default;
+$breakpoint-medium : 768px !default;
+
+.univercity__grid-sizer,
+.univercity-posts__item {
+    width: 48%; // 2 columns
+}
+
+.univercity__gutter-sizer {
+    width: 4%;
+}
+
+.univercity-posts__item {
+    margin-bottom: $spacer * 2;
+}
+
+.univercity-posts__content {
+    display: flex;
+    flex-direction: column;
+}
+
+.univercity-posts__headline {
+    font-weight: 700;
+    font-size: 2.4rem; // 48px
+    padding-bottom: $spacer/2;
+    margin-bottom: $spacer;
+    padding-right: 20%;
+    position: relative;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 30%;
+        height: $spacer/6;
+        background-color: $color-red;
+    }
+}
+
+.univercity-posts__text {
+    line-height: 1.2rem; // 24px;
+}
+
+.univercity-posts__link {
+    font-style: italic;
+    margin-top: $spacer;
+    align-self: flex-end;
+    color: $color-red;
+
+    &::before {
+        content: '—';
+        display: inline;
+        padding-right: $spacer / 2;
+    }
+}

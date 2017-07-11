@@ -24,13 +24,16 @@
 @import 'components/album';
 @import 'components/press';
 @import 'components/gallery';
-@import 'components/news-text';
-@import 'components/univercity';
 
 @import 'components/tooltip';
 
 @import 'components/overlay/overlay';
 
+// Muisc Player
 @import 'components/music-player/main';
+
+// Univercity
+@import 'components/univercity/main';
+@import 'components/univercity/posts';
 
 @import 'components/sticky';

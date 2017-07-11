@@ -1,14 +1,21 @@
 <!-- section #univercity -->
 <section class="section">
   <h1 class="headline headline--section">{{ component.title }}</h1>
-
-  <div class="univercity">
+  <div class="univercity"
+       data-filter='{
+         "holder": ".univercity-posts",
+         "item": ".univercity-posts__item",
+         "column": ".univercity__grid-sizer",
+         "gutter": ".univercity__gutter-sizer"
+       }'>
 
     {% include 'components/univercity-filter.twig' %}
 
     <article class="university-content">
 
       <div class="univercity-posts">
+        <div class="univercity__grid-sizer"></div>
+        <div class="univercity__gutter-sizer"></div>
 
       {% for post in posts %}
 

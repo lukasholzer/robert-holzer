@@ -16,8 +16,14 @@
 
 
 @keyframes mousescroll {
-    0% { transform: translateY(-0.1em); opacity: 1; }
+    0% {
+        transform: translateY(-0.1em);
+        opacity: 1;
+    }
     30% { opacity: 1;}
-    50% { transform: translateY(0.1em);opacity: 0; }
+    50% {
+        transform: translateY(0.1em);
+        opacity: 0;
+    }
     100% { transform: translateY(-0.1em); }
 }

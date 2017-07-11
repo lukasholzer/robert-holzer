@@ -1,0 +1,40 @@
+$spacer: 1rem !default;
+$breakpoint-large : 1200px !default;
+$breakpoint-medium : 768px !default;
+
+.univercity {
+    display: flex;
+    flex-flow: column;
+
+    @media(min-width: $breakpoint-medium) {
+        flex-flow: row;
+    }
+}
+
+.univercity-filter {
+    width: 100%;
+    margin-bottom: $spacer*2;
+
+    @media(min-width: $breakpoint-medium) {
+        width: 20%;
+    }
+    @media(min-width: $breakpoint-large) {
+        width: 30%;
+    }
+}
+
+.university-content {
+
+    @media(min-width: $breakpoint-medium) {
+        width: 80%;
+    }
+
+    @media(min-width: $breakpoint-large) {
+        width: 70%;
+    }
+}
+
+.univercity-posts,
+.univercity-curriculum {
+    margin-bottom: $spacer * 4;
+}
