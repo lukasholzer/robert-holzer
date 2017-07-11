@@ -45,15 +45,15 @@ module.exports = webpackMerge(commonConfig, {
       prettyPrint: true
     }),
 
-    new webpack.optimize.UglifyJsPlugin({
-      comments: false,
-      dropDebugger: true,
-      dropConsole: true,
-      sourceMap: false,
-      compressor: {
-        warnings: false,
-      },
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   comments: false,
+    //   dropDebugger: true,
+    //   dropConsole: true,
+    //   sourceMap: false,
+    //   compressor: {
+    //     warnings: false,
+    //   },
+    // }),
 
     inlineCSS,
     mainCSS
