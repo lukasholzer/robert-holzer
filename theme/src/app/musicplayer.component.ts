@@ -14,6 +14,7 @@ declare var howler: any;
 export class MusicplayerComponent {
 
   static API_URL = 'api/v1/track/';
+  static THUMB_ITEM_CLASS = 'album-swiper__slide';
 
   private _songList: Array<number> = [];
 
@@ -36,9 +37,9 @@ export class MusicplayerComponent {
   }
 
   private previewEventListeners() {
-    const els = document.querySelectorAll('.album-swiper__slide');
-    for (let i = 0, max = els.length; i < max; i++) {
+    const els = document.querySelectorAll(`.${MusicplayerComponent.THUMB_ITEM_CLASS}`);
 
+    for (let i = 0, max = els.length; i < max; i++) {
       const id = parseInt(els[i].getAttribute('data-id'));
 
       // only push if it is not inside (Swiper with infinite loop duplicates entries)
@@ -49,12 +50,19 @@ export class MusicplayerComponent {
       els[i].addEventListener('click', (event: Event) => {
         event.preventDefault();
         const index = this._playList.map(element => { return element.id; }).indexOf(id);
+
         this._isPlaying = false;
         this.skipTo(index);
       });
     }
   }
 
+  private deActivateThumbnails(): void {
+    const els = document.querySelectorAll(`.${MusicplayerComponent.THUMB_ITEM_CLASS}`);
+    Array.prototype.map.call(els, (element: HTMLElement) => {
+      element.classList.remove('is-active');
+    });
+  }
 
   public init() {
     const track: ITrack = this._playList[0];
@@ -199,6 +207,14 @@ export class MusicplayerComponent {
 
     if (song) {
       song.stop();
+    }
+
+    this.deActivateThumbnails();
+    const selector = `.${MusicplayerComponent.THUMB_ITEM_CLASS}[data-id="${this._playList[index].id}"]`;
+    const newThumb = document.querySelector(selector) as HTMLElement;
+
+    if (newThumb) {
+      newThumb.classList.add('is-active');
     }
 
     this._controlls.updateProgressBar(0);
