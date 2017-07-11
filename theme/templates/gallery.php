@@ -5,7 +5,7 @@
 
   $args = array(
     'post_type' => 'gallery',
-    'per_page' => '-1'
+    'posts_per_page' => '-1'
   );
 
   $context = Timber::get_context();

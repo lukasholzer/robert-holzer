@@ -12,6 +12,7 @@
 
     $args = array(
       'post_type' => 'repertoire',
+      'posts_per_page'=> -1,
       'tax_query' => array(
         array(
           'taxonomy' => 'composer',
