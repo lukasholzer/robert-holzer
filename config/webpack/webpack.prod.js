@@ -16,7 +16,6 @@ module.exports = webpackMerge(commonConfig, {
     path: dist_path,
     publicPath: '/',
     filename: '[name].[chunkhash].js',
-    // chunkFilename: '[id].[hash].chunk.js'
   },
 
   module: {
@@ -28,7 +27,8 @@ module.exports = webpackMerge(commonConfig, {
           fallback: 'style-loader',
           use: ['raw-loader', /*'postcss-loader',*/ 'sass-loader'] // , 'import-glob'
         })
-      }, {
+      },
+      {
         test: /main.scss$/,
         exclude: path.join(__dirname, 'theme', 'src', 'app'),
         use: mainCSS.extract({
@@ -40,13 +40,6 @@ module.exports = webpackMerge(commonConfig, {
   },
 
   plugins: [
-
-    // new HashAssetsPlugin({
-    //   filename: 'hash-map.json',
-    //   keyTemplate : '[name].js',
-    //   path : dist_path,
-    //   prettyPrint: true,
-    // }),
     new ManifestPlugin({
       fileName: 'build-manifest.json',
       prettyPrint: true
