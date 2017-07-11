@@ -49,6 +49,7 @@ export class MusicplayerComponent {
       els[i].addEventListener('click', (event: Event) => {
         event.preventDefault();
         const index = this._playList.map(element => { return element.id; }).indexOf(id);
+        this._isPlaying = false;
         this.skipTo(index);
       });
     }
