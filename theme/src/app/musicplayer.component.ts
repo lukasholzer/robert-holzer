@@ -15,6 +15,8 @@ export class MusicplayerComponent {
 
   static API_URL = 'api/v1/track/';
 
+  private _songList: Array<number> = [];
+
   private _controlls: MusicplayerControlls = new MusicplayerControlls();
   private _playList: ITrack[];
   private _isPlaying = false;
@@ -24,13 +26,33 @@ export class MusicplayerComponent {
 
   constructor(private elementRef: ElementRef) {
 
-    let songs = [47, 82];
+    this.previewEventListeners(); // init for generating playlist
 
-    this.createPlayList(songs).then((playList: ITrack[]) => {
+    this.createPlayList(this._songList).then((playList: ITrack[]) => {
       this._playList = playList;
       this.initEventListeners();
       this.init();
     });
+  }
+
+  private previewEventListeners() {
+    const els = document.querySelectorAll('.album-swiper__slide');
+    for (let i = 0, max = els.length; i < max; i++) {
+
+      const id = parseInt(els[i].getAttribute('data-id'));
+
+      // only push if it is not inside (Swiper with infinite loop duplicates entries)
+      if (this._songList.indexOf(id) < 0) {
+        this._songList.push(id);
+      }
+
+      els[i].addEventListener('click', (event: Event) => {
+        event.preventDefault();
+        const index = this._playList.map(element => { return element.id; }).indexOf(id);
+        this.pause();
+        this.skipTo(index);
+      });
+    }
   }
 
 
