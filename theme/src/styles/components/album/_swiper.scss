@@ -1,0 +1,117 @@
+.album-swiper {
+    margin: $spacer*2 auto $spacer*2;
+    position: relative;
+    width: 100%;
+}
+
+.album-swiper__slide {
+    display: flex;
+    flex-flow: column;
+    margin: 0 $spacer/2;
+    position: relative;
+    width: 20%;
+
+    &::after {
+        background-color: rgba($color-black, 0.8);
+        bottom: 0;
+        content: '';
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transition: opacity 300ms ease-out;
+    }
+
+    &:hover {
+        &::after,
+        .album-swiper__title,
+        .album-swiper__play {
+            opacity: 1;
+        }
+
+    }
+}
+
+.album-swiper__image {
+    background-position: center center;
+    background-size: cover;
+    height: 0;
+    padding-bottom: 100%;
+}
+
+.album-swiper__title {
+    bottom: $spacer;
+    color: $color-white;
+    font-weight: normal;
+    left: $spacer;
+    line-height: 1.2em;
+}
+
+.album-swiper__title,
+.album-swiper__play {
+    opacity: 0;
+    position: absolute;
+    transition: opacity 300ms ease-out;
+    z-index: 2;
+}
+
+.album-swiper__play {
+    border-radius: 50%;
+    border: 2px solid $color-white;
+    box-shadow: 1px 1px 1px rgba($color-black, 0.8);
+    cursor: pointer;
+    height: 1.5em;
+    left: 50%;
+    padding: 0.2em;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 1.5em;
+
+    &:hover {
+        opacity: 0.5 !important;
+    }
+
+    svg {
+        fill: $color-white;
+        height: 1.5em;
+        left: 0%;
+        margin-top:50%;
+        transform: translate(0%, -50%);
+        width: 1.5em;
+
+        use { transform: translateX(2px); }
+    }
+}
+
+.album-swiper__next,
+.album-swiper__prev {
+    cursor: pointer;
+    font-size: 3rem;
+    line-height: 1em;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity 300ms ease-out;
+    z-index: 4;
+
+    &:hover {
+        opacity: 0.7;
+    }
+
+    svg {
+        fill: $color-white;
+    }
+
+    &.swiper-button-disabled {
+        opacity: 0.5;
+    }
+}
+
+.album-swiper__next {
+    left: 0;
+}
+
+.album-swiper__prev {
+    right: 0;
+}

@@ -1,20 +1,20 @@
 {% set component = 'music-player' %}
 
 <div class="is-sticky" data-bak-sticky="alben" data-sticky-offsetBottom="0">
-  <div class="{{component}}">
-    <div class="{{component}}__image">
-      <img class="{{component}}__cover" src="" />
-      <div class="{{component}}__heart">
+  <div class="music-player">
+    <div class="music-player__image">
+      <img class="music-player__cover" src="" />
+      <div class="music-player__heart">
         {% include 'components/icon.twig' with {type: 'heart-outlined'} %}
         {% include 'components/icon.twig' with {type: 'heart'} %}
       </div>
     </div>
 
-    <div class="{{component}}__information">
-      <h3 class="{{component}}__title"></h3>
-      <h6 class="{{component}}__meta"></h6>
+    <div class="music-player__information">
+      <h3 class="music-player__title"></h3>
+      <h6 class="music-player__meta"></h6>
     </div>
 
-    {% include 'components/' ~ component ~ '-controlls.twig' with { component: component ~ '-controlls'} %}
+    {% include 'components/music-player-controlls.twig' %}
   </div>
 </div>

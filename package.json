@@ -23,7 +23,7 @@
     "@types/masonry-layout": "^4.0.5",
     "@types/node": "^7.0.5",
     "@types/spotify-web-api-js": "^0.21.0",
-    "@types/swiper": "^3.4.2",
+    "@types/swiper": "^3.4.3",
     "autoprefixer": "^7.1.1",
     "awesome-typescript-loader": "^3.1.2",
     "babel-core": "^6.24.1",

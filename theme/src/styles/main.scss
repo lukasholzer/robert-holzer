@@ -1,6 +1,7 @@
 @import 'util/variables';
 
 @import '../../../node_modules/gridilydidily/gridilydidily.scss';
+@import '../../../node_modules/swiper/dist/css/swiper.css';
 
 @import 'atoms/headline';
 @import 'atoms/button';
@@ -21,7 +22,6 @@
 @import 'components/hamburger';
 @import 'components/news';
 @import 'components/repertoire';
-@import 'components/album';
 @import 'components/press';
 @import 'components/gallery';
 
@@ -35,5 +35,9 @@
 // Univercity
 @import 'components/univercity/main';
 @import 'components/univercity/posts';
+
+// Alben
+@import 'components/album/covers';
+@import 'components/album/swiper';
 
 @import 'components/sticky';

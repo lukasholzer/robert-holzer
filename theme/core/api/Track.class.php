@@ -10,7 +10,6 @@ class Track extends API {
   }
 }
 
-
 $album = new Track(get_the_ID());
 
 $onAlbum = get_field('has_album') === 'album';
@@ -28,5 +27,5 @@ $album->add_field('onAlbum', $onAlbum);
 $album->add_field('album', $albumId);
 $album->add_field('files', array(get_field('track')));
 $album->add_field('composer', get_term( $composer, 'composer'));
-$album->add_field('category', get_term( $category, 'songtyp'));
+$album->add_field('category', get_term( $category, 'songtype'));
 $album->render();

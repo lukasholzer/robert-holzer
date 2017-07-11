@@ -1,0 +1,21 @@
+<div class="album-swiper">
+
+  <div class="swiper-wrapper">
+
+    {% for track in tracks %}
+
+    {% set image = TimberImage(track.cover) %}
+
+    <div class="album-swiper__slide swiper-slide" data-id="{{ track.ID }}">
+      <div class="album-swiper__play">{% include 'components/icon.twig' with {type: 'controller-play'} %}</div>
+      <div class="album-swiper__image" style="background-image: url('{{ image.src }}');"></div>
+      <h4 class="album-swiper__title">{{ track.title }}</h4>
+    </div>
+
+    {% endfor %}
+  </div>
+
+  <div class="album-swiper__next">{% include 'components/icon.twig' with {type: 'chevron-thin-left'} %}</div>
+  <div class="album-swiper__prev">{% include 'components/icon.twig' with {type: 'chevron-thin-right'} %}</div>
+
+</div>
