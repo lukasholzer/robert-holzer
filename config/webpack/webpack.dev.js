@@ -31,7 +31,29 @@ module.exports = webpackMerge(commonConfig, {
       {
         test: /\.scss$/,
         exclude: path.join(__dirname, 'theme', 'src', 'app'),
-        use: ['style-loader', 'css-loader', /*'postcss-loader',*/ 'sass-loader']
+        use: [
+          'style-loader',
+          // 'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: '../../theme/src/styles/postcss.config.js',
+              plugins: () => {
+                return [
+                  require('postcss-ordered-values'),
+                  require('postcss-cssnext')
+                ]
+              }
+            }
+          },
+          'sass-loader'
+        ]
       }
     ]
   },

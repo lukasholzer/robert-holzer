@@ -33,7 +33,24 @@ module.exports = webpackMerge(commonConfig, {
         exclude: path.join(__dirname, 'theme', 'src', 'app'),
         use: mainCSS.extract({
           fallback: 'style-loader',
-          use: ['raw-loader', /*'postcss-loader',*/ 'sass-loader'] // , 'import-glob'
+          use: [
+            'raw-loader',
+            'css-loader',
+            'postcss-loader',
+            'sass-loader'
+          ]
+// use : [
+//   'style-loader',
+//   'css-loader', {
+//     loader: 'postcss-loader',
+//     options: {
+//       plugins: () => {
+//         return [require('postcss-ordered-values'), require('postcss-cssnext')]
+//       }
+//     }
+//   },
+//   'sass-loader'
+// ]
         })
       }
     ]
@@ -44,6 +61,21 @@ module.exports = webpackMerge(commonConfig, {
       fileName: 'build-manifest.json',
       prettyPrint: true
     }),
+
+    // new webpack.LoaderOptionsPlugin({
+    //   test: /\.scss$/,
+    //   options: {
+    //     postcss: {
+    //       plugins: [
+    //         require('postcss-ordered-values'),
+    //         require('autoprefixer')({
+    //           browsers: ['last 2 versions', 'ie >= 10']
+    //         }),
+    //         require('postcss-cssnext')
+    //       ]
+    //     }
+    //   }
+    // }),
 
     // new webpack.optimize.UglifyJsPlugin({
     //   comments: false,

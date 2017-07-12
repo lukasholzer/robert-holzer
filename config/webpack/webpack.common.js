@@ -49,20 +49,6 @@ module.exports = {
   },
 
   plugins: [
-    // new webpack.LoaderOptionsPlugin({
-    //   test: /\.scss$/,
-    //   options: {
-    //     postcss: {
-    //       plugins: [
-    //         require('postcss-ordered-values'),
-    //         require('autoprefixer')({
-    //           browsers: ['last 2 versions', 'ie >= 10']
-    //         }),
-    //         require('postcss-cssnext')
-    //       ]
-    //     }
-    //   }
-    // }),
 
     new webpack.NoEmitOnErrorsPlugin(),
 
