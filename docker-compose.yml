@@ -25,6 +25,7 @@ services:
       WP_VERSION: latest
       PLUGINS: >-
         [local]advanced-custom-fields-pro,
+        acf-to-rest-api,
         acf-image-crop-add-on,
         wordpress-importer,
         [soil]https://github.com/roots/soil/archive/3.7.1.zip,
