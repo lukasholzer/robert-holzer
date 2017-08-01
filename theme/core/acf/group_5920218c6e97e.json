@@ -24,7 +24,14 @@
             "max_width": "",
             "max_height": "",
             "max_size": "",
-            "mime_types": ""
+            "mime_types": "",
+            "crop_type": "min",
+            "target_size": "medium",
+            "width": "",
+            "height": "",
+            "force_crop": "yes",
+            "save_in_media_library": "no",
+            "retina_mode": "no"
         },
         {
             "key": "field_592021967d52d",
@@ -220,5 +227,5 @@
     ],
     "active": 1,
     "description": "Discographie",
-    "modified": 1499513019
+    "modified": 1501506096
 }

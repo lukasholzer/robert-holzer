@@ -4,7 +4,6 @@
 
   <div class="alben grid" data-grid="left">
 
-
       {% for album in alben %}
 
         {% set composer = album.get_field('composer') | get_composer %}
@@ -35,6 +34,7 @@
         </div>
 
       {% endfor %}
+
   </div>
 
   {% include 'components/album-swiper.twig' %}

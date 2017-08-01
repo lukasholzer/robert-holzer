@@ -13,7 +13,7 @@ abstract class API {
   public function get_image($field_name = 'image', $id = null) {
     $_image = (!$id) ? get_field($field_name): get_field($field_name, $id);
 
-    if ( !empty($_image) ) {
+    if ( !empty($_image) && is_array($_image)) {
       $image = array(
         "url" => $_image['url'],
         "alt"=> $_image['alt'],
