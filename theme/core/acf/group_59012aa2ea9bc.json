@@ -53,7 +53,15 @@
             "type": "repeater",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5991897de8dfa",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -112,6 +120,25 @@
                     "placeholder": ""
                 }
             ]
+        },
+        {
+            "key": "field_5991897de8dfa",
+            "label": "Sammlung",
+            "name": "collection",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Weitere Lieder?",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [
@@ -147,5 +174,5 @@
     ],
     "active": 1,
     "description": "Repertoireliste",
-    "modified": 1499522476
+    "modified": 1502710230
 }
