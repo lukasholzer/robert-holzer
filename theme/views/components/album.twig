@@ -9,6 +9,7 @@
         {% set composer = album.get_field('composer') | get_composer %}
         {% set image = album.get_field('cover') %}
 
+        {% if image %}
         <div class="album grid__item" data-grid="12/12" data-grid--small="6/12" data-grid--medium="3/12" data-song-cat="{{album.id|get_song_type}}">
           <div class="album__cover has--gradient has--gradient-hover-out">
             <img class="album__image" src="{{ TimberImage(image) | resize('300') }}" alt="{{image.alt}}"/>
@@ -32,6 +33,7 @@
             </div>
           </script>
         </div>
+        {% endif %}
 
       {% endfor %}
 

@@ -5,6 +5,7 @@
     {% for track in tracks %}
 
     {% set image = TimberImage(track.cover) %}
+    {% if image %}
 
     <div class="album-swiper__slide swiper-slide" data-id="{{ track.ID }}">
       <div class="album-swiper__play">{% include 'components/icon.twig' with {type: 'controller-play'} %}</div>
@@ -12,6 +13,7 @@
       <h4 class="album-swiper__title">{{ track.title }}</h4>
     </div>
 
+    {% endif %}
     {% endfor %}
   </div>
 

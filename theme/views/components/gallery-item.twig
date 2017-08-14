@@ -1,5 +1,6 @@
 {% set image = TimberImage(image) %}
 
+{% if image %}
 <div class="gallery__item has--gradient" data-filter-item="{{post.custom.category | get_gallery_taxonomy}}">
   <a class="gallery__link" href="{{ image.src }}">
     <img class="gallery__image lazyload blur-up"
@@ -15,3 +16,4 @@
 
   </a>
 </div>
+{% endif %}
