@@ -11,18 +11,18 @@ class CustomPostTypes {
         $labels = array(
             'name'                               => __( $namePlural, $i18nDomain . '-post-type' ),
             'singular_name'               => __( $name, $i18nDomain . '-post-type' ),
-      'menu_name'                  => __( $namePlural, 'admin menu', $i18nDomain . '-post-type' ),
-      'name_admin_bar'             => __( $name, 'add new on admin bar', $i18nDomain . '-post-type' ),
-      'add_new'                    => __( 'Neue hinzufügen', $name, $i18nDomain . '-post-type' ),
-      'add_new_item'               => __( 'Neue '.$name.' hinzufügen', $i18nDomain . '-post-type' ),
-      'new_item'                   => __( 'Neue '.$name, $i18nDomain . '-post-type' ),
-      'edit_item'                  => __( 'Bearbeite '.$name, $i18nDomain . '-post-type' ),
-      'view_item'                  => __( 'Zeige '.$name, $i18nDomain . '-post-type' ),
-      'all_items'                  => __( 'Alle '.$namePlural, $i18nDomain . '-post-type' ),
-      'search_items'               => __( 'Suche '.$namePlural, $i18nDomain . '-post-type' ),
-      'parent_item_colon'          => __( 'Parent '.$namePlural, $i18nDomain . '-post-type' ),
-      'not_found'                  => __( 'Keine '.$namePlural.' gefunden.', $i18nDomain . '-post-type' ),
-      'not_found_in_trash'         => __( 'Keine '.$namePlural.' gefunden im Papierkorb.', $i18nDomain . '-post-type' )
+            'menu_name'                  => __( $namePlural, 'admin menu', $i18nDomain . '-post-type' ),
+            'name_admin_bar'             => __( $name, 'add new on admin bar', $i18nDomain . '-post-type' ),
+            'add_new'                    => __( 'Neue hinzufügen', $name, $i18nDomain . '-post-type' ),
+            'add_new_item'               => __( 'Neue '.$name.' hinzufügen', $i18nDomain . '-post-type' ),
+            'new_item'                   => __( 'Neue '.$name, $i18nDomain . '-post-type' ),
+            'edit_item'                  => __( 'Bearbeite '.$name, $i18nDomain . '-post-type' ),
+            'view_item'                  => __( 'Zeige '.$name, $i18nDomain . '-post-type' ),
+            'all_items'                  => __( 'Alle '.$namePlural, $i18nDomain . '-post-type' ),
+            'search_items'               => __( 'Suche '.$namePlural, $i18nDomain . '-post-type' ),
+            'parent_item_colon'          => __( 'Parent '.$namePlural, $i18nDomain . '-post-type' ),
+            'not_found'                  => __( 'Keine '.$namePlural.' gefunden.', $i18nDomain . '-post-type' ),
+            'not_found_in_trash'         => __( 'Keine '.$namePlural.' gefunden im Papierkorb.', $i18nDomain . '-post-type' )
         );
 
         $this->args = array(

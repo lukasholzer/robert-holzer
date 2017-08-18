@@ -8,13 +8,13 @@
 
 
       <div class="repertoire">
-        <aside class="repertoire__composer"><h2>{{ item.composer }}</h2></aside>
+        <aside class="repertoire__composer"><h2>{{ item.composer_slug | default(item.composer) }}</h2></aside>
 
         <article class="repertoire__row">
 
           {% for work in item.repertoire %}
 
-            {% include 'components/repertoire-work.twig' with {composer: item.composer_slug} %}
+            {% include 'components/repertoire-work.twig' with {composer: item.composer} %}
 
           {% endfor %}
 
