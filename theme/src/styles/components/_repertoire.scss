@@ -2,6 +2,8 @@ $border-size : 8px !default;
 $space-around : 2rem !default;
 $bp-small : 500px !default;
 $bp-medium : 765px !default;
+$spacer: 1rem !default;
+
 .repertoire {
     display: flex;
     align-items: stretch;
@@ -14,21 +16,20 @@ $bp-medium : 765px !default;
     position: relative;
     width: 0;
     @media (min-width: $bp-medium) {
-        width: $spacer*15;
+        width: $spacer * 3;
     }
     h2 {
         display: none;
         @media (min-width: $bp-medium) {
             display: block;
             position: absolute;
-            top: 0;
-            transform: rotate(-90deg) translate(-100%, 500%);
-            transform-origin: 0% 0%;
-            width: auto;
+            top: 0%;
+            left: 100%;
             font-size: 1.8rem; // 36px
             font-weight: bold;
             white-space: nowrap;
-            padding-right: 2.5rem;
+            transform-origin: 0 0%;
+            transform: rotate(-90deg) translate(-100%, -100%);
         }
     }
 }
@@ -118,7 +119,7 @@ $bp-medium : 765px !default;
 }
 
 .repertoire__title {
-    font-size: 3.2rem; // 64px
+    font-size: 2.2rem;
     line-height: 0.9em;
     font-weight: bold;
     text-transform: lowercase;
