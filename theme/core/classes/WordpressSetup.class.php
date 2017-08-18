@@ -23,20 +23,17 @@ class WordpressSetup {
 
     $this->admin = new WPAdmin();
 
-        add_theme_support( 'post-formats' );
+    add_theme_support( 'post-formats' );
     add_theme_support( 'post-thumbnails' );
     add_theme_support( 'menus' );
 
-        add_action('init', array($this, 'register_custom_post_types'));
-        add_action('init', array($this, 'register_custom_taxonomies'));
-        add_action('init', array($this, 'register_menus'));
+    add_action('init', array($this, 'register_custom_post_types'));
+    add_action('init', array($this, 'register_custom_taxonomies'));
+    add_action('init', array($this, 'register_menus'));
 
     add_action( 'after_setup_theme', array($this, 'robertholzer_custom_header_setup'));
 
     add_action('wp_enqueue_scripts',  array($this, 'add_theme_scripts_and_styles'));
-
-    add_action( 'admin_menu', array($this, 'remove_menus'));
-    add_action( 'admin_menu', array($this, 'remove_unused_menu_pages'));
 
 
     // clean up wordpress
@@ -76,17 +73,6 @@ class WordpressSetup {
         'teaching-menu'    => __( 'Uni Men&uuml;', 'robertholzer-theme' )
       )
     );
-  }
-  // Remove menus from the admin page
-  public function remove_menus(){
-      remove_menu_page('edit-tags.php?taxonomy=post_tag'); // Post tags
-      remove_menu_page('edit-tags.php?taxonomy=category'); // categories
-  }
-
-  public function remove_unused_menu_pages() {
-    remove_menu_page('link-manager.php');
-    // remove_menu_page('tools.php');
-    remove_menu_page('edit-comments.php');
   }
 
   public function register_custom_post_types() {

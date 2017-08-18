@@ -10,9 +10,24 @@ class WPAdmin {
     add_filter( 'manage_repertoire_posts_columns', array($this, 'repertoire_columns') );
     add_action( 'manage_repertoire_posts_custom_column' , array($this, 'custom_repertoire_column'), 10, 2 );
     add_filter( 'manage_edit-repertoire_sortable_columns', array($this, 'repertoire_sortable_columns') );
+
+    add_action( 'admin_menu', array($this, 'remove_menus'));
+    add_action( 'admin_menu', array($this, 'remove_unused_menu_pages'));
   }
 
-  function repertoire_columns( $columns ) {
+  // Remove menus from the admin page
+  public function remove_menus(){
+    remove_menu_page('edit-tags.php?taxonomy=post_tag'); // Post tags
+    remove_menu_page('edit-tags.php?taxonomy=category'); // categories
+  }
+
+  public function remove_unused_menu_pages() {
+    remove_menu_page('link-manager.php');
+    // remove_menu_page('tools.php');
+    remove_menu_page('edit-comments.php');
+  }
+
+  public function repertoire_columns( $columns ) {
 
     $columns['composer'] = __( 'Komponist', 'robertholzer-theme' );
     $columns['role'] = __( 'Rolle', 'robertholzer-theme' );
@@ -21,7 +36,7 @@ class WPAdmin {
     return $columns;
   }
 
-  function custom_repertoire_column( $column, $post_id ) {
+  public function custom_repertoire_column( $column, $post_id ) {
     switch ( $column ) {
 
       case 'composer' :
