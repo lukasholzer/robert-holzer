@@ -28,6 +28,7 @@ services:
         acf-to-rest-api,
         acf-image-crop-add-on,
         wordpress-importer,
+        post-types-order,
         [soil]https://github.com/roots/soil/archive/3.7.1.zip,
       THEMES: >-
         [local]robertholzer
