@@ -1,10 +1,13 @@
 <?php
 
+require_once __DIR__ . '/Wordpress/WPAdmin.class.php';
+
 class WordpressSetup {
   protected $version;
   protected $assets_path;
   protected $theme_path;
   protected $theme_uri;
+  protected $admin;
   protected $assets_manifest;
 
   private static $ACF_PATH = '/core/acf';
@@ -17,13 +20,16 @@ class WordpressSetup {
     $this->version = wp_get_theme()->get( 'Version' );
     $this->assets_path = (WP_ENV === 'development')? 'http://localhost:4000/': $this->theme_uri;
 
-		add_theme_support( 'post-formats' );
+
+    $this->admin = new WPAdmin();
+
+        add_theme_support( 'post-formats' );
     add_theme_support( 'post-thumbnails' );
     add_theme_support( 'menus' );
 
-		add_action('init', array($this, 'register_custom_post_types'));
-		add_action('init', array($this, 'register_custom_taxonomies'));
-		add_action('init', array($this, 'register_menus'));
+        add_action('init', array($this, 'register_custom_post_types'));
+        add_action('init', array($this, 'register_custom_taxonomies'));
+        add_action('init', array($this, 'register_menus'));
 
     add_action( 'after_setup_theme', array($this, 'robertholzer_custom_header_setup'));
 

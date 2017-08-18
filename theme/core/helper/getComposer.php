@@ -8,7 +8,8 @@ trait GetComposer {
    * @return  string
    */
   public function get_composer($id) {
-    if(gettype($id) === 'string') {
+
+    if(gettype($id) === 'string' || gettype($id) === 'integer') {
       return get_term( $id, $taxonomy = 'composer')->name;
     }
 
@@ -23,5 +24,5 @@ trait GetComposer {
     }
 
     return '';
-	}
+    }
 }
