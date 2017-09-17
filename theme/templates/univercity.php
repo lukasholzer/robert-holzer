@@ -7,8 +7,8 @@
     'post_type' => 'post',
     'posts_per_page'=> -1,
     'tax_query' => array(
-		  array(
-			  'taxonomy' => 'univercity',
+          array(
+              'taxonomy' => 'univercity',
         'field'    => 'slug',
         'terms'    => array( 'jury', 'teaching', 'mastercourses', 'operastudio' )
       )
@@ -25,6 +25,6 @@
 
   $uni = array( 'components/univercity.twig' );
 
-  Timber::render( $uni, $context );
+  // Timber::render( $uni, $context );
 
   ?>

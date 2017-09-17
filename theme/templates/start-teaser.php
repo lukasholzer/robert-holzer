@@ -5,4 +5,4 @@ $context['posts'] = Timber::get_posts();
 
 $templates = array( 'components/start-teaser.twig' );
 
-Timber::render( $templates, $context );
+// Timber::render( $templates, $context );

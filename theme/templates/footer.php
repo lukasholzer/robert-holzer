@@ -7,4 +7,4 @@
   $icons = array( 'components/icons.twig' );
 
   Timber::render( $icons, $context );
-  Timber::render( $footer, $context );
+  // Timber::render( $footer, $context );

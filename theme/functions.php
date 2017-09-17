@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/core/vendor/autoload.php';
 require_once __DIR__ . '/core/requireDir.php';
+require_once __DIR__ . '/core/customizer.php';
 
 
 $timber = new \Timber\Timber();

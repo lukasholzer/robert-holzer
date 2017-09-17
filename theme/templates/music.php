@@ -24,8 +24,8 @@
   $album = array( 'components/album.twig' );
   $player = array( 'components/music-player.twig' );
 
-  Timber::render( $album, $context );
-  Timber::render( $player );
+  // Timber::render( $album, $context );
+  // Timber::render( $player );
 
 
   function generate_album_slider($trackArray) {

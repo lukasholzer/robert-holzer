@@ -15,6 +15,6 @@
 
   $press = array( 'components/press.twig' );
 
-  Timber::render( $press, $context );
+  // Timber::render( $press, $context );
 
   ?>

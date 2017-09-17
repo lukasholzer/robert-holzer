@@ -14,6 +14,6 @@
 
   $gallery = array( 'components/gallery.twig' );
 
-  Timber::render( $gallery, $context );
+  // Timber::render( $gallery, $context );
 
   ?>

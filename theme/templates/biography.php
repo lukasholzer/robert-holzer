@@ -14,5 +14,5 @@
 
   $template = array( 'components/biography.twig' );
 
-  Timber::render( $template, $context );
+  // Timber::render( $template, $context );
 ?>
