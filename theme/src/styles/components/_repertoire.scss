@@ -50,7 +50,6 @@ $color-blue: rgba(093, 142, 189, 100) !default;
 .repertoire {
   margin: 3em auto;
   width: 80%;
-  border: 1px solid red;
 }
 
 .swiper-container {
@@ -84,8 +83,7 @@ nav.swiper-container {
   display: flex;
   flex-wrap: wrap;
   position: relative;
-  width: calc(100% - 3px);
-  border: 1px solid blue;
+  width: 100%;
 }
 
 .repertoire__work {
