@@ -1,0 +1,183 @@
+$border-size : 8px !default;
+$space-around : 2rem !default;
+$bp-small : 500px !default;
+$bp-medium : 765px !default;
+$spacer: 1rem !default;
+
+.repertoire {
+    display: flex;
+    align-items: stretch;
+    & + & {
+        margin-top: $spacer*5;
+    }
+}
+
+.repertoire__composer {
+    position: relative;
+    width: 0;
+    @media (min-width: $bp-medium) {
+        width: $spacer * 3;
+    }
+    h2 {
+        display: none;
+        @media (min-width: $bp-medium) {
+            display: block;
+            position: absolute;
+            top: 0%;
+            left: 100%;
+            font-size: 1.8rem; // 36px
+            font-weight: bold;
+            white-space: nowrap;
+            transform-origin: 0 0%;
+            transform: rotate(-90deg) translate(-100%, -100%);
+        }
+    }
+}
+
+.repertoire__row {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.repertoire__work {
+    position: relative;
+    border: $border-size solid transparent;
+    width: calc((100%) - #{$space-around} * 2 - #{$border-size} * 2);
+    padding: $space-around;
+    transition: border 250ms ease-in, width 400ms ease-out;
+    cursor: pointer;
+
+    @media (min-width: $bp-small) {
+        width: calc((100% / 3) - #{$space-around} * 2 - #{$border-size} * 2);
+    }
+    &:hover {
+        border-color: $color-black;
+    }
+    &::before {
+        content: '';
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        position: absolute;
+        top: 3.5rem;
+        left: 1.6rem;
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -$border-size;
+        left: 0;
+        width: 0%;
+        height: $border-size;
+        transition: width 250ms ease-out;
+        background: $color-red;
+    }
+    &[data-rep-cat='opera'] {
+        &:hover {
+            border-color: $color-red;
+        }
+        &::before,
+        &::after {
+            background-color: $color-red;
+        }
+    }
+    &[data-rep-cat='concert'] {
+        &:hover {
+            border-color: $color-blue;
+        }
+        &::before,
+        &::after {
+            background-color: $color-blue;
+        }
+    }
+    &[data-rep-cat='song'] {
+        &:hover {
+            border-color: $color-gold;
+        }
+        &::before,
+        &::after {
+            background-color: $color-gold;
+        }
+    }
+}
+
+.repertoire__work--active {
+    transition: border 0ms linear, width 400ms ease-out;
+    background: $color-white;
+    width: calc((100% / 3) * 2 - #{$space-around} * 2 - #{$border-size} * 2);
+    top: 0;
+    left: 0;
+    z-index: 500;
+    border-color: $color-white !important;
+    padding-bottom: $space-around * 2;
+    &::after {
+        width: 100%;
+    }
+}
+
+.repertoire__title {
+    font-size: 2.2rem;
+    line-height: 0.9em;
+    font-weight: bold;
+    text-transform: lowercase;
+}
+
+.repertoire__description {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-top: 0.5em;
+}
+
+.repertoire__role,
+.repertoire__text {
+    width: 50%;
+    line-height: 1rem;
+}
+
+.repertoire__role {
+    font-size: 1rem;
+    font-weight: bold;
+    i {
+        padding-left: 0.8em;
+        font-size: 0.7rem;
+        font-weight: normal;
+        font-style: italic;
+    }
+}
+
+.repertoire__text {
+    font-size: 0.7rem;
+    text-align: right;
+}
+
+.repertoire__controlls {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 1rem;
+    display: none;
+    justify-content: flex-end;
+    .repertoire__work--active & {
+        display: flex;
+    }
+    button {
+        [data-rep-cat="opera"] & {
+            color: $color-red;
+        }
+        [data-rep-cat="concert"] & {
+            color: $color-blue;
+        }
+        [data-rep-cat="song"] & {
+            color: $color-gold;
+        }
+        &:nth-child(1):after {
+            content: ' /';
+        }
+        &:nth-child(2):after {
+            content: ' ›';
+        }
+    }
+}

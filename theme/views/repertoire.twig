@@ -1,0 +1,67 @@
+
+<article class="repertoire">
+
+  <select class="mobile-navigation">
+    {% for composer in composers %}
+      {% if composer.works %}
+        <option value="{{composer.scrollTo}}">{{composer.name}}</option>
+      {% endif %}
+    {% endfor %}
+  </select>
+
+
+  <nav class="swiper-container">
+    <div class="swiper-wrapper">
+
+        {% for composer in composers %}
+
+          {% if composer.works %}
+            <div class="swiper-slide">{{composer.slug}}</div>
+          {% endif %}
+
+        {% endfor %}
+
+    </div>
+  </nav>
+
+  <main class="swiper-container">
+    <div class="swiper-wrapper">
+
+      {% for composer in composers %}
+
+        {% if composer.works %}
+        <div class="swiper-slide">
+<div class="works">
+
+          {% for work in composer.works %}
+            {#} <div class="work__title">
+              {{work.title}}<br><i>{{ composer.name }} </i></div>
+ #}
+
+            <figure class="repertoire__work" data-rep-cat="{{work.id|get_song_type}}">
+              <h2 class="repertoire__title">{{work.title}}</h2>
+              <figcaption class="repertoire__description">
+                <span class="repertoire__role">{{work.get_field('roles')|repertoire_role}}</span>
+                <span class="repertoire__text">{{ composer.name }}</span>
+              </figcaption>
+              <div class="repertoire__controlls">
+                <button>{{ __('Rezension', 'robertholzer-theme') }}</button>
+                <button>{{ __('Aufnahme', 'robertholzer-theme') }}</button>
+              </div>
+            </figure>
+
+
+
+           {#} <!-- </div> -->#}
+          {% endfor %}
+
+        </div>
+        </div>
+        {% endif %}
+
+      {% endfor %}
+
+    </div>
+  </main>
+
+</article>

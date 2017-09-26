@@ -7,9 +7,9 @@
 
   $context = Timber::get_context();
   $context['items'] = array();
+  $slide = 0;
 
-  foreach ( $composers as $composer ) {
-
+  foreach($composers as $composer) {
     $args = array(
       'post_type' => 'repertoire',
       'posts_per_page'=> -1,
@@ -23,16 +23,25 @@
       )
     );
 
+    $works = Timber::get_posts($args);
 
-    $context['items'][] = array(
-      'composer' => $composer->name,
-      'composer_slug' => $composer->description,
-      'repertoire' => Timber::get_posts($args)
-    );
+    if($works) {
+
+      $work = array(
+        'name' => $composer->name,
+        'slug' => $composer->description,
+        'scrollTo' => $slide,
+        'works' => $works
+      );
+
+      $context['composers'][] = $work;
+      $slide++;
+    }
+
 
   }
 
-  $templates = array( 'components/repertoire.twig' );
+  $templates = array( 'repertoire.twig' );
   Timber::render( $templates, $context );
 
 ?>
