@@ -14,7 +14,6 @@ services:
       - ./uploads:/app/wp-content/uploads
       - ./theme:/app/wp-content/themes/robertholzer
       - ./config/php.ini:/usr/local/etc/php/conf.d/php.ini
-      - ./config/plugins/advanced-custom-fields-pro:/app/wp-content/plugins/advanced-custom-fields-pro
     environment:
       DB_NAME: robertholzer
       DB_HOST: db
@@ -24,7 +23,7 @@ services:
       WP_DEBUG: 'true'
       WP_VERSION: latest
       PLUGINS: >-
-        [local]advanced-custom-fields-pro,
+        [advanced-custom-fields-pro]https://github.com/wp-premium/advanced-custom-fields-pro/archive/master.zip,
         acf-to-rest-api,
         acf-image-crop-add-on,
         wordpress-importer,
@@ -53,20 +52,6 @@ services:
     volumes:
       - ./theme:/app
 
-  imageservice:
-    image: apsl/thumbor
-    ports:
-      - "5000:8000"
-    volumes:
-      - images:/data
-    networks:
-      - frontend
-    environment:
-      - ENGINE=graphicsmagick_engine.engine
-      - ALLOW_UNSAFE_URL=True
-      - AUTO_WEBP=True
-      - PROGRESSIVE_JPEG=True
-
   db:
     image: mysql:5.7
     hostname: dbhost
@@ -76,11 +61,12 @@ services:
     volumes:
       - data:/var/lib/mysql
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 22222:80
+
 volumes:
   data:
-  images:
-    driver: local
-
-networks:
-  frontend:
-    driver: bridge
