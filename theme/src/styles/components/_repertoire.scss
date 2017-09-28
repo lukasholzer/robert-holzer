@@ -20,11 +20,16 @@ $color-blue: rgba(093, 142, 189, 100) !default;
       content: '';
       display: block;
       height: $point-size;
-      left: 1.6rem;
+      left: 0.6rem;
       position: absolute;
       top: 3.5rem;
       width: $point-size;
+      transition: opacity 300ms ease-out;
     }
+  }
+
+  &:hover::before {
+    opacity: 0;
   }
 
   &[data-rep-cat='opera'] {
@@ -100,6 +105,7 @@ nav.swiper-container {
     width: calc(#{100%/3} - #{$space-around} * 2 - #{$border-size} * 2);
     padding: $space-around;
     border: $border-size solid transparent;
+    transition: border 500ms ease-out;
     &:hover {
       border-color: $color-black;
     }

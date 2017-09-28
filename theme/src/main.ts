@@ -23,7 +23,7 @@ const navigation = new Swiper('nav.swiper-container', {
   spaceBetween: 10,
   grabCursor: true,
   centeredSlides: true,
-  slidesPerView: '4',
+  slidesPerView: 'auto',
   mousewheelControl: true,
   keyboardControl: true,
   touchRatio: 0.2,
