@@ -5,22 +5,48 @@ import { Component, ElementRef } from 'mojiito-core';
 })
 export class RepertoireComponent {
 
-  static WORK_SELECTOR = 'repertoire__work';
-  static ACTIVE_CLASS: string = RepertoireComponent.WORK_SELECTOR + '--active';
+  private static NAV_CONTAINER = 'nav.swiper-container';
+  private static WORK_CONTAINER = 'main.swiper-container';
+
+  private navMobile = document.querySelector('.mobile-navigation') as HTMLSelectElement;
+  private navigation: Swiper;
+  private works: Swiper;
 
   constructor(private elementRef: ElementRef) {
 
-    const workItems = this.elementRef.nativeElement.querySelectorAll(`.${RepertoireComponent.WORK_SELECTOR}`);
+    this.initSwipers();
+    this.navMobile.addEventListener('change', (event: Event) => {
+      this.navigation.slideTo(parseInt(this.navMobile.value));
+    });
+  }
 
-    if (workItems) {
-      for (let i = 0, max = workItems.length; i < max; i++) {
-        workItems[i].addEventListener('click', (event: Event) => {
-          event.preventDefault();
+  initSwipers() {
 
-          workItems[i].classList.toggle(RepertoireComponent.ACTIVE_CLASS);
-        });
+    this.works = new Swiper(RepertoireComponent.WORK_CONTAINER, {
+      mousewheelControl: true,
+      mousewheelForceToAxis: true,
+      mousewheelInvert: true,
+      autoHeight: true,
+      slidesPerView: 'auto',
+    });
+
+    this.navigation = new Swiper(RepertoireComponent.NAV_CONTAINER, {
+      spaceBetween: 10,
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      mousewheelControl: true,
+      keyboardControl: true,
+      touchRatio: 0.2,
+      slideToClickedSlide: true,
+      onSlideChangeStart: () => {
+        this.navMobile.selectedIndex = this.navigation.activeIndex;
       }
-    }
+    });
+
+    this.works.params.control = this.navigation;
+    this.navigation.params.control = this.works;
+
   }
 
 }
