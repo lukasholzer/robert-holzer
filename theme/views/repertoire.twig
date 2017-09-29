@@ -16,7 +16,7 @@
         {% for composer in composers %}
 
           {% if composer.works %}
-            <div class="swiper-slide">{{composer.slug}}</div>
+            <div class="swiper-slide">{{composer.slug ? composer.slug : composer.name}}</div>
           {% endif %}
 
         {% endfor %}
@@ -31,12 +31,8 @@
 
         {% if composer.works %}
         <div class="swiper-slide">
-<div class="works">
-
+          <div class="works">
           {% for work in composer.works %}
-            {#} <div class="work__title">
-              {{work.title}}<br><i>{{ composer.name }} </i></div>
- #}
 
             <figure class="repertoire__work" data-rep-cat="{{work.id|get_song_type}}">
               <h2 class="repertoire__title">{{work.title}}</h2>
@@ -50,12 +46,8 @@
               </div>
             </figure>
 
-
-
-           {#} <!-- </div> -->#}
           {% endfor %}
-
-        </div>
+          </div>
         </div>
         {% endif %}
 
